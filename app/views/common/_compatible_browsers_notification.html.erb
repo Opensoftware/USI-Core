@@ -1,0 +1,10 @@
+<% content_for :additional_stylesheets do %>
+  <%= stylesheet_link_tag "usi/notification_bar" %>
+<% end %>
+
+
+<div class="error message" style="display: none;">
+  <h3> <%= t("error.browser_compatibility_header") %> </h3>
+  <p> <%= t("error.browser_compatibility_content") %> </p>
+  <button type="button"></button>
+</div>

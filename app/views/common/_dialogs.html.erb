@@ -1,0 +1,42 @@
+<div id="internal_server_error" title="<%= t(:label_error) %>" style="display: none;">
+  <p style="padding: 1em;">
+    <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
+    <%= t(:error_server_internal)  %>
+  </p>
+</div>
+
+<div id="client_error" title="<%= t(:label_error) %>" style="display: none;">
+  <p>
+    <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
+    <%= t(:error_client)  %>
+  </p>
+  <p id="client_error_msg">
+  </p>
+</div>
+
+<div id="forbidden_error" title="<%= t(:label_error) %>" style="display: none;">
+  <p style="padding: 1em;">
+    <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
+    <%= t(:error_resource_forbidden)  %>
+  </p>
+</div>
+<div id="read_only_error" title="<%= t(:label_warning) %>" style="display: none;">
+  <p style="padding: 1em;">
+    <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
+    <%= t(:error_read_only_error)  %>
+  </p>
+</div>
+
+<div id="empty_dialog" title="<%= t(:label_error) %>" style="display: none;">
+  <p style="padding: 1em;">
+    <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
+    <span class="msg"></span>
+  </p>
+</div>
+
+<div id="empty_warning_dialog" title="<%= t(:label_caution) %>" style="display: none;">
+  <p style="padding: 1em;">
+    <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
+    <span class="msg"></span>
+  </p>
+</div>

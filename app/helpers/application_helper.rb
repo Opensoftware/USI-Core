@@ -1,0 +1,29 @@
+module ApplicationHelper
+
+  def render_flash_messages
+    s = ''
+    flash.each do |k,v|
+      if [:notice, :warning, :error].include? k.to_sym
+        if (v.is_a?(String) || v.is_a?(Symbol))
+          s << render(:partial => "common/flash_#{k}_template", :locals => { :msg => v})
+        elsif v.is_a?(Hash)
+          v.each do |kk,vv|
+            s << render(:partial => "common/flash_#{k}_template", :locals => { :msg => vv})
+          end
+        end
+      end
+    end
+    s.html_safe
+  end
+
+  def error_msgs_for(obj)
+    if obj.errors.any?
+      s = ''
+      obj.errors.full_messages.uniq.each do |msg|
+        s << render(:partial => "common/flash_form_error_template", :locals => { :msg => msg})
+      end
+      s.html_safe
+    end
+  end
+
+end

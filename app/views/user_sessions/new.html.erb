@@ -1,0 +1,20 @@
+<%= error_msgs_for(@user_session) %>
+<%= form_for @user_session, :html => {:class => "form-horizontal", :role => "form"} do |f| %>
+  <div class="form-group">
+    <%= f.label :email, t(:label_email), :class => "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :email, :class => "form-control", :placeholder => t(:label_email) %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :password, t(:label_password), :class => "col-sm-2 control-label" %>
+    <div class="col-sm-4">
+      <%= f.password_field :password, :class => "form-control", :placeholder => t(:label_password) %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Sign in</button>
+    </div>
+  </div>
+<% end %>

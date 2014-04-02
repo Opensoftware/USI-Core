@@ -1,0 +1,290 @@
+pl:
+  authlogic:
+    error_messages:
+      password_invalid: nie jest poprawne
+      password_blank: nie może być puste
+      consecutive_failed_logins_limit_exceeded: Próbowałaś(eś) zalogować się pięć razy i za każdym razem Twoje hasło było niepoprawne. Twoje konto zostało tymczasowo zablokowane.
+    attributes:
+      user_session:
+        password: Hasło
+  activerecord:
+    attributes:
+      user_session:
+        password: Hasło
+      user:
+        email: "e-mail"
+        password: "hasło"
+        password_confirmation: "powtórz hasło"
+    errors:
+      models:
+        user_session:
+          attributes:
+            password:
+              blank: "nie może być puste"
+      template:
+        header:
+          one: "Wystąpił błąd "
+          other: "Wystąpił błąd"
+        body: "wynikły pewne problemy z podanymi polami:"
+      messages:
+        blank: "nie może być puste"
+        not_a_number: "musi być liczbą"
+        taken: Istnieje już taka kombinacja
+        too_short: "podana wartość jest za krótka"
+        confirmation: "nie jest identyczne z 'powtórz hasło'"
+        wrong_email: "musi wyglądać jak adres email"
+        too_long: "posiada za długą wartość"
+
+
+  label_email: E-mail
+  label_password: Hasło
+  label_login: Zaloguj
+  label_logout: Wyloguj
+  label_logout_correctly: "Wylogowano poprawnie"
+  label_delete: Usuń
+  label_error: Błąd
+  label_info: Informacja
+  label_confirmation: Potwierdzenie
+  label_save: Zapisz
+  label_save_and_close: Zapisz i zamknij
+  label_save_and_publish: Zapisz i publikuj
+  label_select_and_close: Wybierz i zamknij
+  label_preview: Podgląd dokumentu
+  label_help: Pomoc
+  label_to_top: Do góry
+  label_feedback: Wyślij sugestię
+  label_cancel: Anuluj
+  label_audits: Historia zmian
+  label_ok: Ok
+  label_home: Home
+  label_new: Nowy
+  label_show: Wyświetl
+  label_edit: Edytuj
+  label_edit_header: Edytuj nagłówek
+  label_edit_content: Edytuj treść
+  label_edit_data: Edytuj dane
+  label_sharing: Udostępnianie
+  label_share: Udostępnij
+  label_filter: Filtruj
+  label_filter_of_actions: Filtr akcji
+  label_filter_singular: Filtr
+  label_back: Wróć
+  label_created_date: Data utworzenia
+  label_add_new_course: Dodaj nowy kierunek
+  label_signature: Sygnatura
+  label_description: Opis
+  label_options: Opcje
+  label_additional_options: Opcje dodatkowe
+  label_register_new_account: Rejestracja nowego konta
+  label_password: Podaj hasło
+  label_email_yours: Podaj swój e-mail
+  label_email_yours_syllabus: Twój e-mail w systemie Syllabus
+  label_role_hint: Do czego potrzebujesz konta?
+  label_your_name: Twoje imię
+  label_your_surname: Twoje nazwisko
+  label_your_department: Twój wydział
+  label_code: Kod
+  label_account_created: Twoje konto zostało utworzone w systemie.
+  label_no_data: Brak wyników do wyświetlenia
+  label_created_at: Data utworzenia
+  label_generate_pdf: Generuj PDF tej strony
+  label_generate_xls: Generuj XLS tej strony
+  label_effect_course: Kierunek obejmowany
+  label_studies: Studia
+  label_studies_degree_code: "%{degree} stopnia"
+  label_annual: Rocznik
+  label_annual_start: Pierwszy rok akademicki Twoich studiów
+  label_course_of_study_short: Tok studiów
+  label_course_of_study_truncated: Tok studiów
+  label_course_of_study: Tok studiów rozpoczynający się od roku akademickiego
+  label_course_of_study_show: Pokazuj tok studiów rozpoczynający się od roku akademickiego
+  label_academic_year: Rok akademicki
+  label_academic_year_of: w roku akademickim
+  label_academic_year_yours: Twój rok studiów
+  label_academic_year_studies_begin: Rok akademicki rozpoczęcia studiów
+  label_choose_year: "Wybierz rocznik:"
+  label_general_info: Informacje ogólne
+  label_assignments_data: Dane przypisania
+  label_studies_type: Typ studiów
+  label_teaching_language: Język wykładowy
+  label_module_belongs_to_group: Moduł należy do grupy
+  label_ects_points: Punkty ECTS
+  label_ects_points_module: Punkty ECTS za moduł
+  label_ects_balance: Bilans punktów ECTS
+  label_ects_balance_extended: Nakład pracy studenta (bilans punktów ECTS)
+  label_semester: Semestr
+  label_semester_short: Sem.
+  label_semester_assign_to: Przypisz do semestru nr
+  label_semester_number: Numer semestru
+  label_semester_0_explanation: Realizacja modułów na dowolnym semestrze
+  label_semester_blocked_plural: Zablokowane semestry
+  label_semester_closed_for_edition_desc: Semestr zamknięty do edycji
+  label_additional_info: Pozostałe informacje
+  label_type: Typ
+  label_method: Metoda
+  label_module_owner: Osoba odpowiedzialna za moduł
+  label_module_owner_short: Osoba odpowiedzialna
+  label_module_owner_short_plural: Osoby odpowiedzialne
+  label_module_owner_mail: Email osoby odpowiedzialnej
+  label_module_owner_all: Wszyscy
+  label_credit_conditions: Sposób obliczania oceny końcowej
+  label_credit_conditions_not_defined: Nie określono sposobu obliczania oceny końcowej.
+  label_prerequisites: Wymagania wstępne i dodatkowe
+  label_prerequisites_not_defined: Nie podano wymagań wstępnych lub dodatkowych.
+  label_literature: Zalecana literatura i pomoce naukowe
+  label_literature_not_defined: Nie podano zalecanej literatury lub pomocy naukowych.
+  label_notices: Informacje dodatkowe
+  label_notices_not_defined: Brak
+  label_category: Kategoria
+  label_category_new: Dodaj nową kategorię
+  label_category_del: Usuń kategorię
+  label_hour_short: godz
+  label_profile_short: Profil
+  label_effect_domain_short: Obszar
+  label_click_to_remove: Kliknij aby usunąć
+  label_none: Brak
+  label_faq: Często zadawane pytania
+  label_topic: Temat
+  label_hours: Godziny
+  label_study_plan_characteristic: Ogólna charakterystyka kierunku studiów
+  label_add_modules_to_semester: Dodaj istniejący moduł do planu studiów
+  label_study_plans_short: Plany
+  label_study_plan_description: Opis kierunku
+  label_university_strategy: Związki kierunku studiów ze strategią rozwoju uczelni
+  label_study_plan_rules: Warunki rekrutacji
+  label_effect_domains: Obszary kształcenia
+  label_effect_sciences: Dziedziny nauk i dyscypliny naukowe do których odnoszą się zakładane efekty kształcenia
+  label_education_program: Program kształcenia
+  label_study_program: Program studiów
+  label_study_duration: Czas trwania studiów (liczba semestrów)
+  label_study_start_date: Termin rozpoczęcia cyklu
+  label_ects_limit_long: Liczba punktów ECTS konieczna dla uzyskania kwalifikacji (tytułu zawodowego)
+  label_success: Sukces
+  label_assign: Przypisz
+  label_associations: Przypisania
+  label_associations_show: Pokaż przypisania
+  label_association_delete: Usuń przypisanie
+  label_association_new: Nowe przypisanie
+  label_association_existing: Istniejące przypisanie
+  label_association_principles: Zasady przypisania
+  label_association_insufficient_permissions_edit_desc: Moduł jest przypisany do programu studiów, którego nie możesz edytować
+  label_association_inaccessible_for_edition: Przypisania niedostępne do edycji
+  label_associated_with: Przypisana do
+  label_remaining: Pozostałe
+  label_assigned_to: Przypisany do
+  label_expand: Rozwiń
+  label_collapse: Zwiń
+  label_min_ECTS: min. ECTS
+  label_not_available_short: nd.
+  label_all: Wszystkie
+  label_all_singular: Wszystko
+  label_all_accessible: Wszystkie, do których mam dostęp
+  label_all_accessible_unassigned: Wszystkie, do których mam dostęp i nieprzypisane
+  label_all_unassigned: Wszystkie nieprzypisane
+  label_all_toggle: Zaznacz/odznacz wszystko
+  label_basic_singular: Podstawowa
+  label_basic_plural: Podstawowe
+  label_for: Dla
+  label_shared_by: Udostępniany przez
+  label_shared_for: Udostępniany dla
+  label_disconnect: Odwiąż
+  label_search: Szukaj
+  label_exam_short: Egz.
+  label_yes: Tak
+  label_no: Nie
+  label_module_activities_workload: Liczba godzin zajęć dla poszczególnych form zajęć
+  label_hours_edit: Edycja godzin
+  label_owner: Właściciel
+  label_preview_not_accessible: Podgląd niedostępny
+  label_assignment_edit: Edycja przypisania
+  label_published: Opublikowany
+  label_published_plural: Opublikowane
+  label_unpublished: Nieopublikowany
+  label_unpublished_plural: Nieopublikowane
+  label_general_program_info: Ogólne informacje związane z programem kształcenia (ogólne cele kształcenia oraz możliwości zatrudnienia, typowe miejsca pracy i możliwości kontynuacji kształcenia przez absolwentów)
+  label_how_can_i_find_module_owner_rapidly: Jak szybko szukać osób odpowiedzialnych
+  label_how_can_i_find_module_rapidly: Jak szybko szukać modułów
+  label_how_can_i_find_module_effectively: Jak efektywnie szukać modułów
+  label_how_can_i_find_study_programmes_effectively: Jak efektywnie szukać programów studiów
+  label_selected: Wybrano
+  label_basics: Podstawy
+  label_examples: Przykłady
+  label_connections_to_other_disciplines: Dziedziny nauk i dyscypliny naukowe, do których odnoszą się zakładane efekty kształcenia
+  label_study_rules: Zasady dotyczące struktury studiów (zasady studiowania)
+  label_panel: Panel
+  label_see_more: Zobacz więcej
+  label_last_changes: Ostatnie zmiany
+  label_added: Dodany
+  label_updated_at: Ostatnio edytowany
+  label_personal_data: Dane osobowe
+  label_ordinal_number_short: Lp.
+  label_clone: Klonuj
+  label_send_to: Wyślij do
+  label_choose: "- Wybierz -"
+  label_statistics: Statystyki
+  label_statistics_modules_departments: Statystyki uzupełnień modułów na poszczególnych Wydziałach
+  label_open: Otwórz
+  label_open_temporary: Otwórz do edycji
+  label_updated_every: Aktualizacja raz na 24h
+  label_edit_assignment: Edytuj przypisanie
+  label_action: Akcja
+  label_status: Status
+  label_reason: Powód
+  label_caution: Uwaga
+  label_alert: Ważne
+  label_tip: Podpowiedź
+  label_domain: Dziedzina
+  label_discipline: Dyscyplina
+  label_nav_shortcuts: Na skróty
+  label_see_changes: Zobacz zmiany
+  label_page_next: Następna strona
+  label_page_prev: Poprzednia strona
+  label_mine_only: Tylko moje
+  label_programme: Program
+  label_add: Dodaj
+  label_remove: Usuń
+  label_download: Pobierz
+  label_details: Szczegóły
+  label_table_of_contents: Spis treści
+  label_step_by_step: Krok po kroku
+  label_reset: Resetuj
+  label_any: Dowolny
+  label_also_available: dostępne również
+  label_current: Obecny
+  label_nearest: Najbliższy
+  label_next: Następny
+  label_inactive_singular: Wyłączone
+
+
+  label_account_my: Moje konto
+
+  notice_record_not_found: Strona, którą chcesz wyświetlić nie istnieje lub została przeniesiona
+  notice_feedback_delivered: Zgłoszenie zostało przyjęte. Dziękujemy!
+  notice_feedback_not_delivered: Problem z przyjęciem zgłoszenia spróbuj raz ponownie jeżeli problem będzie nadal występował skontaktuj się z administratorem
+  notice_account_is_not_active: Konto nie jest aktywne! W ciągu kilku dni od rejestracji konto powinno zostać aktywowane, jeżeli tak się nie stało skontaktuj się z administratorem na wydziale %{admin}
+  notice_account_is_blocked: Konto zostało zablokowane! Skontaktuj się z administratorem wydziału %{admin}
+  notice_user_account_activated: Konto użytkownika zostało aktywowane
+  notice_user_account_dectivated: Konto użytkownika zablokowane
+  notice_user_account_unlocked: Konto użytkownika zostało odblokowane
+  notice_account_not_exists: W systemie nie istnieje konto z podanym adresem email.
+
+  error:
+    browser_compatibility_header: Korzystasz z przeglądarki, która nie jest zalecana do przeglądania tej strony, dlatego prezentowane treści mogą nie wyświetlać się poprawnie.
+    browser_compatibility_content: Zalecamy korzystanie z przeglądarek Mozilla Firefox (wersja min. 3.5), Opera (wersja min. 11) lub Google Chrome.
+
+    submiting_again: Oh snap! Change a few things up and try submitting again.
+
+  panel:
+    header:
+      thesis: Prace dyplomowe
+      elective_subject: Przedmioty obieralne
+    body:
+      thesis: Prace dyplomowe
+      elective_subject: Przedmioty obieralne
+
+  title:
+    app: USI/Core
+
+  button:
+    toggle_nav: Zwiń/Rozwiń nawigację
+

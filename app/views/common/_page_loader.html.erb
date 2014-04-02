@@ -1,0 +1,25 @@
+<%= content_for :additional_javascript_libraries do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $.pageLoaderEnabled = true;
+      e = $("#page-loader");
+      inner = e.find("p");
+      iTop = ((window.innerHeight / 2) - ((inner.outerHeight()!=0? inner.outerHeight() : 30) / 2)) + 'px';
+      iLeft = ((window.innerWidth / 2) - ((inner.outerWidth()!=0? inner.outerWidth() : 220) / 2)) + 'px';
+      inner.css({
+        top: iTop,
+        left: iLeft
+      });
+    });
+  </script>
+<% end %>
+
+<div id="page-loader">
+  <p>
+    <span>
+      <%=t :notice_page_is_loading %>
+    </span>
+    <br>
+    <img src="<%= image_path('ajax-loader.gif') %>">
+  </p>
+</div>
