@@ -5,6 +5,12 @@ ActiveRecord::Base.transaction do
   Language.create!(:name_pl => "Polski", :name_en => 'Polish', :code => 'pl')
   Language.create!(:name_pl => "Angielski", :name_en => 'English', :code => 'en')
 
+  annual = Annual.new(name: "2014-2015")
+  annual.save!
+  settings = Settings.new(current_annual_id: annual.id)
+  settings.save!
+
+
   employee_titles = [ {:name => "dr" },
       {:name => "dr hab." },
       {:name => "dr hab. inż." },
@@ -44,7 +50,19 @@ ActiveRecord::Base.transaction do
   Role.create!(:name => "Student")
   Role.create!(:name => "Administrator katedralny")
   Role.create!(:name => "Pracownik dziekanatu")
-  Role.create!(:name => "Pracownik naukowy")
+  role = Role.new(:name => "Pracownik naukowy")
+  role.save!
+  role_permissions = {
+      "User"=>["read"],
+  }
+  role_permissions.each do |subject_class, actions|
+      actions.each do |action|
+          perm = Permission.where(subject_class: subject_class, action: action).first
+          if perm.present?
+              role.permissions << perm
+          end
+      end
+  end
 
   user = User.new
   user.email = "admin@opensoftware.pl"

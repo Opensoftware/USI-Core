@@ -5,8 +5,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   layout "base"
+  before_filter :set_locale_from_params
 
-  helper_method :current_user, :current_language
+  helper_method :current_user, :current_language, :current_annual
 
 
   def default_url_options(options={})
@@ -24,4 +25,26 @@ class ApplicationController < ActionController::Base
     @current_user_session = UserSession.find
   end
 
+  def current_annual
+    return @current_annual if defined?(@current_annual)
+    @current_annual = settings.annual
+  end
+
+  def settings
+    return @settings if defined?(@settings)
+    @settings = Settings.first
+  end
+
+  protected
+
+    def set_locale_from_params
+      if params[:locale]
+        if I18n.available_locales.include?(params[:locale].to_sym)
+          I18n.locale = params[:locale]
+        else
+          flash.now[:notice] = 'Translation not available'
+          logger.error flash.now[:notice]
+        end
+      end
+    end
 end
