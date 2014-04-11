@@ -73,14 +73,20 @@ ActiveRecord::Base.transaction do
   user.silent_activate!
 
   if defined? Diamond
-      Diamond::ThesisType.create!(name_pl: "Praca Inżynierska",
-                                  name_en: "Engineering Thesis",
-                                  short_name_pl: "Inż",
-                                  short_name_en: "BSc")
+    Diamond::ThesisType.create!(name_pl: "Praca Inżynierska",
+                                name_en: "Engineering Thesis",
+                                short_name_pl: "Inż",
+                                short_name_en: "BSc")
 
-      Diamond::ThesisType.create!(name_pl: "Praca Magisterska",
-                                  name_en: "Master Thesis",
-                                  short_name_pl: "Mgr",
-                                  short_name_en: "MSc")
+    Diamond::ThesisType.create!(name_pl: "Praca Magisterska",
+                                name_en: "Master Thesis",
+                                short_name_pl: "Mgr",
+                                short_name_en: "MSc")
+
+    Diamond::ThesisType.create!(name_pl: "Praca Licencjacka",
+                                name_en: "Licentiate thesis",
+                                short_name_pl: "Lic",
+                                short_name_en: "Lic")
   end
+
 end

@@ -16,16 +16,12 @@ ActiveRecord::Base.transaction do
                         overriding_id: base_unit.id)
   faculty.save!
 
-  building = Building.new(short_name: 'A4', code: 'A4', name: 'A4',
-                          overriding_id: faculty.id)
-  building.save!
+  Building.create(short_name: 'A4', code: 'A4', name: 'A4', overriding_id: faculty.id)
 
-  course = Course.new(short_name: 'GG', code: 'GG', name: 'Górnictwo',
-                      academy_unit_id: faculty.id)
-  course.save!
-  course = Course.new(short_name: 'HU', code: 'HU', name: 'Hutnictwo',
-                      academy_unit_id: faculty.id)
-  course.save!
+  Course.create(short_name: 'GG', code: 'GG', name: 'Górnictwo', academy_unit_id: faculty.id)
+  Course.create(short_name: 'HU', code: 'HU', name: 'Hutnictwo', academy_unit_id: faculty.id)
+  Course.create(short_name: 'SZ', code: 'SZ', name: 'Szklarnictwo', academy_unit_id: faculty.id)
+  Course.create(short_name: 'ZL', code: 'ZL', name: 'Złotnictwo', academy_unit_id: faculty.id)
 
   user = User.new
   user.email = "torpeda@at.edu"
