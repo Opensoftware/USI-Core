@@ -13,5 +13,9 @@
 //= require jquery-1.11.0.js
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap.js
+//= require modernizr.custom.24648.js
+//= require jquery.busybox.js
+//= require core.engine.js
 //= require main
 
