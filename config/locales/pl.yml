@@ -312,6 +312,7 @@ pl:
   label_thesis_enroll_login_first: Zaloguj się, jeżeli chcesz zapisać się na ten temat
   label_thesis_enrolled: Udało Ci się już zapisać na ten temat
   label_student_singular: Student
+  label_student_personal_data: Dane osobowe studenta
   label_elective_block_plural: Przedmioty obieralne
   label_field_of_study_singular: Kierunek
   label_field_of_study_plural: Kierunki

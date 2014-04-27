@@ -20,6 +20,7 @@
 //= require jquery.i18n.js
 //= require bootstrap-datetimepicker.js
 //= require locales/bootstrap-datetimepicker.pl.js
+//= require handlebars-v1.3.0.js
 //= require typeahead.bundle.js
 //= require main
 //= require core.engine.js
