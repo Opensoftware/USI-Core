@@ -1,7 +1,6 @@
 class CreateStudies < ActiveRecord::Migration
   def change
     create_table :studies do |t|
-      t.integer :semester_number
       t.references :course, :study_type, :study_degree, :specialty, :faculty
       t.timestamps
     end

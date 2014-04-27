@@ -73,7 +73,7 @@
         </div>
       </div>
     <% else %>
-      <% current_user.verifable.studies.each do |s| %>
+      <% current_user.verifable.student_studies.each do |ss| %>
         <div class="row">
           <div class="col-md-6">
             <h6 class="text-muted">
@@ -82,19 +82,7 @@
           </div>
           <div class="col-md-10">
             <h6>
-              <%= s.course %>
-            </h6>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <h6 class="text-muted">
-              <%=t :label_semester %>
-            </h6>
-          </div>
-          <div class="col-md-10">
-            <h6>
-              <%= s.semester_number %>
+              <%= ss.studies.course %>
             </h6>
           </div>
         </div>
@@ -106,7 +94,19 @@
           </div>
           <div class="col-md-10">
             <h6>
-              <%= s.study_degree.to_s %>
+              <%= ss.studies.study_degree.to_s %>
+            </h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h6 class="text-muted">
+              <%=t :label_year_of_study %>
+            </h6>
+          </div>
+          <div class="col-md-10">
+            <h6>
+              <%= semester_to_year_number(ss.semester_number) %>
             </h6>
           </div>
         </div>

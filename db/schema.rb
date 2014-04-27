@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(version: 20140427171918) do
   end
 
   create_table "student_studies", force: true do |t|
+    t.integer  "semester_number", default: 1
     t.integer  "student_id"
     t.integer  "studies_id"
     t.datetime "created_at"
@@ -167,6 +168,7 @@ ActiveRecord::Schema.define(version: 20140427171918) do
   end
 
   add_index "student_studies", ["student_id", "studies_id"], name: "by_student_studies", using: :btree
+  add_index "student_studies", ["studies_id", "student_id", "semester_number"], name: "by_studies_student_semester_number", using: :btree
   add_index "student_studies", ["studies_id", "student_id"], name: "by_studies_student", using: :btree
 
   create_table "students", force: true do |t|
@@ -181,7 +183,6 @@ ActiveRecord::Schema.define(version: 20140427171918) do
   end
 
   create_table "studies", force: true do |t|
-    t.integer  "semester_number"
     t.integer  "course_id"
     t.integer  "study_type_id"
     t.integer  "study_degree_id"
