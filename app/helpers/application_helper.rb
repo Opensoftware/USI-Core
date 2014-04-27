@@ -31,4 +31,13 @@ module ApplicationHelper
     @annuals = Annual.all
   end
 
+  def semester_to_year_number(semester)
+    case semester
+    when 1,2 then 1
+    when 3,4 then 2
+    when 5,6 then 3
+    when 7,8 then 4
+    end
+  end
+
 end

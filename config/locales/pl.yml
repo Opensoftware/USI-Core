@@ -280,6 +280,8 @@ pl:
   label_deadline_plural: Terminy
   label_index_number: Numer indeksu
   label_study_degree: Poziom studiów
+  label_year_of_study: Rok studiów
+  label_year_of_study_short: Rok %{year}
   label_course_singular: Kierunek
   label_enrollment_plural: Zgłoszenia
   label_enrollment_begin: Rozpoczęcie zapisów
@@ -311,7 +313,7 @@ pl:
   label_thesis_enroll_by_employee: Przypisz studenta do tego tematu
   label_thesis_enroll_login_first: Zaloguj się, jeżeli chcesz zapisać się na ten temat
   label_thesis_enrolled: Zapisałeś(aś) się już do tego tematu
-  label_thesis_enrolled_by_student: Udało Ci się już zapisać na ten temat
+  label_thesis_enrolled_by_student: Udało Ci się zapisać na ten temat
   label_thesis_enrolled_by_employee: Student %{student} został przypisany do tego tematu
   label_student_singular: Student
   label_student_personal_data: Dane osobowe studenta
@@ -339,6 +341,7 @@ pl:
   label_status_reserved: Zarezerwowana
   label_status_assigned: Przypisana
   label_status_archived: Archiwalna
+  label_status_pending: Oczekuje na akceptację
 
 
   notice_provide_student: Uzupełnij to pole, jeżeli chcesz od razu przypisać studenta do tego tematu
