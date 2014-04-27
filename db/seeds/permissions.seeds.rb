@@ -7,6 +7,7 @@ Permission.transaction do
   permissions_roles = {
     'promotor' => {
       "User"=>["read"],
+      "Diamond::ThesisEnrollment"=>["manage"],
       "Diamond::Thesis"=>["manage_own"]
     },
     'student' => {
