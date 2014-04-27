@@ -9,7 +9,7 @@ class StudentsController < ApplicationController
           {
             value: "#{student.surname} #{student.name}",
             index_number: student.index_number,
-            studies: student.studies.collect{|s| "#{s.course.name} (#{s.study_degree.name.camelize(:lower)}), #{t(:label_semester).downcase} #{s.semester_number}" },
+            studies: student.student_studies.collect{|s| "#{s.studies.course.name} (#{s.studies.study_degree.name.camelize(:lower)}), #{t(:label_semester).downcase} #{s.semester_number}" },
             id: student.id
           }
         end

@@ -16,7 +16,6 @@ h5 {
 h4, h5 {
   a:link, a:hover, a:visited { color: $dark_blue; }
 }
-
 hr { border-top: 1px solid $grey2; }
 label { font-size: 0.9em; font-weight: normal; padding-left: .8em; }
 button, a {
@@ -32,6 +31,9 @@ a {
     vertical-align: middle;
   }
 
+}
+table {
+  font-size: 13px;
 }
 
 .alert {
@@ -71,6 +73,7 @@ a {
   a.button-small { border-bottom: none; }
 }
 
+.sep { color: $grey5; }
 .breadcrumbs-box {
   margin: 8em 0 2em 1.5em;
   span.sep {
@@ -93,7 +96,6 @@ a {
     font-size: 13px;
     font-family: 'clear_sansregular';
   }
-  .sep { color: $grey5; }
 }
 .filter-menu {
   background-color: $dark_blue;

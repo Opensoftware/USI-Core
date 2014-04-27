@@ -1,7 +1,13 @@
 pl:
+  misc:
+    days:
+      zero: 0 dni
+      one: 1 dzień
+      other: "%{count} dni"
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
+      short: "%d.%m.%Y"
   authlogic:
     error_messages:
       password_invalid: nie jest poprawne
@@ -269,7 +275,7 @@ pl:
   label_browse: Przeglądaj
   label_status: Status
   label_select_all: Zaznacz wszystkie
-  label_accept_selected: Akceptuj zaznaczone
+  label_reject: Odrzuć
   label_deny_selected: Odrzuć zaznaczone
   label_destroy_selected: Usuń zaznaczone
   label_search_elements_amount: Wyników na stronie
@@ -280,6 +286,10 @@ pl:
   label_deadline_plural: Terminy
   label_index_number: Numer indeksu
   label_study_degree: Poziom studiów
+  label_day_plural: dni
+  label_accept_selected: Akceptuj zaznaczone
+  label_accept: Akceptuj
+  label_accept_period: na akceptację
   label_year_of_study: Rok studiów
   label_year_of_study_short: Rok %{year}
   label_course_singular: Kierunek
@@ -335,13 +345,14 @@ pl:
   label_permission_plural: Uprawnienia
   label_status_open: Opublikowana
   label_status_unaccepted: Niezaakceptowana
-  label_status_rejected: Odrzucona
+  label_status_rejected: Odrzucone
   label_status_unpublished: Nieopublikowana
   label_status_published: Opublikowana
   label_status_reserved: Zarezerwowana
   label_status_assigned: Przypisana
   label_status_archived: Archiwalna
-  label_status_pending: Oczekuje na akceptację
+  label_status_accepted: Zaakceptowane
+  label_status_pending: W oczekiwaniu
 
 
   notice_provide_student: Uzupełnij to pole, jeżeli chcesz od razu przypisać studenta do tego tematu
