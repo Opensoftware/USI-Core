@@ -11,10 +11,147 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140401130157) do
+ActiveRecord::Schema.define(version: 20140411101123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "academy_unit_translations", force: true do |t|
+    t.integer  "academy_unit_id", null: false
+    t.string   "locale",          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  add_index "academy_unit_translations", ["academy_unit_id"], name: "index_academy_unit_translations_on_academy_unit_id", using: :btree
+  add_index "academy_unit_translations", ["locale"], name: "index_academy_unit_translations_on_locale", using: :btree
+
+  create_table "academy_units", force: true do |t|
+    t.string   "short_name"
+    t.string   "code"
+    t.string   "name"
+    t.string   "type"
+    t.integer  "overriding_id"
+    t.boolean  "visible",       default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "annuals", force: true do |t|
+    t.string   "name"
+    t.boolean  "locked",     default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "course_translations", force: true do |t|
+    t.integer  "course_id",  null: false
+    t.string   "locale",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  add_index "course_translations", ["course_id"], name: "index_course_translations_on_course_id", using: :btree
+  add_index "course_translations", ["locale"], name: "index_course_translations_on_locale", using: :btree
+
+  create_table "courses", force: true do |t|
+    t.string   "short_name"
+    t.string   "code"
+    t.string   "name"
+    t.integer  "academy_unit_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diamond_course_theses", force: true do |t|
+    t.integer  "course_id"
+    t.integer  "thesis_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diamond_theses", force: true do |t|
+    t.text     "title"
+    t.text     "description"
+    t.integer  "student_amount", default: 1
+    t.integer  "supervisor_id"
+    t.integer  "annual_id"
+    t.integer  "thesis_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diamond_thesis_translations", force: true do |t|
+    t.integer  "diamond_thesis_id", null: false
+    t.string   "locale",            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "title"
+    t.text     "description"
+  end
+
+  add_index "diamond_thesis_translations", ["diamond_thesis_id"], name: "index_diamond_thesis_translations_on_diamond_thesis_id", using: :btree
+  add_index "diamond_thesis_translations", ["locale"], name: "index_diamond_thesis_translations_on_locale", using: :btree
+
+  create_table "diamond_thesis_type_translations", force: true do |t|
+    t.integer  "diamond_thesis_type_id", null: false
+    t.string   "locale",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "short_name"
+  end
+
+  add_index "diamond_thesis_type_translations", ["diamond_thesis_type_id"], name: "index_c2043907fe7ed9d8ed5b7cf721b651883e708a26", using: :btree
+  add_index "diamond_thesis_type_translations", ["locale"], name: "index_diamond_thesis_type_translations_on_locale", using: :btree
+
+  create_table "diamond_thesis_types", force: true do |t|
+    t.string   "name"
+    t.string   "short_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employee_titles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "employees", force: true do |t|
+    t.string   "surname"
+    t.string   "name"
+    t.string   "room"
+    t.string   "phone_number"
+    t.string   "www"
+    t.boolean  "delta",             default: true, null: false
+    t.integer  "academy_unit_id"
+    t.integer  "employee_title_id"
+    t.integer  "language_id"
+    t.integer  "building_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "language_translations", force: true do |t|
+    t.integer  "language_id", null: false
+    t.string   "locale",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  add_index "language_translations", ["language_id"], name: "index_language_translations_on_language_id", using: :btree
+  add_index "language_translations", ["locale"], name: "index_language_translations_on_locale", using: :btree
+
+  create_table "languages", force: true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "permission_roles", force: true do |t|
     t.integer "permission_id"
@@ -48,6 +185,12 @@ ActiveRecord::Schema.define(version: 20140401130157) do
   create_table "roles", force: true do |t|
     t.string   "name",        limit: 40
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "settings", force: true do |t|
+    t.integer  "current_annual_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

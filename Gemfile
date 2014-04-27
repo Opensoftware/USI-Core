@@ -12,6 +12,8 @@ gem 'simple-navigation-bootstrap'
 gem 'globalize', '~> 4.0.1'
 gem 'globalize-accessors'
 gem "seedbank"
+gem 'bcrypt'
+gem 'scrypt'
 
 gem 'diamond', '~> 0.0.1', :path => '../diamond'
 gem 'graphite', '~> 0.0.1', :path => '../graphite'
