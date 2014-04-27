@@ -5,6 +5,7 @@ UsiCore::Application.routes.draw do
 
     resources :dashboard, :only => :index
 
+    resources :employees
     resources :students
     resources :dashboard, :only => :index
     resources :enrollment_semesters, :only => [:edit, :update]

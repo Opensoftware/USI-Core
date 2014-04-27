@@ -4,5 +4,7 @@ var pl_translations = {
   "confirmation_theses_deny": "Czy na pewno chcesz odrzucić wybrane tematy prac dyplomowych?",
   "confirmation_theses_accept": "Czy na pewno chcesz zaakceptować wybrane tematy prac dyplomowych?",
   "button_no": "Nie",
-  "button_yes": "Tak"
+  "button_yes": "Tak",
+  "notice_students_not_found": "Wygląda na to, że w bazie danych nie ma takiego studenta",
+  "notice_supervisor_not_found": "Wygląda na to, że w bazie danych nie ma takiego promotora"
 }
