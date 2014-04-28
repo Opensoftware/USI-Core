@@ -79,9 +79,6 @@ ActiveRecord::Base.transaction do
     Diamond::ThesisType.create!(name_pl: "Praca Inżynierska", name_en: "Engineering Thesis", short_name_pl: "Inż", short_name_en: "BSc")
     Diamond::ThesisType.create!(name_pl: "Praca Magisterska", name_en: "Master Thesis", short_name_pl: "Mgr", short_name_en: "MSc")
     Diamond::ThesisType.create!(name_pl: "Praca Licencjacka", name_en: "Licentiate thesis", short_name_pl: "Lic", short_name_en: "Lic")
-
-    Diamond::ThesisEnrollmentType.create!(name_pl: "Temat podstawowy", name_en: "Primary topic", code: :primary )
-    Diamond::ThesisEnrollmentType.create!(name_pl: "Temat rezerwowy", name_en: "Secondary topic", code: :secondary)
   end
 
 end

@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
 
     respond_to do |f|
       f.json do
-        students = Student.paginate(:page => 1, :per_page => 10, :conditions => ['surname ilike ?', "%#{params[:q]}%"], :order => 'surname ASC').collect do |student|
+        students = Student.not_assigned.paginate(:page => 1, :per_page => 10, :conditions => ['surname ilike ?', "%#{params[:q]}%"], :order => 'surname ASC').collect do |student|
           {
             value: "#{student.surname} #{student.name}",
             index_number: student.index_number,

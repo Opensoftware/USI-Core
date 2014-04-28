@@ -297,8 +297,6 @@ pl:
   label_enrollment_begin: Rozpoczęcie zapisów
   label_enrollment_end: Zakończenie zapisów
   label_enrollment_manage: Zarządzanie terminami
-  label_enrollment_main_plural: Zgłoszenia podstawowe
-  label_enrollment_optional_plural: Zgłoszenia rezerwowe
   label_enrollment_unavailable: Zapisy na tematy prac dyplomowych zaczynaja się dnia %{day}
   label_enrollment_type_singular: Rodzaj zgłoszenia
   label_account_my: Moje konto
@@ -309,7 +307,7 @@ pl:
   label_thesis_new_plural: Dodaj tematy
   label_thesis_new_singular: Nowy temat pracy
   label_thesis_singular: Temat pracy
-  label_thesis_singular_en: Temat pracy w języku angielskim (opcjonalny)
+  label_thesis_singular_en: Temat pracy w języku angielskim
   label_thesis_singular_enter_en: Podaj temat w języku angielskim
   label_thesis_singular_edit: Edycja tematu
   label_thesis_student_amount: Liczba studentów
@@ -328,6 +326,7 @@ pl:
   label_student_singular: Student
   label_student_personal_data: Dane osobowe studenta
   label_student_provide_surname: Wpisz nazwisko studenta
+  label_student_amount: Liczba studentów
   label_elective_block_plural: Przedmioty obieralne
   label_field_of_study_singular: Kierunek
   label_field_of_study_plural: Kierunki
