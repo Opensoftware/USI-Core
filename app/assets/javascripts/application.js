@@ -18,6 +18,7 @@
 //= require jquery.history.js
 //= require jquery.validate.js
 //= require jquery.i18n.js
+//= require messages_pl.js
 //= require bootstrap-datetimepicker.js
 //= require locales/bootstrap-datetimepicker.pl.js
 //= require handlebars-v1.3.0.js
