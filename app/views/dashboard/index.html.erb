@@ -78,24 +78,47 @@
   <% end %>
 <% end %>
 
-
-<div class="section-header">
-  <h4>
-    <%=t :label_thesis_yours %>
-  </h4>
-  <hr>
-</div>
-<div class="panel panel-default">
-  <div class="panel-heading"> <%= t("panel.header.theses") %> </div>
-  <div class="panel-body">
-    <p><%= link_to t("diamond.link.new_thesis"), diamond.new_thesis_path %></p>
-    <%= t("panel.body.theses") %>
+<% if current_user.student? %>
+  <div class="section-header">
+    <h4 class="pull-left">
+      <%=t :label_thesis_chosen_yours %>
+    </h4>
+    <%= link_to t(:label_thesis_list_move), diamond.theses_path, :class => 'pull-right inline-icon inline-icon-red inline-icon-thesis-list' %>
+    <div class="clearfix"></div>
+    <hr>
   </div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading"> <%= t("panel.header.elective_subject") %> </div>
-  <div class="panel-body">
-    <%= t("panel.body.elective_subject") %>
+  <table class="table">
+    <tbody>
+      <% if @enrollments.present? %>
+        <%= render :partial => "enrollment_record", :collection => @enrollments %>
+      <% else %>
+        <tr>
+          <td>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="section-header">
+    <h4>
+      <%=t :label_thesis_yours %>
+    </h4>
+    <hr>
   </div>
-</div>
+  <div class="panel panel-default">
+    <div class="panel-heading"> <%= t("panel.header.theses") %> </div>
+    <div class="panel-body">
+      <p><%= link_to t("diamond.link.new_thesis"), diamond.new_thesis_path %></p>
+      <%= t("panel.body.theses") %>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading"> <%= t("panel.header.elective_subject") %> </div>
+    <div class="panel-body">
+      <%= t("panel.body.elective_subject") %>
+    </div>
+  </div>
+
+<% end %>

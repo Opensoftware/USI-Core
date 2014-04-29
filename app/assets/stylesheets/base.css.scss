@@ -71,6 +71,10 @@ table {
     border-bottom-color: $dark_blue; }
   }
   a.button-small { border-bottom: none; }
+  .navy-link {
+    &:link, &:hover, &:visited { color: $dark_blue; }
+    &:hover { border-bottom: 1px solid $dark_blue; }
+  }
 }
 
 .sep {

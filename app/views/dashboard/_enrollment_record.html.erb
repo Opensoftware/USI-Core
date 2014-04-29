@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= enrollment_record.thesis.supervisor.try(:full_name) %>
+  </td>
+  <td>
+    <%= link_to truncate(enrollment_record.thesis.title, :omission => '...', :separator => ' ', :length => 60), diamond.thesis_path(enrollment_record.thesis_id), :class => 'navy-link' %>
+  </td>
+  <td>
+    <%= format_status(enrollment_record.current_state.to_s) %>
+  </td>
+  <td>
+    <%=l enrollment_record.created_at, :format => :short %>
+  </td>
+</tr>

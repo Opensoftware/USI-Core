@@ -20,14 +20,14 @@
 
   </head>
   <body>
-    <!--[if lt IE 8]>
+    <!--[if lt IE 9]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <nav class="navbar" role="navigation">
 
       <div class="container">
         <div class="navbar-header">
-          <%= link_to '', main_app.root_path, :class => "navbar-brand" %>
+          <%= link_to '', current_user ? main_app.dashboard_index_path : main_app.root_path, :class => "navbar-brand" %>
         </div>
         <div class="navbar-nav navbar-right">
           <%= render_navigation(:context => :common, :expand_all => true, :renderer => :bootstrap) %>

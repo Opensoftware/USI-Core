@@ -45,4 +45,22 @@ module ApplicationHelper
     button_tag(content_or_options, options)
   end
 
+  def state_label(current_state)
+    I18n.t "label_status_#{current_state}"
+  end
+
+  def format_status(status)
+    color = case status.to_s
+    when 'accepted' then
+      'text-success'
+    when 'rejected' then
+      'text-danger'
+    else
+      ''
+    end
+    content_tag(:span, :class => color) do
+      I18n.t "label_status_#{status}"
+    end
+  end
+
 end
