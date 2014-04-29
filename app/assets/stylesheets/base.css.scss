@@ -73,11 +73,16 @@ table {
   a.button-small { border-bottom: none; }
 }
 
-.sep { color: $grey5; }
+.sep {
+  color: $grey5;
+  font-family: 'clear_sansbold';
+  font-weight: bold;
+  font-size: 20px;
+}
 .breadcrumbs-box {
   margin: 8em 0 2em 1.5em;
   span.sep {
-    margin: 0 1em;
+    margin: 0 8px;
     color: $grey3;
   }
 }

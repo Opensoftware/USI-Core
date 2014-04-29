@@ -304,6 +304,7 @@ pl:
   label_dashboard_short: Panel
   label_thesis_plural: Tematy prac
   label_thesis_plural_official: Prace dyplomowe
+  label_thesis_added: Dodano temat pracy %{title}
   label_thesis_new_plural: Dodaj tematy
   label_thesis_new_singular: Nowy temat pracy
   label_thesis_singular: Temat pracy
