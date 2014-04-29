@@ -279,6 +279,7 @@ pl:
   label_deny_selected: Odrzuć zaznaczone
   label_destroy_selected: Usuń zaznaczone
   label_search_elements_amount: Wyników na stronie
+  label_list_export: Eksportuj listę
   label_list_export_pdf: Eksportuj listę do PDF
   label_list_export_xls: Eksportuj listę do XLS
   label_move_back: Wróć do listy

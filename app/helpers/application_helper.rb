@@ -40,4 +40,9 @@ module ApplicationHelper
     end
   end
 
+  def disableable_button_tag(content_or_options, condition, options)
+    options[:disabled] = true if condition
+    button_tag(content_or_options, options)
+  end
+
 end
