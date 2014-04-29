@@ -101,6 +101,28 @@ table {
     font-size: 13px;
     font-family: 'clear_sansregular';
   }
+  span.sep {
+    font-family: 'clear_sansregular';
+    font-weight: normal;
+    font-size: 14px;
+  }
+  .context-nav {
+    list-style-type: none;
+    margin-bottom: 0;
+    li {
+      display: inline-block;
+    }
+    a {
+      padding-left: 0;
+    }
+    .dropdown-menu {
+      padding: 5px;
+      a {
+        background: none;
+        &:hover { color: $dark_blue2; }
+      }
+    }
+  }
 }
 .filter-menu {
   background-color: $dark_blue;
