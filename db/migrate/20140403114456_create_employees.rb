@@ -8,7 +8,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :www
       t.boolean :delta, :default => true, :null => false
 
-      t.references :academy_unit, :employee_title, :language, :building
+      t.references :academy_unit, :employee_title, :language, :building, :department
       t.timestamps
     end
   end

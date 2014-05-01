@@ -4,8 +4,8 @@ class CreateCourses < ActiveRecord::Migration
       t.string :short_name
       t.string :code
       t.string :name
-      t.integer :academy_unit_id
 
+      t.references :academy_unit
       t.timestamps
     end
   end

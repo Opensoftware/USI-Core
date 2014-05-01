@@ -13,6 +13,7 @@ module UsiCore
     config.time_zone = 'Warsaw'
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+    config.autoload_paths += %W(#{config.root}/lib)
     config.i18n.default_locale = :pl
     config.encoding = "utf-8"
     config.assets.paths << Rails.root.join("vendor", "assets", "bootstrap")

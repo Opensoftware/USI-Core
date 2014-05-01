@@ -8,6 +8,7 @@ class CreateAcademyUnits < ActiveRecord::Migration
       t.integer :overriding_id
       t.boolean :visible, :default => true
 
+      t.references :annual
       t.timestamps
     end
   end

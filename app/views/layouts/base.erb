@@ -13,67 +13,82 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application' %>
     <%= yield :additional_stylesheets %>
-    <%= javascript_include_tag :application %>
+    <script type="text/javascript">
+      var current_language = '<%=current_language%>';
+    </script>
+    <%= javascript_include_tag "#{current_language}_translations", :application %>
+
   </head>
   <body>
     <!--[if lt IE 8]>
-        <p class="browsehappy">
-          You are using an <strong>outdated</strong> browser.
-          Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
-        </p>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <nav class="navbar" role="navigation">
 
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only"> <%= t("button.toogle_nav") %> </span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-
+          <%= link_to '', main_app.root_path, :class => "navbar-brand" %>
         </div>
         <div class="navbar-nav navbar-right">
           <%= render_navigation(:context => :common, :expand_all => true, :renderer => :bootstrap) %>
         </div>
       </div>
     </nav>
-
     <div class="container main_container">
-      <div class="breadcrumbs_box">
+      <div class="breadcrumbs-box">
         <div class="row">
-          <div class="col-md-10">
-            <%= render_navigation(:renderer => :breadcrumbs, :context => :base, :join_with => " &gt; ") %>
+          <div class="col-md-12">
+            <%= render_navigation(:renderer => :breadcrumbs, :context => :base, :join_with => content_tag(:span, "&#176;".html_safe, :class => "sep"), :static_leaf => true) %>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <%= yield(:breadcrumbs_box_extra_content) %>
           </div>
         </div>
       </div>
       <% if content_for?(:filter_menu) %>
-        <div class="filter_menu">
+        <div class="filter-menu">
           <%= yield(:filter_menu) %>
         </div>
       <% end %>
-      <div class="top_menu">
-        <%= yield(:top_menu) %>
+      <div class="top-menu">
+        <div class="pull-right">
+          <%= render_navigation(:context => :top, :level => 2, :renderer => :links, :join_with => "<span class='sep'>|</span>") %>
+        </div>
       </div>
+      <div class="clearfix"></div>
       <div class="content">
         <% if content_for?(:content_heading) %>
-          <div class="content_heading">
+          <div class="content-heading">
             <%= content_for(:content_heading) %>
           </div>
+          <hr/>
         <% end %>
-        <%= yield %>
+
+        <div class="row content-body">
+          <div class="col-md-11">
+            <%= yield %>
+          </div>
+          <div class="col-md-5">
+            <% if content_for?(:right_column) %>
+              <div class="">
+                <%= content_for(:right_column) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <% if content_for?(:content_footnote) %>
+          <div class="content-footnote">
+            <hr />
+            <%= content_for(:content_footnote) %>
+          </div>
+        <% end %>
       </div>
       <%= yield :additional_javascript_libraries %>
 
       <footer>
         <p>&copy; OpenSoftware.pl 2014</p>
       </footer>
-    </div> <!-- /container -->
-
+    </div>
+    <%= yield :additional_javascripts %>
   </body>
 </html>

@@ -1,0 +1,14 @@
+$screen-md:                  992px;
+$screen-md-min:              $screen-md;
+
+@mixin make-md-column-18($columns) {
+    position: relative;
+    min-height: 1px;
+    padding-left:  0.7em;
+    padding-right: 0.7em;
+
+    @media (min-width: $screen-md-min) {
+        float: left;
+        width: percentage(($columns / 18));
+    }
+}

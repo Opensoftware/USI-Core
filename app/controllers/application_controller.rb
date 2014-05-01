@@ -6,13 +6,22 @@ class ApplicationController < ActionController::Base
 
   layout "base"
   before_filter :set_locale_from_params
+  around_filter :with_current_user
 
-  helper_method :current_user, :current_language, :current_annual
+  helper_method :current_user, :current_semester, :current_language, :current_annual, :current_year, :with_format
 
 
   def default_url_options(options={})
     logger.debug "default_url_options is passed options: #{options.inspect}\n"
     { locale: I18n.locale }
+  end
+
+  def with_format(format, &block)
+    old_formats = formats
+    self.formats = [format]
+    block.call
+    self.formats = old_formats
+    nil
   end
 
   def current_user
@@ -30,21 +39,43 @@ class ApplicationController < ActionController::Base
     @current_annual = settings.annual
   end
 
+  def current_semester
+    return @current_semester if defined?(@current_semester)
+    @current_semester = settings.enrollment_semester
+  end
+
   def settings
     return @settings if defined?(@settings)
     @settings = Settings.first
   end
 
-  protected
+  def current_language
+    I18n.locale
+  end
 
-    def set_locale_from_params
-      if params[:locale]
-        if I18n.available_locales.include?(params[:locale].to_sym)
-          I18n.locale = params[:locale]
-        else
-          flash.now[:notice] = 'Translation not available'
-          logger.error flash.now[:notice]
-        end
+  protected
+  def set_locale_from_params
+    if params[:locale]
+      if I18n.available_locales.include?(params[:locale].to_sym)
+        I18n.locale = params[:locale]
+      else
+        flash.now[:notice] = 'Translation not available'
+        logger.error flash.now[:notice]
       end
     end
+  end
+
+  def with_current_user
+    begin
+      User.current = current_user
+      yield
+    ensure
+      User.current = nil
+    end
+  end
+
+  def form_wrapper_mode
+    @form_wrapper_mode = true
+  end
+
 end

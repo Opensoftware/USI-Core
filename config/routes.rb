@@ -1,11 +1,14 @@
 UsiCore::Application.routes.draw do
 
-  scope "(:locale)", :locale => /pl|en/ do
+  scope "/(:locale)", :locale => /pl|en/ do
     root 'base#index'
 
     resources :dashboard, :only => :index
 
-    # authorization module
+    resources :students
+    resources :dashboard, :only => :index
+    resources :enrollment_semesters, :only => [:edit, :update]
+
     resources :user_sessions do
       collection do
         get "sudo_su/:user_id", :action => "sudo_su" , :as => "sudo_su"
@@ -23,6 +26,6 @@ UsiCore::Application.routes.draw do
         post :unlock
       end
     end
-  mount Diamond::Engine, at: "/diamond"
+    mount Diamond::Engine, at: "/diamond"
   end
 end

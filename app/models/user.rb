@@ -16,9 +16,12 @@ class User < ActiveRecord::Base
   belongs_to :role
   belongs_to :verifable, :polymorphic => true, :dependent => :destroy
   belongs_to :employee, :foreign_key => :verifable_id, :class_name => "Employee"
+  belongs_to :student, :foreign_key => :verifable_id, :class_name => "Student"
   belongs_to :language, :class_name => "Language"
 
   serialize :preferences, Hash
+
+  cattr_accessor :current
 
   def blocked?
     self.status == STATUS_BLOCKED
@@ -35,6 +38,12 @@ class User < ActiveRecord::Base
   def silent_activate!
     self.status = STATUS_ACTIVE
     self.save!
+  end
+
+  %w{employee student}.each do |mod|
+    define_method "#{mod}?" do
+      verifable_type == mod.classify
+    end
   end
 
 end

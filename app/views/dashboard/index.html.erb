@@ -1,3 +1,90 @@
+<% content_for :right_column do %>
+  <%= render :partial => "common/user_info" %>
+
+  <% if can?(:manage, EnrollmentSemester) %>
+    <div class="section">
+      <div class="section-header ">
+        <h4 class="pull-left">
+          <%=t :label_deadline_plural %>
+        </h4>
+        <%= link_to t(:label_manage), edit_enrollment_semester_path(current_semester), :class => 'pull-right inline-icon inline-icon-red inline-icon-manage' %>
+        <div class="clearfix"></div>
+        <hr>
+      </div>
+      <div class="subsection">
+        <div class="subsection-header ">
+          <h5><%=t :label_thesis_plural %></h5>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <h6 class="text-muted">
+              <%=t :label_enrollment_begin %>
+            </h6>
+          </div>
+          <div class="col-md-8">
+            <h6>
+              <%=l current_semester.thesis_enrollments_begin %>
+            </h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <h6 class="text-muted">
+              <%=t :label_enrollment_end %>
+            </h6>
+          </div>
+          <div class="col-md-8">
+            <h6>
+              <%=l current_semester.thesis_enrollments_end %>
+            </h6>
+          </div>
+        </div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-header">
+          <h5><%=t :label_elective_block_plural%></h5>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <h6 class="text-muted">
+              <%=t :label_enrollment_begin %>
+            </h6>
+          </div>
+          <div class="col-md-8">
+            <h6>
+              <%=l current_semester.elective_enrollments_begin %>
+            </h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <h6 class="text-muted">
+              <%=t :label_enrollment_end %>
+            </h6>
+          </div>
+          <div class="col-md-8">
+            <h6>
+              <%=l current_semester.elective_enrollments_end %>
+            </h6>
+          </div>
+        </div>
+        <div class="section-header">
+          <hr>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+
+<div class="section-header">
+  <h4>
+    <%=t :label_thesis_yours %>
+  </h4>
+  <hr>
+</div>
 <div class="panel panel-default">
   <div class="panel-heading"> <%= t("panel.header.theses") %> </div>
   <div class="panel-body">

@@ -1,4 +1,7 @@
 pl:
+  time:
+    formats:
+      default: "%d.%m.%Y %H:%M"
   authlogic:
     error_messages:
       password_invalid: nie jest poprawne
@@ -38,7 +41,8 @@ pl:
 
   label_email: E-mail
   label_password: Hasło
-  label_login: Zaloguj
+  label_login_short: Zaloguj
+  label_login: Zaloguj się
   label_logout: Wyloguj
   label_logout_correctly: "Wylogowano poprawnie"
   label_delete: Usuń
@@ -256,11 +260,40 @@ pl:
   label_next: Następny
   label_inactive_singular: Wyłączone
   label_genre: Rodzaj
-
+  label_name_surname: Imię i nazwisko
+  label_title: Tytuł
+  label_manage: Zarządzaj
+  label_personal_data: Twoje dane
+  label_home_page: Strona główna
+  label_current_terms: Aktualne terminy
+  label_browse: Przeglądaj
+  label_status: Status
+  label_select_all: Zaznacz wszystkie
+  label_accept_selected: Akceptuj zaznaczone
+  label_deny_selected: Odrzuć zaznaczone
+  label_destroy_selected: Usuń zaznaczone
+  label_search_elements_amount: Wyników na stronie
+  label_list_export_pdf: Eksportuj listę do PDF
+  label_list_export_xls: Eksportuj listę do XLS
+  label_move_back: Wróć do listy
+  label_move_back_main_page: Wróć na stronę główną
+  label_deadline_plural: Terminy
+  label_index_number: Numer indeksu
+  label_study_degree: Poziom studiów
+  label_course_singular: Kierunek
   label_enrollment_plural: Zgłoszenia
+  label_enrollment_begin: Rozpoczęcie zapisów
+  label_enrollment_end: Zakończenie zapisów
+  label_enrollment_manage: Zarządzanie terminami
+  label_enrollment_main_plural: Zgłoszenia podstawowe
+  label_enrollment_optional_plural: Zgłoszenia rezerwowe
+  label_enrollment_unavailable: Zapisy na tematy prac dyplomowych zaczynaja się dnia %{day}
+  label_enrollment_type_singular: Rodzaj zgłoszenia
   label_account_my: Moje konto
+  label_account_settings: Ustawienia konta
   label_dashboard_short: Panel
   label_thesis_plural: Tematy prac
+  label_thesis_plural_official: Prace dyplomowe
   label_thesis_new_plural: Dodaj tematy
   label_thesis_new_singular: Nowy temat pracy
   label_thesis_singular: Temat pracy
@@ -270,9 +303,38 @@ pl:
   label_thesis_student_amount: Liczba studentów
   label_thesis_desc: Opis pracy
   label_thesis_desc_enter: Podaj opis pracy
+  label_thesis_browse_yours: Przeglądaj swoje tematy
+  label_thesis_yours: Twoje tematy
+  label_thesis_not_found: Nie znaleziono żadnych tematów dla zadanych kryteriów.
+  label_thesis_found: Znaleziono %{x} wyników dla zadanych kryteriów. Strona %{current_page} z %{total_pages}
+  label_thesis_enroll: Zapisz się do tego tematu
+  label_thesis_enroll_by_employee: Przypisz studenta do tego tematu
+  label_thesis_enroll_login_first: Zaloguj się, jeżeli chcesz zapisać się na ten temat
+  label_thesis_enrolled: Udało Ci się już zapisać na ten temat
+  label_student_singular: Student
+  label_elective_block_plural: Przedmioty obieralne
   label_field_of_study_singular: Kierunek
   label_field_of_study_plural: Kierunki
+  label_filter_field_of_study: Kierunek
+  label_filter_course: Kierunek
+  label_filter_department: Katedra
+  label_filter_status: Status
+  label_filter_supervisor: Promotor
+  label_filter_thesis_type: Rodzaj
+  label_filter_annual: Rocznik
+  label_filter_action: Filtruj
   label_supervisor_singular: Promotor
+  label_department_singular: Katedra
+  label_permission_plural: Uprawnienia
+  label_status_open: Opublikowana
+  label_status_unaccepted: Niezaakceptowana
+  label_status_rejected: Odrzucona
+  label_status_unpublished: Nieopublikowana
+  label_status_published: Opublikowana
+  label_status_reserved: Zarezerwowana
+  label_status_assigned: Przypisana
+  label_status_archived: Archiwalna
+
 
   notice_record_not_found: Strona, którą chcesz wyświetlić nie istnieje lub została przeniesiona
   notice_feedback_delivered: Zgłoszenie zostało przyjęte. Dziękujemy!

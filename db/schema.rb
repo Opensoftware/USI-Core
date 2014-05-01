@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140411101123) do
+ActiveRecord::Schema.define(version: 20140425181713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140411101123) do
     t.string   "type"
     t.integer  "overriding_id"
     t.boolean  "visible",       default: true
+    t.integer  "annual_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -65,55 +66,6 @@ ActiveRecord::Schema.define(version: 20140411101123) do
     t.datetime "updated_at"
   end
 
-  create_table "diamond_course_theses", force: true do |t|
-    t.integer  "course_id"
-    t.integer  "thesis_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "diamond_theses", force: true do |t|
-    t.text     "title"
-    t.text     "description"
-    t.integer  "student_amount", default: 1
-    t.integer  "supervisor_id"
-    t.integer  "annual_id"
-    t.integer  "thesis_type_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "diamond_thesis_translations", force: true do |t|
-    t.integer  "diamond_thesis_id", null: false
-    t.string   "locale",            null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "title"
-    t.text     "description"
-  end
-
-  add_index "diamond_thesis_translations", ["diamond_thesis_id"], name: "index_diamond_thesis_translations_on_diamond_thesis_id", using: :btree
-  add_index "diamond_thesis_translations", ["locale"], name: "index_diamond_thesis_translations_on_locale", using: :btree
-
-  create_table "diamond_thesis_type_translations", force: true do |t|
-    t.integer  "diamond_thesis_type_id", null: false
-    t.string   "locale",                 null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-    t.string   "short_name"
-  end
-
-  add_index "diamond_thesis_type_translations", ["diamond_thesis_type_id"], name: "index_c2043907fe7ed9d8ed5b7cf721b651883e708a26", using: :btree
-  add_index "diamond_thesis_type_translations", ["locale"], name: "index_diamond_thesis_type_translations_on_locale", using: :btree
-
-  create_table "diamond_thesis_types", force: true do |t|
-    t.string   "name"
-    t.string   "short_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "employee_titles", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -131,6 +83,17 @@ ActiveRecord::Schema.define(version: 20140411101123) do
     t.integer  "employee_title_id"
     t.integer  "language_id"
     t.integer  "building_id"
+    t.integer  "department_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "enrollment_semesters", force: true do |t|
+    t.datetime "thesis_enrollments_begin"
+    t.datetime "thesis_enrollments_end"
+    t.datetime "elective_enrollments_begin"
+    t.datetime "elective_enrollments_end"
+    t.integer  "annual_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -191,6 +154,72 @@ ActiveRecord::Schema.define(version: 20140411101123) do
 
   create_table "settings", force: true do |t|
     t.integer  "current_annual_id"
+    t.integer  "current_semester_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "students", force: true do |t|
+    t.string   "name"
+    t.string   "surname"
+    t.integer  "index_number",  limit: 8
+    t.integer  "passed_ects"
+    t.float    "average_grade"
+    t.integer  "language_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "studies", force: true do |t|
+    t.integer  "semester_number"
+    t.integer  "course_id"
+    t.integer  "student_id"
+    t.integer  "study_type_id"
+    t.integer  "study_degree_id"
+    t.integer  "specialty_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "studies", ["course_id", "student_id"], name: "by_course_student", using: :btree
+  add_index "studies", ["student_id"], name: "studies_by_student", using: :btree
+
+  create_table "study_degree_translations", force: true do |t|
+    t.integer  "study_degree_id", null: false
+    t.string   "locale",          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "short_name"
+  end
+
+  add_index "study_degree_translations", ["locale"], name: "index_study_degree_translations_on_locale", using: :btree
+  add_index "study_degree_translations", ["study_degree_id"], name: "index_study_degree_translations_on_study_degree_id", using: :btree
+
+  create_table "study_degrees", force: true do |t|
+    t.string   "name"
+    t.string   "short_name"
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "study_type_translations", force: true do |t|
+    t.integer  "study_type_id", null: false
+    t.string   "locale",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "short_name"
+  end
+
+  add_index "study_type_translations", ["locale"], name: "index_study_type_translations_on_locale", using: :btree
+  add_index "study_type_translations", ["study_type_id"], name: "index_study_type_translations_on_study_type_id", using: :btree
+
+  create_table "study_types", force: true do |t|
+    t.string   "name"
+    t.string   "short_name"
+    t.string   "code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -215,12 +244,5 @@ ActiveRecord::Schema.define(version: 20140411101123) do
   end
 
   add_index "users", ["verifable_id"], name: "by_verifable", using: :btree
-
-  create_table "years", force: true do |t|
-    t.string   "name"
-    t.boolean  "locked",     default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end

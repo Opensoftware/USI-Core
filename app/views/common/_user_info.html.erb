@@ -1,0 +1,131 @@
+<div class="section">
+  <div class="section-header">
+    <h4 class="pull-left">
+      <%=t :label_personal_data %>
+    </h4>
+    <%= link_to t(:label_manage), edit_user_path(current_user), :class => 'pull-right inline-icon inline-icon-red inline-icon-manage' %>
+    <div class="clearfix"></div>
+    <hr>
+  </div>
+  <div>
+    <div class="row">
+      <div class="col-md-6">
+        <h6 class="text-muted">
+          <%=t :label_name_surname %>
+        </h6>
+      </div>
+      <div class="col-md-10">
+        <h6>
+          <%= current_user.verifable.surname_name %>
+        </h6>
+      </div>
+    </div>
+    <% if current_user.employee? %>
+      <div class="row">
+        <div class="col-md-6">
+          <h6 class="text-muted">
+            <%=t :label_title %>
+          </h6>
+        </div>
+        <div class="col-md-10">
+          <h6>
+            <%= current_user.verifable.employee_title ? current_user.verifable.employee_title.to_s : "-" %>
+          </h6>
+        </div>
+      </div>
+    <% else %>
+      <div class="row">
+        <div class="col-md-6">
+          <h6 class="text-muted">
+            <%=t :label_index_number %>
+          </h6>
+        </div>
+        <div class="col-md-10">
+          <h6>
+            <%= current_user.verifable.index_number %>
+          </h6>
+        </div>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-md-6">
+        <h6 class="text-muted">
+          <%=t :label_email %>
+        </h6>
+      </div>
+      <div class="col-md-10">
+        <h6>
+          <%= current_user.email %>
+        </h6>
+      </div>
+    </div>
+    <% if current_user.employee? %>
+      <div class="row">
+        <div class="col-md-6">
+          <h6 class="text-muted">
+            <%=t :label_department_singular %>
+          </h6>
+        </div>
+        <div class="col-md-10">
+          <h6>
+            <%= current_user.verifable.employee_title ? current_user.verifable.employee_title.to_s : "-" %>
+          </h6>
+        </div>
+      </div>
+    <% else %>
+      <% current_user.verifable.studies.each do |s| %>
+        <div class="row">
+          <div class="col-md-6">
+            <h6 class="text-muted">
+              <%=t :label_course_singular %>
+            </h6>
+          </div>
+          <div class="col-md-10">
+            <h6>
+              <%= s.course %>
+            </h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h6 class="text-muted">
+              <%=t :label_semester %>
+            </h6>
+          </div>
+          <div class="col-md-10">
+            <h6>
+              <%= s.semester_number %>
+            </h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h6 class="text-muted">
+              <%=t :label_study_degree %>
+            </h6>
+          </div>
+          <div class="col-md-10">
+            <h6>
+              <%= s.study_degree.to_s %>
+            </h6>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <div class="row">
+      <div class="col-md-6">
+        <h6 class="text-muted">
+          <%=t :label_permission_plural %>
+        </h6>
+      </div>
+      <div class="col-md-10">
+        <h6>
+          <%= current_user.role.name %>
+        </h6>
+      </div>
+    </div>
+  </div>
+  <div class="section-footer">
+    <hr>
+  </div>
+</div>

@@ -1,1 +1,112 @@
-Index
+<% content_for :right_column do %>
+  <% unless current_user %>
+    <div class="section-header">
+      <h4>
+        <%=t :label_login %>
+      </h4>
+      <hr>
+    </div>
+    <%= render :partial => "user_sessions/form" %>
+    <div class="clearfix">
+    </div>
+    <div class="section-footer extra-margin">
+      <hr>
+    </div>
+  <% else %>
+    <%= render :partial => "common/user_info" %>
+  <% end %>
+<% end %>
+
+<h4 class="section-title">
+  System Zapisów Studentów wydziału Górnictwa i Geoinżynierii AGH
+</h4>
+
+<div>
+  <p>Lecha Żaden pan Sędzia sam na świętych obrazku. Twarzy nie w kielni siedziały dwa tysiące kroków zamek stał dwór szlachecki, z któremi przy ludziach, i sprzeczki. W takim nigdy nie wypuścił, aż do swawoli.
+  </p>
+  <p>
+    Ja to mówiąc, że tak na takie oślepienie, Że w każdej jest obora. Dozoru tego dnia powiadał. Dobrze, mój Tadeuszu bo tak mędrsi fircykom oprzeć się kiedyś demokratą. Bo nie mógł schwytać. Wojskiego zagłuszył. Wstano od Moskali, skakał kryć się jako jenerał Dąbrowski z pierwszej lękliwości.
+  </p>
+</div>
+
+<h4 class="section-title margin-large-top">
+  <%=t :label_current_terms %>
+</h4>
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-body">
+          <div class="subsection-header ">
+            <h5 class="pull-left">
+              <%=t :label_thesis_plural %>
+            </h5>
+            <%= link_to t(:label_browse), diamond.theses_path, :class => 'pull-right inline-icon inline-icon-red inline-icon-thesis-list' %>
+            <div class="clearfix"></div>
+            <hr>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <h6 class="text-muted">
+                <%=t :label_enrollment_begin %>
+              </h6>
+            </div>
+            <div class="col-md-8">
+              <h6 class="text-danger">
+                <%=l current_semester.thesis_enrollments_begin %>
+              </h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <h6 class="text-muted">
+                <%=t :label_enrollment_end %>
+              </h6>
+            </div>
+            <div class="col-md-8">
+              <h6 class="text-danger">
+                <%=l current_semester.thesis_enrollments_end %>
+              </h6>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-body">
+          <div class="subsection-header ">
+            <h5 class="pull-left">
+              <%=t :label_elective_block_plural %>
+            </h5>
+            <%= link_to t(:label_browse), nil, :class => 'pull-right inline-icon inline-icon-red inline-icon-elective-blocks' %>
+            <div class="clearfix"></div>
+            <hr>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <h6 class="text-muted">
+                <%=t :label_enrollment_begin %>
+              </h6>
+            </div>
+            <div class="col-md-8">
+              <h6 class="text-danger">
+                <%=l current_semester.elective_enrollments_begin %>
+              </h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <h6 class="text-muted">
+                <%=t :label_enrollment_end %>
+              </h6>
+            </div>
+            <div class="col-md-8">
+              <h6 class="text-danger">
+                <%=l current_semester.elective_enrollments_end %>
+              </h6>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
