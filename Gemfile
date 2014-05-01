@@ -19,11 +19,10 @@ gem 'will_paginate-bootstrap'
 gem 'diamond', '~> 0.0.1', :path => '../diamond'
 gem 'graphite', '~> 0.0.1', :path => '../graphite'
 
-group :assets do
-  gem 'uglifier', '>= 1.3.0'
-  gem 'therubyracer', :platforms => :ruby
-  gem 'sass-rails', '>= 3.2'
-end
+gem 'uglifier', '>= 1.3.0'
+gem 'therubyracer', :platforms => :ruby
+gem "sass-rails", ">= 4.0.3"
+gem "bootstrap-sass", '~> 3.1.1'
 
 group :development do
   gem 'hirb'

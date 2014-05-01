@@ -12,7 +12,7 @@
 //
 //= require jquery-2.1.0.js
 //= require jquery_ujs
-//= require bootstrap.js
+//= require bootstrap
 //= require modernizr.custom.24648.js
 //= require jquery.busybox.js
 //= require jquery.history.js

@@ -11,7 +11,10 @@
 *= require_self
 *= require busybox
 *= require bootstrap-datetimepicker
-*= require bootstrap
 *= require typeahead
 *= require base
 */
+
+@import "variables";
+@import "bootstrap";
+
