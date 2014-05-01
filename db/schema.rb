@@ -66,6 +66,80 @@ ActiveRecord::Schema.define(version: 20140427171918) do
     t.datetime "updated_at"
   end
 
+  create_table "diamond_course_theses", force: true do |t|
+    t.integer  "course_id"
+    t.integer  "thesis_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diamond_theses", force: true do |t|
+    t.text     "title"
+    t.text     "description"
+    t.integer  "student_amount", default: 1
+    t.string   "state",          default: "unaccepted"
+    t.integer  "supervisor_id"
+    t.integer  "thesis_type_id"
+    t.integer  "department_id"
+    t.integer  "annual_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diamond_thesis_enrollments", force: true do |t|
+    t.string   "state",      default: "pending"
+    t.integer  "thesis_id"
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "diamond_thesis_enrollments", ["student_id"], name: "enrollments_by_student", using: :btree
+  add_index "diamond_thesis_enrollments", ["thesis_id", "student_id"], name: "enrollments_by_thesis_student", using: :btree
+  add_index "diamond_thesis_enrollments", ["thesis_id"], name: "enrollments_by_thesis", using: :btree
+
+  create_table "diamond_thesis_state_audits", force: true do |t|
+    t.integer  "thesis_id"
+    t.integer  "employee_id"
+    t.string   "state"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "diamond_thesis_state_audits", ["thesis_id", "employee_id"], name: "by_thesis_employee", using: :btree
+  add_index "diamond_thesis_state_audits", ["thesis_id"], name: "audits_by_thesis", using: :btree
+
+  create_table "diamond_thesis_translations", force: true do |t|
+    t.integer  "diamond_thesis_id", null: false
+    t.string   "locale",            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "title"
+    t.text     "description"
+  end
+
+  add_index "diamond_thesis_translations", ["diamond_thesis_id"], name: "index_diamond_thesis_translations_on_diamond_thesis_id", using: :btree
+  add_index "diamond_thesis_translations", ["locale"], name: "index_diamond_thesis_translations_on_locale", using: :btree
+
+  create_table "diamond_thesis_type_translations", force: true do |t|
+    t.integer  "diamond_thesis_type_id", null: false
+    t.string   "locale",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "short_name"
+  end
+
+  add_index "diamond_thesis_type_translations", ["diamond_thesis_type_id"], name: "index_c2043907fe7ed9d8ed5b7cf721b651883e708a26", using: :btree
+  add_index "diamond_thesis_type_translations", ["locale"], name: "index_diamond_thesis_type_translations_on_locale", using: :btree
+
+  create_table "diamond_thesis_types", force: true do |t|
+    t.string   "name"
+    t.string   "short_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "employee_titles", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
