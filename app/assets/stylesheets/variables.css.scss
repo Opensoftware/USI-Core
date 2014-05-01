@@ -1,0 +1,45 @@
+@import 'fonts.css.scss';
+
+$background: #ebebeb;
+$red: #f75a49;
+$red2: #f8331e;
+$red3: #f9bda1;
+$light_red: #ffb7b0;
+$grey1: #e2e6eb;
+$grey2: #c8ccd1;
+$grey3: #adadad;
+$grey4: #4a4a4a;
+$grey5: #cbcfd4;
+$grey6: #d6d6d6;
+
+$dark_blue: #223249;
+$dark_blue2: #596577;
+
+$margin-default-size: 1em;
+$margin-large-size: ceil($margin-default-size * 2);
+
+/* Bootstrap */
+$navbar-height: 55px;
+$font-size-base: 15px;
+$grid-columns: 16;
+$input-border-focus: #000;
+$input-color-placeholder: #000;
+$input-border: $grey3;
+$input-color: $grey4;
+$headings-color: $dark_blue;
+$btn-primary-bg: $dark_blue;
+$btn-danger-bg: $red;
+$border-radius-base: 2px;
+$btn-default-color: $dark_blue2;
+$panel-default-border: $grey3;
+$panel-border-radius: 4px;
+$font-family-base: "clear_sansregular";
+$label-danger-bg: $red;
+$label-default-bg: $grey3;
+$tooltip-bg: #fff;
+$tooltip-color: #000;
+$pagination-hover-color: $dark_blue;
+$pagination-hover-bg: $background;
+$pagination-active-bg: $dark_blue;
+$pagination-color: $dark_blue;
+$state-danger-text: $red;
