@@ -12,31 +12,15 @@
 //
 //= require jquery-2.1.0.js
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap.js
 //= require modernizr.custom.24648.js
 //= require jquery.busybox.js
+//= require jquery.history.js
 //= require jquery.validate.js
-//= require core.engine.js
+//= require jquery.i18n.js
+//= require bootstrap-datetimepicker.js
+//= require locales/bootstrap-datetimepicker.pl.js
+//= require typeahead.bundle.js
 //= require main
-
-$.validator.setDefaults({
-    errorElement: "span",
-    errorClass: "help-block text-right",
-    highlight: function (element, errorClass, validClass) {
-        $(element).closest('.form-group').addClass('has-error');
-    },
-    unhighlight: function (element, errorClass, validClass) {
-        $(element).closest('.form-group').removeClass('has-error');
-    },
-    errorPlacement: function (error, element) {
-        if (element.parent('.input-group').length
-           || element.prop('type') === 'checkbox'
-           || element.prop('type') === 'radio')
-        {
-           error.insertAfter(element.parent());
-        } else {
-           error.insertAfter(element);
-        }
-    }
-});
+//= require core.engine.js
+//= require list_history.js
