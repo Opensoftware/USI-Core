@@ -35,7 +35,7 @@ set :bundle_binstubs, -> { shared_path.join('bin') }
 set :bundle_roles, :all
 set :keep_releases, 3
 set :linked_dirs, %w{tmp/pids}
-set :linked_files, %w{config/database.yml config/initializers/secret_token.rb config/unicorn/test.rb}
+set :linked_files, %w{config/database.yml config/initializers/secret_token.rb config/unicorn/test.rb config/initializers/errbit.rb}
 
 
 
@@ -68,5 +68,22 @@ namespace :deploy do
   end
 
   after :publishing, :restart
+
+  desc 'Errbit notification about deploy'
+  task :notify_errbit do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          airbrake_opts = "TO=#{fetch(:rails_env)} "
+          airbrake_opts += "REVISION=#{fetch(:branch)} "
+          airbrake_opts += "REPO=#{fetch(:repo_url)}"
+          execute :bundle, :exec, :rake, 'airbrake:deploy', airbrake_opts
+        end
+      end
+    end
+  end
+
+  after :publishing, :restart
+  after :publishing, :notify_errbit
 
 end
