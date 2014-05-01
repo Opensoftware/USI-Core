@@ -22,7 +22,7 @@
           Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
         </p>
     <![endif]-->
-    <nav class="navbar navbar-inverse" role="navigation">
+    <nav class="navbar" role="navigation">
 
       <div class="container">
         <div class="navbar-header">
@@ -41,16 +41,39 @@
       </div>
     </nav>
 
-    <div class="container">
-      <%= yield %>
-
-      <hr>
+    <div class="container main_container">
+      <div class="breadcrumbs_box">
+        <div class="row">
+          <div class="col-md-10">
+            <%= render_navigation(:renderer => :breadcrumbs, :context => :base, :join_with => " &gt; ") %>
+          </div>
+          <div class="col-md-6">
+            <%= yield(:breadcrumbs_box_extra_content) %>
+          </div>
+        </div>
+      </div>
+      <% if content_for?(:filter_menu) %>
+        <div class="filter_menu">
+          <%= yield(:filter_menu) %>
+        </div>
+      <% end %>
+      <div class="top_menu">
+        <%= yield(:top_menu) %>
+      </div>
+      <div class="content">
+        <% if content_for?(:content_heading) %>
+          <div class="content_heading">
+            <%= content_for(:content_heading) %>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
+      <%= yield :additional_javascript_libraries %>
 
       <footer>
         <p>&copy; OpenSoftware.pl 2014</p>
       </footer>
     </div> <!-- /container -->
-
 
   </body>
 </html>

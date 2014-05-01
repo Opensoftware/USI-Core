@@ -23,5 +23,6 @@ UsiCore::Application.routes.draw do
         post :unlock
       end
     end
+  mount Diamond::Engine, at: "/diamond"
   end
 end

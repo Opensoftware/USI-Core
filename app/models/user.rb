@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates_presence_of :role_id
   belongs_to :role
   belongs_to :verifable, :polymorphic => true, :dependent => :destroy
-  belongs_to :employee, :foreign_key => :verifable_id, :class_name => "Diamond::Employee"
+  belongs_to :employee, :foreign_key => :verifable_id, :class_name => "Employee"
   belongs_to :language, :class_name => "Language"
 
   serialize :preferences, Hash

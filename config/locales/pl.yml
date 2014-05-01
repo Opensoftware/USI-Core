@@ -47,6 +47,7 @@ pl:
   label_confirmation: Potwierdzenie
   label_save: Zapisz
   label_save_and_close: Zapisz i zamknij
+  label_save_and_add: Zapisz i dodaj kolejny
   label_save_and_publish: Zapisz i publikuj
   label_select_and_close: Wybierz i zamknij
   label_preview: Podgląd dokumentu
@@ -254,9 +255,24 @@ pl:
   label_nearest: Najbliższy
   label_next: Następny
   label_inactive_singular: Wyłączone
+  label_genre: Rodzaj
 
-
+  label_enrollment_plural: Zgłoszenia
   label_account_my: Moje konto
+  label_dashboard_short: Panel
+  label_thesis_plural: Tematy prac
+  label_thesis_new_plural: Dodaj tematy
+  label_thesis_new_singular: Nowy temat pracy
+  label_thesis_singular: Temat pracy
+  label_thesis_singular_en: Temat pracy w języku angielskim (opcjonalny)
+  label_thesis_singular_enter_en: Podaj temat w języku angielskim
+  label_thesis_singular_edit: Edycja tematu
+  label_thesis_student_amount: Liczba studentów
+  label_thesis_desc: Opis pracy
+  label_thesis_desc_enter: Podaj opis pracy
+  label_field_of_study_singular: Kierunek
+  label_field_of_study_plural: Kierunki
+  label_supervisor_singular: Promotor
 
   notice_record_not_found: Strona, którą chcesz wyświetlić nie istnieje lub została przeniesiona
   notice_feedback_delivered: Zgłoszenie zostało przyjęte. Dziękujemy!
@@ -288,3 +304,6 @@ pl:
   button:
     toggle_nav: Zwiń/Rozwiń nawigację
 
+  diamond:
+    link:
+      new_thesis: Nowa praca dyplomowa

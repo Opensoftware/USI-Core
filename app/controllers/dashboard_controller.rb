@@ -1,8 +1,7 @@
 class DashboardController < ApplicationController
 
-  authorize_resource :user, :only => [:index], :parent => false
-
   def index
+    authorize! :read, User
   end
 
 end

@@ -26,4 +26,9 @@ module ApplicationHelper
     end
   end
 
+  def annuals
+    return @annuals if defined?(@annuals)
+    @annuals = Annual.all
+  end
+
 end
