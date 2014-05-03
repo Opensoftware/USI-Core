@@ -1,0 +1,9 @@
+<% if @ctxt =~ /theses/ %>
+  <% if @theses.present? %>
+    $("div.theses-list").html('<%=raw escape_javascript(render :partial => "diamond/common/thesis_record", :collection => @theses) %>');
+  <% else %>
+    $("div.theses-list").html('<div class="extra-margin"><p class="text-center"><%=t :label_no_data%></p></div>');
+  <% end %>
+  $("a.context-filter-theses").html('<%=raw t("label_filter_#{params[:filter]}").downcase %>');
+<% else %>
+<% end %>

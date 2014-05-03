@@ -24,7 +24,7 @@
       var that = this;
       $.ajax($.extend({
         url: opts.request.url || opts.context.prop("action"),
-        data: opts.serialized_data,
+        data: opts.serialized_data || opts.context.serialize(),
         dataType: opts.dataType,
         beforeSend: function() {
           that.context_loader.busyBox("open");

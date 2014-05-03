@@ -165,19 +165,20 @@ table {
   background-color: #fff;
   padding: 1.5em;
 
+  button.inline-btn {
+    background: none;
+    border: 1px solid $grey2;
+    font-size: 13px;
+    font-family: 'clear_sansregular';
+    padding: 0.5em 1em;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    &:hover { border-color: $dark_blue; }
+  }
+
   .content-heading {
     margin-bottom: 2em;
-    button {
-      background: none;
-      border: 1px solid $grey2;
-      font-size: 13px;
-      font-family: 'clear_sansregular';
-      padding: 0.6em 1em;
-      -webkit-border-radius: 2px;
-      -moz-border-radius: 2px;
-      border-radius: 2px;
-      &:hover { border-color: $dark_blue; }
-    }
     form {
       display: inline-block;
     }
@@ -303,6 +304,32 @@ table {
   a {
     line-height: 2;
     font-size: 13px;
+  }
+}
+
+.section-menu {
+  h4 {
+    font-size: 16px;
+    line-height: 32px;
+    a {
+      color: $red;
+      &:hover {
+        border-bottom-color: $red;
+      }
+    }
+    .dropdown {
+      display: inline-block;
+      ul {
+        padding: 8px;
+        width: 200px;
+      }
+      .dropdown-menu > li > a {
+        display: inline;
+        padding: 0;
+        background: none;
+        &:hover { color: $red; }
+      }
+    }
   }
 }
 .subsection-header {

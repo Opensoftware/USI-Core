@@ -70,6 +70,7 @@ pl:
   label_home: Home
   label_new: Nowy
   label_show: Wyświetl
+  label_display: Pokazuj
   label_edit: Edytuj
   label_edit_header: Edytuj nagłówek
   label_edit_content: Edytuj treść
@@ -282,6 +283,7 @@ pl:
   label_list_export: Eksportuj listę
   label_list_export_pdf: Eksportuj listę do PDF
   label_list_export_xls: Eksportuj listę do XLS
+  label_list_move: Przejdź do listy
   label_move_back: Wróć do listy
   label_move_back_main_page: Wróć na stronę główną
   label_deadline_plural: Terminy
@@ -343,6 +345,12 @@ pl:
   label_filter_thesis_type: Rodzaj
   label_filter_annual: Rocznik
   label_filter_action: Filtruj
+  label_filter_recently_accepted: Ostatnio zaakceptowane
+  label_filter_recently_updated: Ostatnio zaktualizowane
+  label_filter_recently_created: Ostatnio dodane
+  label_filter_unaccepted: Niezaakceptowane
+  label_filter_newest_enrollments: Z najnowszymi zapisami
+  label_filter_newest: Najnowsze
   label_supervisor_singular: Promotor
   label_supervisor_provide_surname: Uzupełnij nazwisko promotora
   label_department_singular: Katedra
@@ -357,6 +365,7 @@ pl:
   label_status_archived: Archiwalna
   label_status_accepted: Zaakceptowane
   label_status_pending: W oczekiwaniu
+  label_message_plural: Wiadomości
 
 
   notice_provide_student: Uzupełnij to pole, jeżeli chcesz od razu przypisać studenta do tego tematu

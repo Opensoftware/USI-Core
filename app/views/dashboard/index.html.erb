@@ -1,3 +1,6 @@
+<% content_for :additional_javascripts do %>
+  <%= javascript_include_tag 'dashboard' %>
+<% end %>
 <% content_for :right_column do %>
   <%= render :partial => "common/user_info" %>
 
@@ -78,7 +81,78 @@
   <% end %>
 <% end %>
 
-<% if current_user.student? %>
+<% if current_user.employee? %>
+  <div class="section-header">
+    <h4>
+      <%=t :label_message_plural %>
+    </h4>
+    <hr>
+  </div>
+
+  <div class="section-footer">
+    <hr>
+  </div>
+  <div class="section-header">
+    <h4>
+      <%=t :label_thesis_yours %>
+    </h4>
+    <hr>
+  </div>
+  <div class="section-menu">
+    <h4 class="pull-left">
+      <span><%=t :label_display%></span>
+      <div class="dropdown">
+        <%= link_to t("label_filter_#{DashboardHelper::CONTEXT_FILTERS.first}").downcase, '', 'data-toggle' => 'dropdown', :class => 'context-filter-dropdown context-filter-theses' %>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <% DashboardHelper::CONTEXT_FILTERS.each do |filter| %>
+            <li>
+              <%= form_tag dashboard_index_path do  %>
+                <%= hidden_field_tag :context, 'theses' %>
+                <%= hidden_field_tag :filter, filter %>
+                <%= link_to t("label_filter_#{filter}"), '', :class => 'context-filter' %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </h4>
+    <div class="pull-right ">
+      <%= button_to diamond.theses_path, :method => :get,  :class => 'inline-btn accept-selected', :type => :button do %>
+        <%= hidden_field_tag :supervisor_id, current_user.verifable_id %>
+        <%= content_tag :i, nil, :class => 'icon icon-red icon-thesis-list' %>
+        <%=t :label_list_move%>
+      <% end %>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="theses-list">
+    <table class="table">
+      <tbody>
+        <% if @theses.present? %>
+          <%= render :partial => "diamond/common/thesis_record", :collection => @theses %>
+        <% else %>
+          <tr>
+            <td>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="section-menu">
+    <div class="pull-right ">
+      <%= button_to diamond.theses_path, :method => :get,  :class => 'inline-btn accept-selected', :type => :button do %>
+        <%= hidden_field_tag :supervisor_id, current_user.verifable_id %>
+        <%= content_tag :i, nil, :class => 'icon icon-red icon-thesis-list' %>
+        <%=t :label_list_move%>
+      <% end %>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <div class="section-footer extra-margin">
+    <hr>
+  </div>
+<% elsif current_user.student? %>
   <div class="section-header">
     <h4 class="pull-left">
       <%=t :label_thesis_chosen_yours %>
