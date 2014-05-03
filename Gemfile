@@ -17,6 +17,8 @@ gem 'workflow'
 gem 'will_paginate-bootstrap'
 gem 'unicorn'
 gem 'airbrake'
+gem "resque"
+gem 'resque-web', require: 'resque_web'
 
 gem 'diamond', '~> 0.0.1', :path => '../diamond'
 gem 'graphite', '~> 0.0.1', :path => '../graphite'
