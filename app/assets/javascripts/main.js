@@ -42,48 +42,111 @@ $.widget( "core.confirmable_action", {
 
   options: {
     topic: '',
-    success_action: function(value) {}
+    success_action: function(value) {},
+    context: function() {
+      return $("div.content");
+    },
+    url: function() {
+      return $(this.element).attr("href");
+    },
+    request: {
+      type: "PATCH"
+    }
   },
+
+
+  show: function() {
+    this._action.call(this, this.element);
+  },
+
+  _action: function(el) {
+    var _that = this;
+    $(el).yesnoDialogRemote({
+      topic: $.i18n._(_that.options.topic),
+      confirmation_action: function() {
+        var that = this;
+        this.footer.find("button.btn-confirmation").click(function() {
+          var context = _that.options.context.call(this);
+          var req = that.element.bindReq({
+            context: context,
+            url: _that.options.url,
+            request: _that.options.request,
+            custom: {
+              success: function(response) {
+                $("div.modal").modal("hide");
+                if(response.success) {
+
+                  $.each(response.objects, function(key, value) {
+                    _that.options.success_action.call(that, this, key, value);
+                  });
+                  $("button.button-checkbox", "div.theses-list").trigger("checkbox-uncheck");
+                }
+              }
+            }
+          });
+          req.bindReq("perform");
+        });
+      }
+    });
+    $(el).yesnoDialogRemote("show");
+  }
+
+});
+
+
+$.widget( "core.form_confirmable_action", $.core.confirmable_action, {
+
+  _action: function(el) {
+    var _that = this;
+    $(el).yesnoDialogRemote({
+      topic: $.i18n._(_that.options.topic),
+      confirmation_action: function() {
+        var that = this;
+        this.footer.find("button.btn-confirmation").click(function() {
+          var context = $("div.content");
+          var form = that.element.closest("form");
+          var req = that.element.bindReq({
+            context: context,
+            serialized_data: [form.serialize(), $("form.theses-form, form.filter-form").serialize()].join("&"),
+            url: function() {
+              return form.attr("action");
+            },
+            request: {
+              type: form.find("input[name='_method']").val()
+            },
+            custom: {
+              success: function(response) {
+                $("div.modal").modal("hide");
+                if(response.success) {
+
+                  $.each(response.objects, function(key, value) {
+                    _that.options.success_action.call(that, this, key, value);
+                  });
+                  $("button.button-checkbox", "div.theses-list").trigger("checkbox-uncheck");
+                }
+              }
+            }
+          });
+          req.bindReq("perform");
+        });
+      }
+    });
+    $(el).yesnoDialogRemote("show");
+  }
+
+});
+
+$.widget( "core.lazy_form_confirmable_action", $.core.form_confirmable_action, {
 
   _create: function() {
     var _that = this;
     $(this.element).click(function() {
-      $(this).yesnoDialogRemote({
-        topic: $.i18n._(_that.options.topic),
-        confirmation_action: function() {
-          var that = this;
-          this.footer.find("button.btn-confirmation").click(function() {
-            var context = $("div.content");
-            var form = that.element.closest("form");
-            var req = that.element.bindReq({
-              context: context,
-              serialized_data: [form.serialize(), $("form.theses-form, form.filter-form").serialize()].join("&"),
-              request: {
-                type: form.find("input[name='_method']").val(),
-                url: form.attr("action")
-              },
-              custom: {
-                success: function(response) {
-                  $("div.modal").modal("hide");
-                  if(response.success) {
-
-                    $.each(response.objects, function(key, value) {
-                      _that.options.success_action.call(that, this, key, value);
-                    });
-                    $("button.button-checkbox", "div.theses-list").trigger("checkbox-uncheck");
-                  }
-                }
-              }
-            });
-            req.bindReq("perform");
-          });
-        }
-      });
-      $(this).yesnoDialogRemote("show");
+      _that._action.call(_that, $(this));
     });
   }
 
 });
+
 
 $.widget( "core.loader", {
 
@@ -142,7 +205,6 @@ $.widget( "core.loader", {
   },
 
   url_builder: function(widgets, data) {
-    console.dir(widgets.serialize());
     return window.location.pathname+"?"+[widgets.serialize()].join("&");
   },
   additional_data: function() {

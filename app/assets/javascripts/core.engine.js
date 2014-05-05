@@ -3,6 +3,9 @@
   $.widget( "core.bindReq", {
 
     options: {
+      url: function(ctxt) {
+        return ctxt.prop("action");
+      },
       request: {
         type: "POST"
       },
@@ -23,7 +26,7 @@
       var opts = this.options;
       var that = this;
       $.ajax($.extend({
-        url: opts.request.url || opts.context.prop("action"),
+        url: opts.url.call(that, opts.context),
         data: opts.serialized_data || opts.context.serialize(),
         dataType: opts.dataType,
         beforeSend: function() {
