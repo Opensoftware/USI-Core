@@ -68,7 +68,7 @@
         </div>
         <div class="col-md-10">
           <h6>
-            <%= current_user.verifable.employee_title ? current_user.verifable.employee_title.to_s : "-" %>
+            <%= current_user.verifable.try(:department).try(:name) %>
           </h6>
         </div>
       </div>

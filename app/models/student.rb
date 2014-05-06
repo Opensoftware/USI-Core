@@ -20,6 +20,10 @@ class Student < ActiveRecord::Base
       thesis.enrollments.any? {|enrollment| enrollment.student_id == id }
     end
 
+    def enrolled?
+      enrollments.accepted.any?
+    end
+
     def has_enrollment?(enrollment)
       enrollments.include?(enrollment)
     end

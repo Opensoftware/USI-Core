@@ -27,6 +27,7 @@ class Employee < ActiveRecord::Base
 
   if defined?(Diamond)
     has_many :theses, :class_name => "Diamond::Thesis", :dependent => :nullify, :foreign_key => :supervisor_id
+    has_many :thesis_enrollments, :through => :theses, :source => :enrollments
 
     scope :having_theses, -> { select("DISTINCT #{self.table_name}.*").joins(:theses) }
 
