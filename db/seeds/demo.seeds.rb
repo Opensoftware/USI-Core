@@ -50,7 +50,7 @@ ActiveRecord::Base.transaction do
   user.role = dean_office_role
   user.save!
   user.silent_activate!
-  employee = Employee.new(surname: "Szef", name: "Anna", room: "123", academy_unit_id: faculty.id, employee_title_id: EmployeeTitle.first.id, language_id: pl_lang.id)
+  employee = Employee.new(surname: "Szef", name: "Anna", room: "123", academy_unit_id: faculty.id, employee_title_id: EmployeeTitle.first.id, language_id: pl_lang.id, department_id: department2.id)
   user.verifable = employee
   user.save!
 

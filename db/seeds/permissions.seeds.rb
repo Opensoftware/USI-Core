@@ -8,7 +8,8 @@ Permission.transaction do
     'promotor' => {
       "User"=>["read"],
       "Diamond::ThesisEnrollment"=>["manage"],
-      "Diamond::Thesis"=>["manage_own"]
+      "Diamond::Thesis"=>["manage_own"],
+      'Diamond::ThesisMessage' => ['update']
     },
     'student' => {
       "User"=>["read"],
@@ -19,7 +20,8 @@ Permission.transaction do
       "User"=>["manage"],
       "Diamond::Thesis"=>["manage"],
       "Diamond::ThesisEnrollment"=>["manage"],
-      'EnrollmentSemester'=>["manage"]
+      'EnrollmentSemester'=>["manage"],
+      'Diamond::ThesisMessage' => ['manage']
     }
   }
 
