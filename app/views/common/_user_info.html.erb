@@ -60,18 +60,20 @@
       </div>
     </div>
     <% if current_user.employee? %>
-      <div class="row">
-        <div class="col-md-6">
-          <h6 class="text-muted">
-            <%=t :label_department_singular %>
-          </h6>
+      <% if current_user.verifable.try(:department_id).present? %>
+        <div class="row">
+          <div class="col-md-6">
+            <h6 class="text-muted">
+              <%=t :label_department_singular %>
+            </h6>
+          </div>
+          <div class="col-md-10">
+            <h6>
+              <%= current_user.verifable.try(:department).try(:name) %>
+            </h6>
+          </div>
         </div>
-        <div class="col-md-10">
-          <h6>
-            <%= current_user.verifable.try(:department).try(:name) %>
-          </h6>
-        </div>
-      </div>
+      <% end %>
     <% else %>
       <% current_user.verifable.student_studies.each do |ss| %>
         <div class="row">

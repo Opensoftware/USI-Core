@@ -3,6 +3,7 @@ class Ability
 
   def initialize(user)
     alias_action :read, :edit, :update, :create, :destroy, :to => :manage_own
+    alias_action :read, :edit, :update, :create, :destroy, :to => :manage_department
     alias_action :read_own, :edit, :update, :to => :manage_own_excluding_creation
 
     user ||= User.new

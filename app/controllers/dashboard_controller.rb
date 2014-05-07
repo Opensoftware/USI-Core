@@ -8,17 +8,18 @@ class DashboardController < ApplicationController
     elsif current_user.employee?
 
       if can?(:manage, Diamond::Thesis)
-        @theses = Diamond::Thesis.by_department(current_user.verifable.department).newest.limit(5)
-        @enrollment_messages = Diamond::ThesisMessage.for_enrollment.for_department(current_user.verifable)
-        .paginate(:page => params[:page].to_i < 1 ? 1 : params[:page], :per_page => params[:per_page].to_i < 1 ? 10 : params[:per_page])
-        @thesis_state_messages = Diamond::ThesisMessage.for_thesis_state.for_department(current_user.verifable)
+      elsif can?(:manage_department, Diamond::Thesis)
+        @enrollment_messages = Diamond::ThesisMessage.for_enrollment.for_employee(current_user)
         .paginate(:page => params[:page].to_i < 1 ? 1 : params[:page], :per_page => params[:per_page].to_i < 1 ? 10 : params[:per_page])
       else
-        @theses = Diamond::Thesis.by_supervisor(current_user.verifable_id).newest.limit(5)
-        @enrollment_messages = Diamond::ThesisMessage.for_enrollment.for_employee(current_user.verifable)
+        @enrollment_messages = Diamond::ThesisMessage.for_enrollment.for_employee(current_user)
         .paginate(:page => params[:page].to_i < 1 ? 1 : params[:page], :per_page => params[:per_page].to_i < 1 ? 10 : params[:per_page])
-        @thesis_state_messages = Diamond::ThesisMessage.for_thesis_state.for_employee(current_user.verifable)
+        @thesis_state_messages = Diamond::ThesisMessage.for_thesis_state.for_employee(current_user)
         .paginate(:page => params[:page].to_i < 1 ? 1 : params[:page], :per_page => params[:per_page].to_i < 1 ? 10 : params[:per_page])
+      end
+
+      @theses = Diamond::Thesis.include_peripherals.newest.pick_five.let do |t|
+        t = send("theses_for_#{current_user_permission(Diamond::Thesis)}_permission", t)
       end
     end
 
@@ -36,8 +37,20 @@ class DashboardController < ApplicationController
   private
   def theses_filter
     @theses = Diamond::Thesis.include_peripherals.send(params[:filter]).pick_five.let do |t|
-      t = t.by_supervisor(current_user.verifable_id) if cannot?(:manage, Diamond::Thesis)
+      t = send("theses_for_#{current_user_permission(Diamond::Thesis)}_permission", t)
     end
+  end
+
+  def theses_for_manage_department_permission(theses_relation)
+    theses_relation.by_department(current_user.verifable.department_id)
+  end
+
+  def theses_for_manage_own_permission(theses_relation)
+    theses_relation.by_supervisor(current_user.verifable_id)
+  end
+
+  def theses_for_manage_permission(theses_relation)
+    theses_relation
   end
 
 end

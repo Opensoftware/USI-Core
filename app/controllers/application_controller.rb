@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale_from_params
   around_filter :with_current_user
 
-  helper_method :current_user, :current_semester, :current_language, :current_annual, :current_year, :with_format
+  helper_method :current_user, :current_semester, :current_language, :current_annual, :current_year, :with_format, :current_user_permission
 
 
   def default_url_options(options={})
@@ -27,6 +27,18 @@ class ApplicationController < ActionController::Base
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.record
+  end
+
+  def current_user_permission(model)
+    @current_user_permission = {} unless defined?(@current_user_permission)
+    return @current_user_permission[model] if @current_user_permission.has_key?(model)
+    if current_user
+      @current_user_permission[model] = current_ability.instance_variable_get("@rules").select do |rule|
+        rule.subjects.any? {|subject| subject == Diamond::Thesis }
+      end.first.try(:actions).try(:first).to_s
+    else
+      @current_user_permission[model] = ''
+    end
   end
 
   def current_user_session
