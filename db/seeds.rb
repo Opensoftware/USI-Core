@@ -8,7 +8,7 @@ ActiveRecord::Base.transaction do
   annual = Annual.new(name: "2014-2015")
   annual.save!
   semester = EnrollmentSemester.new(annual_id: annual.id,
-    thesis_enrollments_begin: DateTime.new(2014,5,15),
+    thesis_enrollments_begin: DateTime.new(2014,5,1),
     thesis_enrollments_end: DateTime.new(2014,5,30),
     elective_enrollments_begin: DateTime.new(2014,6,15),
     elective_enrollments_end: DateTime.new(2014,6,21))
@@ -61,10 +61,10 @@ ActiveRecord::Base.transaction do
   superadmin_role.save!
 
   Role.create!(:name => "Anonymouse")
-  Role.create!(:name => "Student")
-  Role.create!(:name => "Administrator katedralny")
-  Role.create!(:name => "Pracownik dziekanatu")
-  role = Role.new(:name => "Promotor")
+  Role.create!(:name => "Student", :const_name => :student)
+  Role.create!(:name => "Administrator katedralny", :const_name => :department_admin)
+  Role.create!(:name => "Pracownik dziekanatu", :const_name => :dean_office)
+  role = Role.new(:name => "Promotor", :const_name => :supervisor)
   role.save!
 
   user = User.new

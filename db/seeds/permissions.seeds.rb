@@ -3,6 +3,9 @@ Permission.transaction do
   permission = Permission.new(:subject_class => "Diamond::Thesis", :action => :manage_own)
   permission.condition = "{:supervisor_id => user.verifable_id}"
   permission.save!
+  permission = Permission.new(:subject_class => "Diamond::Thesis", :action => :manage_department)
+  permission.condition = "{:department_id => user.verifable.department_id}"
+  permission.save!
 
   permissions_roles = {
     'promotor' => {
@@ -15,6 +18,12 @@ Permission.transaction do
       "User"=>["read"],
       "Diamond::Thesis"=>["read"],
       "Diamond::ThesisEnrollment"=>["create"]
+    },
+    'administrator katedralny' => {
+      "Diamond::Thesis"=>["manage_department"],
+      "User"=>["read"],
+      "Diamond::ThesisEnrollment"=>["manage"],
+      'Diamond::ThesisMessage' => ['manage']
     },
     'pracownik dziekanatu' => {
       "User"=>["manage"],

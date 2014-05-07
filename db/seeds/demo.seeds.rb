@@ -7,6 +7,7 @@ ActiveRecord::Base.transaction do
   employee_role = Role.where(:name => "Promotor").first
   student_role = Role.where(:name => "Student").first
   dean_office_role = Role.where(:name => "Pracownik dziekanatu").first
+  department_admin_role = Role.where(:name => "Administrator katedralny").first
 
   thesis_type1 = Diamond::ThesisType.find(1)
   thesis_type2 = Diamond::ThesisType.find(2)
@@ -50,7 +51,18 @@ ActiveRecord::Base.transaction do
   user.role = dean_office_role
   user.save!
   user.silent_activate!
-  employee = Employee.new(surname: "Szef", name: "Anna", room: "123", academy_unit_id: faculty.id, employee_title_id: EmployeeTitle.first.id, language_id: pl_lang.id, department_id: department2.id)
+  employee = Employee.new(surname: "Szef", name: "Anna", room: "123", academy_unit_id: faculty.id, employee_title_id: EmployeeTitle.first.id, language_id: pl_lang.id)
+  user.verifable = employee
+  user.save!
+
+  user = User.new
+  user.email = "kierownik@at.edu"
+  user.password = '123qweasdzxc'
+  user.password_confirmation = '123qweasdzxc'
+  user.role = department_admin_role
+  user.save!
+  user.silent_activate!
+  employee = Employee.new(surname: "Kierownik", name: "Bożydar", room: "123", academy_unit_id: faculty.id, employee_title_id: EmployeeTitle.first.id, language_id: pl_lang.id, department_id: department2.id)
   user.verifable = employee
   user.save!
 
