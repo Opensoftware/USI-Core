@@ -80,9 +80,49 @@
     </div>
   <% end %>
 
-  <% if current_user.employee? %>
-    <% if cannot?(:manage, Diamond::Thesis) %>
-
+  <% if current_user.employee? && cannot?(:manage, Diamond::Thesis) %>
+    <% if can?(:manage_own, Diamond::Thesis) %>
+      <div class="section">
+        <div class="section-header">
+          <h4>
+            <%=t :label_statistics %>
+          </h4>
+          <hr>
+        </div>
+        <div class="subsection">
+          <div class="subsection-header ">
+            <h5><%=t :label_thesis_plural%></h5>
+            <hr>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <h6 class="text-muted">
+                <%=t :label_thesis_enrolled_count%>
+              </h6>
+            </div>
+            <div class="col-md-8">
+              <h6>
+                <%=t 'misc.thesis_chosen', :count => @chosen_theses %>
+              </h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <h6 class="text-muted">
+                <%=t :label_thesis_not_enrolled_count %>
+              </h6>
+            </div>
+            <div class="col-md-8">
+              <h6>
+                <%=t 'misc.thesis_not_chosen', :count => @not_chosen_theses %>
+              </h6>
+            </div>
+          </div>
+        </div>
+        <div class="section-footer">
+          <hr>
+        </div>
+      </div>
     <% end %>
   <% end %>
 <% end %>

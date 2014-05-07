@@ -4,6 +4,14 @@ pl:
       zero: 0 dni
       one: 1 dzień
       other: "%{count} dni"
+    thesis_chosen:
+      zero: 0 wybranych
+      one: 1 wybrany
+      other: "%{count} wybranych"
+    thesis_not_chosen:
+      zero: 0 niewybranych
+      one: 1 niewybrany
+      other: "%{count} niewybranych"
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
@@ -343,6 +351,8 @@ pl:
   label_thesis_enrolled_for_thesis: Zapisałeś(aś) się już do tego tematu
   label_thesis_enrolled_by_student: Udało Ci się zapisać na ten temat
   label_thesis_enrolled_by_employee: Student %{student} został przypisany do tego tematu
+  label_thesis_enrolled_count: Wybrane
+  label_thesis_not_enrolled_count: Niewybrane
   label_student_singular: Student
   label_student_personal_data: Dane osobowe studenta
   label_student_provide_surname: Wpisz nazwisko studenta
