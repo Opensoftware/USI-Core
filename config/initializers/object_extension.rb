@@ -1,4 +1,4 @@
-class ActiveRecord::Relation
+class Object
   def let
     return yield self
   end
