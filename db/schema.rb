@@ -221,6 +221,7 @@ ActiveRecord::Schema.define(version: 20140427171918) do
 
   create_table "roles", force: true do |t|
     t.string   "name",        limit: 40
+    t.string   "const_name"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
