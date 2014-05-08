@@ -215,10 +215,8 @@ $.widget( "core.loader", {
 
 $.widget( "core.cleaner", $.core.loader, {
 
-  options: {
-    before_state_changed: function(ctxt) {
-      ctxt.find("select").val('');
-    }
+  before_state_changed: function(ctxt) {
+    ctxt.find("select").val('');
   },
 
   url_builder: function(widgets) {
