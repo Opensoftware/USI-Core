@@ -4,6 +4,10 @@ pl:
       zero: 0 dni
       one: 1 dzień
       other: "%{count} dni"
+    thesis_accepted:
+      zero: 0 zaakceptowanych
+      one: 1 zaakceptowany
+      other: "%{count} zaakceptowanych"
     thesis_chosen:
       zero: 0 wybranych
       one: 1 wybrany
