@@ -190,24 +190,6 @@ ActiveRecord::Schema.define(version: 20140427171918) do
     t.datetime "updated_at"
   end
 
-  create_table "permission_roles", force: true do |t|
-    t.integer "permission_id"
-    t.integer "role_id"
-  end
-
-  add_index "permission_roles", ["permission_id", "role_id"], name: "by_permission_role", using: :btree
-
-  create_table "permissions", force: true do |t|
-    t.string   "action"
-    t.string   "subject_class"
-    t.integer  "subject_id"
-    t.string   "condition"
-    t.text     "block"
-    t.boolean  "cannot",        default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "role_translations", force: true do |t|
     t.integer  "role_id",    null: false
     t.string   "locale",     null: false

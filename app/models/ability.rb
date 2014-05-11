@@ -8,41 +8,42 @@ class Ability
 
     user ||= User.new
     if user.new_record?
-      user.role = Role.find_by_name("Anonymouse")
+      user.role = Role.where(const_name: 'anonymous').first
     else
       can :manage, :my
     end
 
-    # TODO improve that code, split into private methods and get rid of those
-    # evals.
-    unless user.role.nil?
-      @role = Role.includes(:permissions).where(:id => user.role.id).first
-      @role.permissions.each do |permission|
-        unless permission.cannot?
-          if permission.subject_id.nil?
-            if permission.condition.present?
-              unless permission.block.blank?
-                can permission.action.to_sym, permission.subject_class.constantize, eval(permission.condition) do |class_object|
-                  eval(permission.block)
-                end
-              else
-                can permission.action.to_sym, permission.subject_class.constantize, eval(permission.condition)
-              end
-            else
-              if permission.subject_class.downcase == "all"
-                can permission.action.to_sym, permission.subject_class.downcase.to_sym
-              else
-                can permission.action.to_sym, permission.subject_class.constantize
-              end
-            end
-          else
-            can permission.action.to_sym, permission.subject_class.constantize, :id => permission.subject_id
-          end
-        else
-          cannot permission.action.to_sym, permission.subject_class.constantize
-        end
-      end
+    if user.anonymous?
+      can :read, Diamond::Thesis
+    elsif user.student?
+      can :manage, User,
+        {:id => user.id }
+      can :read, Diamond::Thesis
+      can :create, Diamond::ThesisEnrollment
+    elsif user.supervisor?
+      can :manage, User,
+        {:id => user.id }
+      can :manage_own, Diamond::Thesis,
+        {:supervisor_id => user.verifable_id}
+      can :manage, Diamond::ThesisEnrollment,
+        {:thesis => {:supervisor_id => user.verifable_id}}
+    elsif user.department_admin?
+      can :manage_department, Diamond::Thesis,
+        {:department_id => user.verifable.department_id}
+      can :manage, User,
+        {:id => user.id }
+      can :manage, Diamond::ThesisEnrollment
+      can :manage, Diamond::ThesisMessage
+    elsif user.admin?
+      can :manage, User
+      can :manage, Diamond::Thesis
+      can :manage, Diamond::ThesisEnrollment
+      can :manage, Diamond::ThesisMessage
+      can :manage, EnrollmentSemester
+    elsif user.superadmin?
+      can :manage, :all
     end
+
   end
 
 end

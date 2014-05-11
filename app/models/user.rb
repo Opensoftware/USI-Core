@@ -46,4 +46,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  %w{anonymous department_admin admin superadmin supervisor}.each do |role|
+    define_method "#{role}?" do
+      self.role.const_name == role
+    end
+  end
+
 end

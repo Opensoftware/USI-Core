@@ -53,17 +53,13 @@ ActiveRecord::Base.transaction do
     EmployeeTitle.create!(title)
   end
 
-  perm = Permission.new(subject_class: "all", action: "manage")
-  perm.save!
-
-  superadmin_role = Role.create!(:name => "Superadmin")
-  superadmin_role.permissions << perm
+  superadmin_role = Role.create!(:name => "Superadmin", :const_name => :superadmin)
   superadmin_role.save!
 
-  Role.create!(:name => "Anonymouse")
+  Role.create!(:name => "Anonymouse", :const_name => :anonymous)
   Role.create!(:name => "Student", :const_name => :student)
   Role.create!(:name => "Administrator katedralny", :const_name => :department_admin)
-  Role.create!(:name => "Pracownik dziekanatu", :const_name => :dean_office)
+  Role.create!(:name => "Administrator wydziałowy", :const_name => :admin)
   role = Role.new(:name => "Promotor", :const_name => :supervisor)
   role.save!
 
