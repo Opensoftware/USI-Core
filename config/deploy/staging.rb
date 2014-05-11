@@ -1,6 +1,8 @@
 role :app, %w{opensoftware.pl}
 role :web, %w{opensoftware.pl}
 role :db,  %w{opensoftware.pl}
+role :resque_worker, %w{opensoftware.pl}
+role :resque_scheduler, %w{opensoftware.pl}
 
 
 # Extended Server Syntax

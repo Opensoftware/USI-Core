@@ -25,6 +25,15 @@ GIT
       capistrano (~> 3.0)
       sshkit (~> 1.2)
 
+GIT
+  remote: git://github.com/sshingler/capistrano-resque.git
+  revision: 94c388e015744dda90fee0c482cc39692f902ec4
+  specs:
+    capistrano-resque (0.1.0)
+      capistrano
+      resque
+      resque-scheduler
+
 PATH
   remote: ../diamond
   specs:
@@ -172,12 +181,19 @@ GEM
       redis-namespace (~> 1.3)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
+    resque-scheduler (2.5.5)
+      mono_logger (~> 1.0)
+      redis (~> 3.0.4)
+      resque (~> 1.25.1)
+      rufus-scheduler (~> 2.0.24)
     resque-web (0.0.5)
       coffee-rails
       jquery-rails
       resque
       sass-rails
       twitter-bootstrap-rails
+    rufus-scheduler (2.0.24)
+      tzinfo (>= 0.3.22)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -268,6 +284,7 @@ DEPENDENCIES
   capistrano!
   capistrano-bundler!
   capistrano-rails (~> 1.1.0)
+  capistrano-resque!
   capistrano-rvm!
   capistrano3-unicorn
   diamond (~> 0.0.1)!

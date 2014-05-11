@@ -13,6 +13,10 @@ set :deploy_to, "/home/www/rails_app/usi-demo"
 set :scm, :git
 set :rails_env, "test"
 
+#Resque
+set :workers, { :msg => 1 }
+set :resque_environment_task, true
+
 # Until we will release engines public we have to point to them here
 set :diamond_url, 'ssh://gerrit.opensoftware.pl/usi/diamond'
 set :diamond_branch, 'master'
@@ -85,5 +89,6 @@ namespace :deploy do
 
   after :publishing, :restart
   after :publishing, :notify_errbit
+  after "deploy:restart", "resque:restart"
 
 end
