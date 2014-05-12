@@ -19,6 +19,7 @@ gem 'unicorn'
 gem 'airbrake'
 gem "resque"
 gem 'resque-web', require: 'resque_web'
+gem 'resque_mailer'
 gem "capistrano-resque", github: "sshingler/capistrano-resque", require: false
 
 gem 'diamond', '~> 0.0.1', :path => '../diamond'

@@ -1,0 +1,14 @@
+ActionMailer::Base.raise_delivery_errors = true
+ActionMailer::Base.smtp_settings = {
+  :address              => "smtp.mail.com",
+  :port                 => "25,
+  :domain               => "somedomain.com",
+  :user_name            => "mailer",
+  :password             => "secret",
+  :authentication       => "plain",
+  :enable_starttls_auto => true,
+  :openssl_verify_mode  => 'none'
+}
+
+
+ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?

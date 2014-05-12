@@ -14,7 +14,7 @@ set :scm, :git
 set :rails_env, "test"
 
 #Resque
-set :workers, { :msg => 1 }
+set :workers, { :msg => 1, :mailer => 1 }
 set :resque_environment_task, true
 
 # Until we will release engines public we have to point to them here
@@ -39,7 +39,7 @@ set :bundle_binstubs, -> { shared_path.join('bin') }
 set :bundle_roles, :all
 set :keep_releases, 3
 set :linked_dirs, %w{tmp/pids}
-set :linked_files, %w{config/database.yml config/initializers/secret_token.rb config/unicorn/test.rb config/initializers/errbit.rb config/resque.yml config/settings.yml}
+set :linked_files, %w{config/database.yml config/initializers/secret_token.rb config/unicorn/test.rb config/initializers/errbit.rb config/resque.yml config/settings.yml config/initializers/mailer_setup.rb}
 
 
 

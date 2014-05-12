@@ -322,6 +322,14 @@ pl:
   notice_account_not_exists: W systemie nie istnieje konto z podanym adresem email.
   notice_email_notifications: Chcę otrzymywać e-mailowe powiadomienia z systemu SZS AGH informujące o zmianach statusu
 
+  mail_subject_new_enrollment: Nowe przypisanie do tematu
+  mail_subject_thesis_accepted: Zaakceptowana praca dyplomowa
+  mail_subject_thesis_rejected: Odrzucona praca dyplomowa
+  mail_body_new_enrollment: "Student %{student} zapisał(a) się na temat pracy dyplomowej %{thesis_title}. Masz 5 dni na akceptację tego zgłoszenia, a jeżeli tego nie zrobisz, to zostanie ono automatycznie odrzucone. "
+  mail_body_thesis_accepted: "Zgłoszona przez Ciebie praca dyplomowa %{thesis_title} została zaakceptowana przez %{admin}."
+  mail_body_thesis_rejected: "Zgłoszona przez Ciebie praca dyplomowa %{thesis_title} została odrzucona przez %{admin}."
+  mail_body_auto_msg: Wiadomość wygenerowana automatycznie z systemu SZS AGH. Nie odpowiadaj na nią.
+
   error:
     browser_compatibility_header: Korzystasz z przeglądarki, która nie jest zalecana do przeglądania tej strony, dlatego prezentowane treści mogą nie wyświetlać się poprawnie.
     browser_compatibility_content: Zalecamy korzystanie z przeglądarek Mozilla Firefox (wersja min. 3.5), Opera (wersja min. 11) lub Google Chrome.
