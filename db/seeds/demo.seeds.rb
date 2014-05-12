@@ -62,7 +62,18 @@ ActiveRecord::Base.transaction do
   user.role = department_admin_role
   user.save!
   user.silent_activate!
-  employee = Employee.new(surname: "Kierownik", name: "Bożydar", room: "123", academy_unit_id: faculty.id, employee_title_id: EmployeeTitle.first.id, language_id: pl_lang.id, department_id: department2.id)
+  employee = Employee.new(surname: "Kierownik", name: "Bożydar", room: "123", academy_unit_id: faculty.id, employee_title_id: EmployeeTitle.first.id, language_id: pl_lang.id, department_id: department1.id)
+  user.verifable = employee
+  user.save!
+
+  user = User.new
+  user.email = "nadsztygar@at.edu"
+  user.password = '123qweasdzxc'
+  user.password_confirmation = '123qweasdzxc'
+  user.role = department_admin_role
+  user.save!
+  user.silent_activate!
+  employee = Employee.new(surname: "Nadsztygar", name: "Włodzimierz", room: "123", academy_unit_id: faculty.id, employee_title_id: EmployeeTitle.first.id, language_id: pl_lang.id, department_id: department2.id)
   user.verifable = employee
   user.save!
 
@@ -113,13 +124,26 @@ ActiveRecord::Base.transaction do
   user.save!
   student2.student_studies << StudentStudies.new(studies: studies1 , semester_number: 4)
 
+  user = User.new
+  user.email = "kolo@at.edu"
+  user.password = '123qweasdzxc'
+  user.password_confirmation = '123qweasdzxc'
+  user.role = student_role
+  user.save!
+  user.silent_activate!
+  student3 = Student.new(surname: "Koło", name: "Michał", language_id: pl_lang.id, index_number: 456832 )
+  user.verifable = student3
+  user.save!
+  student3.student_studies << StudentStudies.new(studies: studies1 , semester_number: 4)
+
+
   thesis = Diamond::Thesis.new(title: "Nowa metoda poszukiwania wody w studni", description: "Praca będzie polegać na opracowaniu nowej metody poszukiwania wody w studni", thesis_type: thesis_type1, supervisor_id: employee.id, annual_id: annual.id, department_id: department1.id)
   thesis.save!
   thesis.courses << [course2, course3]
   thesis = Diamond::Thesis.new(title: "Kombajnowanie kopalni", description: "Praca będzie polegać na opracowaniu na wjechaniu kombajnem do kopalni", thesis_type: thesis_type2, supervisor_id: employee2.id, annual_id: annual.id, department_id: department1.id)
   thesis.save!
   thesis.courses << [course1, course4]
-  thesis = Diamond::Thesis.new(title: "Kopanie w kopalni", description: "Praca będzie polegać na opracowaniu na kopaniu w kopalni", thesis_type: thesis_type1, supervisor_id: employee.id, annual_id: annual.id, department_id: department3.id)
+  thesis = Diamond::Thesis.new(title: "Kopanie w kopalni", description: "Praca będzie polegać na opracowaniu na kopaniu w kopalni", thesis_type: thesis_type1, supervisor_id: employee.id, annual_id: annual.id, department_id: department1.id)
   thesis.save!
   thesis.courses << [course1, course3]
   thesis = Diamond::Thesis.new(title: "Wpływ parametrów geomechanicznych skał na dobór obudowy wyrobisk korytarzowych", description: "Praca będzie polegać na wyznaczeniu parametrów geomechanicznych skał na dobór obudowy wyrobisk korytarzowych", thesis_type: thesis_type1, supervisor_id: employee.id, annual_id: annual.id, department_id: department2.id, state: :published)
