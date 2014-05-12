@@ -322,6 +322,9 @@ pl:
   notice_account_not_exists: W systemie nie istnieje konto z podanym adresem email.
   notice_email_notifications: Chcę otrzymywać e-mailowe powiadomienia z systemu SZS AGH informujące o zmianach statusu
 
+  error_login_first: Aby uzyskać dostęp do wybranego zasobu systemu, musisz się najpierw zalogować.
+  error_resource_forbidden: Nie masz uprawnień do wybranego zasobu. Jeżeli jednak uważasz, że to błąd, to skontaktuj się z administratorem systemu.
+
   mail_subject_new_enrollment: Nowe przypisanie do tematu
   mail_subject_thesis_accepted: Zaakceptowana praca dyplomowa
   mail_subject_thesis_rejected: Odrzucona praca dyplomowa

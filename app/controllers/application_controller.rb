@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_semester, :current_language, :current_annual, :current_year, :with_format, :current_user_permission
 
 
+  unless Rails.env.development?
+    rescue_from Exception, :with => :exception_handler
+  end
+
+
   def default_url_options(options={})
     logger.debug "default_url_options is passed options: #{options.inspect}\n"
     { locale: I18n.locale }
@@ -88,6 +93,32 @@ class ApplicationController < ActionController::Base
 
   def form_wrapper_mode
     @form_wrapper_mode = true
+  end
+
+  private
+  def exception_handler(exception)
+    case exception.class.to_s
+    when "CanCan::AccessDenied"
+      respond_to do |f|
+        f.html do
+          if current_user
+            flash[:error] = I18n.t(:error_resource_forbidden)
+            redirect_to root_path
+          else
+            session[:requested_url] = request.fullpath
+            flash[:error] = I18n.t(:error_login_first)
+            redirect_to new_user_session_path
+          end
+        end
+        f.json do
+          render :text => "403", :status => 403
+        end
+        f.js do
+          render :text => "403", :status => 403
+        end
+      end
+    else
+    end
   end
 
 end
