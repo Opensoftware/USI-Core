@@ -1,0 +1,83 @@
+<div class="section-header">
+  <h4>
+    <%=t :label_personal_data %>
+  </h4>
+  <hr>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_name_surname%>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= @user.verifable.surname_name %>
+    </h6>
+  </div>
+</div>
+<% if @user.student? %>
+  <div class="row">
+    <div class="col-md-4">
+      <h6 class="text-muted">
+        <%=t :label_index_number%>
+      </h6>
+    </div>
+    <div class="col-md-12">
+      <h6 class="text-list">
+        <%= @user.verifable.index_number %>
+      </h6>
+    </div>
+  </div>
+  <% @user.verifable.studies.each do |studies| %>
+    <div class="row">
+      <div class="col-md-4">
+        <h6 class="text-muted">
+          <%=t :label_course_singular %>
+        </h6>
+      </div>
+      <div class="col-md-12">
+        <h6 class="text-list">
+          <%= studies.course.name %>
+        </h6>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="row">
+    <div class="col-md-4">
+      <h6 class="text-muted">
+        <%=t :label_title%>
+      </h6>
+    </div>
+    <div class="col-md-12">
+      <h6 class="text-list">
+        <%= @user.verifable.employee_title.name %>
+      </h6>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h6 class="text-muted">
+        <%=t :label_filter_department%>
+      </h6>
+    </div>
+    <div class="col-md-12">
+      <h6 class="text-list">
+        <%= @user.verifable.department.name %>
+      </h6>
+    </div>
+  </div>
+<% end %>
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_permission_plural%>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= @user.role.name %>
+    </h6>
+  </div>
+</div>

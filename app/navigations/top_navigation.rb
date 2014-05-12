@@ -26,6 +26,14 @@ if defined?(current_user)
               primary.item :nav, I18n.t(:label_thesis_browse_field_of_study), diamond.theses_path(:course_ids => current_user.verifable.course_ids.first), :class => "inline-icon inline-icon-red inline-icon-thesis-list"
             end
           end
+        elsif controller.controller_name =~ /user/
+          case controller.action_name
+          when /new|edit/
+            primary.item :nav, I18n.t(:label_move_back_main_page), root_path, :class => "inline-icon inline-icon-red inline-icon-left-arrow"
+          when /show/
+            primary.item :nav, I18n.t(:label_edit), edit_user_path(@user), :if => lambda { @user.present? }, :class => "inline-icon inline-icon-red inline-icon-pen"
+            primary.item :nav, I18n.t(:label_move_back_main_page), root_path, :class => "inline-icon inline-icon-red inline-icon-left-arrow"
+          end
         end
       end
     end

@@ -301,7 +301,7 @@ ActiveRecord::Schema.define(version: 20140427171918) do
     t.integer  "status"
     t.string   "verifable_type"
     t.datetime "last_request_at"
-    t.string   "perishable_token",   default: "", null: false
+    t.string   "perishable_token",           default: "",   null: false
     t.integer  "failed_login_count"
     t.text     "preferences"
     t.integer  "role_id"
@@ -309,6 +309,7 @@ ActiveRecord::Schema.define(version: 20140427171918) do
     t.integer  "language_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "notifications_confirmation", default: true
   end
 
   add_index "users", ["verifable_id"], name: "by_verifable", using: :btree

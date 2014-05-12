@@ -1,0 +1,27 @@
+<%= render :partial => "form" %>
+<div class="section-footer">
+  <hr>
+</div>
+<div class="section-header">
+  <h4>
+    <%=t :label_contact_data %>
+  </h4>
+  <hr>
+</div>
+<%= form_for @user, role: 'form' do |f| %>
+  <div class="form-group extra-margin">
+    <%= f.label :email, t(:label_email_yours) %>
+    <%= f.text_field :email, :class => "form-control", :placeholder => t(:label_thesis_singular_enter_en), :required => true  %>
+  </div>
+  <div class="form-group extra-margin">
+    <%= f.check_box :notifications_confirmation %>
+    <%= f.label :notifications_confirmation, t(:notice_email_notifications) %>
+  </div>
+  <div class="form-group extra-margin pull-right">
+    <%= f.submit t(:label_save), :class => "btn btn-danger" %>
+  </div>
+  <div class="clearfix"></div>
+<% end %>
+<div class="section-footer">
+  <hr>
+</div>
