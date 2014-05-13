@@ -1,12 +1,12 @@
 class Employee < ActiveRecord::Base
 
   belongs_to :academy_unit, :class_name => "AcademyUnit",
-             :foreign_key => :academy_unit_id
+    :foreign_key => :academy_unit_id
   belongs_to :department, :class_name => "Department",
-             :foreign_key => :department_id
+    :foreign_key => :department_id
   belongs_to :employee_title
   has_one :user, :as => :verifable, :dependent => :destroy,
-          :class_name => "User"
+    :class_name => "User"
   accepts_nested_attributes_for :user, :allow_destroy => true
 
   def <=>(other)
@@ -33,6 +33,19 @@ class Employee < ActiveRecord::Base
 
     def having_any_theses?
       Employee.having_theses.where("#{self.class.table_name}.id" => self.id).any?
+    end
+
+    def thesis_limit_not_exceeded?
+      theses.assigned.count < department.department_settings.pick_newest.max_theses_count
+    end
+
+    def deny_remaining_theses!
+      theses.by_annual(Settings.pick_newest.annual).not_assigned.each do |thesis|
+        thesis.reject! if thesis.can_reject?
+        thesis.enrollments.each do |enrollment|
+          enrollment.reject! if enrollment.can_reject?
+        end
+      end
     end
   end
 
