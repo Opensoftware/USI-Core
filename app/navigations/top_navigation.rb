@@ -34,6 +34,11 @@ if defined?(current_user)
             primary.item :nav, I18n.t(:label_edit), edit_user_path(@user), :if => lambda { @user.present? }, :class => "inline-icon inline-icon-red inline-icon-pen"
             primary.item :nav, I18n.t(:label_move_back_main_page), root_path, :class => "inline-icon inline-icon-red inline-icon-left-arrow"
           end
+        elsif controller.controller_name =~ /department_settings/
+          case controller.action_name
+          when /new|edit/
+            primary.item :nav, I18n.t(:label_move_back_main_page), root_path, :class => "inline-icon inline-icon-red inline-icon-left-arrow"
+          end
         end
       end
     end

@@ -9,6 +9,7 @@ UsiCore::Application.routes.draw do
     resources :students
     resources :dashboard, :only => :index
     resources :enrollment_semesters, :only => [:edit, :update]
+    resources :department_settings, :only => [:edit, :update]
 
     resources :user_sessions do
       collection do

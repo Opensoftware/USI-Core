@@ -1,0 +1,33 @@
+<% content_for :content_heading do %>
+  <div class="row">
+    <div class="col-md-9">
+      <h4>
+        <%=t :label_thesis_plural_count%>
+      </h4>
+    </div>
+    <div class="col-md-7">
+    </div>
+  </div>
+<% end %>
+<% content_for :content_footnote do %>
+  <div class="pull-right">
+    <%= button_to t(:label_save), (enrollment_semester_path(@department_settings)), :form => {:class => "form-inline" }, :class => "btn btn-danger submit-form" %>
+  </div>
+  <div class="clearfix"></div>
+<% end %>
+
+<%= form_for @department_settings do |f| %>
+  <div class="section">
+    <div class="form-group">
+      <div class="col-md-8">
+        <%= f.label :max_theses_count, t(:label_thesis_plural_count_department) %>
+        <div class="input-append date form_datetime">
+          <%= f.select :max_theses_count, options_for_select(15.times.collect {|i| [i+1,i+1]}, @department_settings.max_theses_count), {}, :class => "form-control"  %>
+          <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+<% end %>

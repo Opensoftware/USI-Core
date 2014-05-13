@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale_from_params
   around_filter :with_current_user
 
-  helper_method :current_user, :current_semester, :current_language, :current_annual, :current_year, :with_format, :current_user_permission
+  helper_method :current_user, :current_semester, :current_language, :current_annual, :current_year, :with_format, :current_user_permission, :department_settings
 
 
   unless Rails.env.development?
@@ -63,7 +63,12 @@ class ApplicationController < ActionController::Base
 
   def settings
     return @settings if defined?(@settings)
-    @settings = Settings.first
+    @settings = Settings.pick_newest
+  end
+
+  def department_settings
+    return @department_settings if defined?(@department_settings)
+    @department_settings = DepartmentSettings.for_department(current_user.verifable.try(:department)).for_annual(current_annual).first
   end
 
   def current_language
