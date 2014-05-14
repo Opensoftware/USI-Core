@@ -27,6 +27,7 @@ class Ability
         {:supervisor_id => user.verifable_id}
       can :manage, Diamond::ThesisEnrollment,
         {:thesis => {:supervisor_id => user.verifable_id}}
+      can :manage, Diamond::ThesisMessage
     elsif user.department_admin?
       can :manage_department, Diamond::Thesis,
         {:department_id => user.verifable.department_id}
