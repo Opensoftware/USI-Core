@@ -326,9 +326,15 @@ pl:
   error_resource_forbidden: Nie masz uprawnień do wybranego zasobu. Jeżeli jednak uważasz, że to błąd, to skontaktuj się z administratorem systemu.
 
   mail_subject_new_enrollment: Nowe przypisanie do tematu
+  mail_subject_enrollment_rejected: Temat odrzucony przez promotora
+  mail_subject_enrollment_rejected_timeout: Temat automatycznie odrzucony z powodu braku akceptacji przez promotora
+  mail_subject_enrollment_accepted: Temat zaakceptowany do realizacji
   mail_subject_thesis_accepted: Zaakceptowana praca dyplomowa
   mail_subject_thesis_rejected: Odrzucona praca dyplomowa
   mail_body_new_enrollment: "Student %{student} zapisał(a) się na temat pracy dyplomowej %{thesis_title}. Masz 5 dni na akceptację tego zgłoszenia, a jeżeli tego nie zrobisz, to zostanie ono automatycznie odrzucone. "
+  mail_body_enrollment_rejected: Promotor %{supervisor} odrzucił Twoją prośbę o przypisanie do tematu %{thesis_title}.
+  mail_body_enrollment_rejected_timeout: System automatycznie odrzucił Twoją prośbę o przypisanie do tematu %{thesis_title}, ponieważ od czasu zgłoszenia minęło %{enrollment_days_limit}, a promotor %{supervisor} nie podjął żadnej czynności.
+  mail_body_enrollment_accepted: Promotor %{supervisor} zaakceptował Twoją prośbę o przypisanie do tematu pracy dyplomowej %{thesis_title}.
   mail_body_thesis_accepted: "Zgłoszona przez Ciebie praca dyplomowa %{thesis_title} została zaakceptowana przez %{admin}."
   mail_body_thesis_rejected: "Zgłoszona przez Ciebie praca dyplomowa %{thesis_title} została odrzucona przez %{admin}."
   mail_body_auto_msg: Wiadomość wygenerowana automatycznie z systemu SZS AGH. Nie odpowiadaj na nią.
