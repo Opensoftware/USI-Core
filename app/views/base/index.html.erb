@@ -18,94 +18,123 @@
 <% end %>
 
 <h4 class="section-title">
-  System Zapisów Studentów wydziału Górnictwa i Geoinżynierii AGH
+  System Zapisów Studentów Wydziału Górnictwa i Geoinżynierii AGH
 </h4>
 
-<div>
-  <p>Lecha Żaden pan Sędzia sam na świętych obrazku. Twarzy nie w kielni siedziały dwa tysiące kroków zamek stał dwór szlachecki, z któremi przy ludziach, i sprzeczki. W takim nigdy nie wypuścił, aż do swawoli.
+<div class="main-page">
+  <p>
+    System umożliwia realizację zapisów na tematy prac dyplomowych dla studentów Wydziału Górnictwa i Geoinżynierii oraz wybór przedmiotów/modułów obieralnych.
+  </p>
+
+  <p>
+    Wybór tematów prac dyplomowych - informacje ogólne:
+  </p>
+  <ol>
+    <li>
+      Logowanie do systemu odbywa się poprzez podanie adresu e-mail (zdeklarowanego w systemie XP) oraz hasła (PESEL). W przypadku zmiany adresu e-mail prosimy o kontakt z właściwym Dziekanatem.
+    </li>
+    <li>
+      Tematy prac dyplomowych powinny zostać podane do 30 maja 2014 roku.
+    </li>
+  </ol>
+
+  <p>Zasady zapisów:</p>
+  <ol>
+    <li>
+      Student po zalogowaniu ma możliwość zapisu na kilka tematów prac.
+    </li>
+    <li>
+      Ostateczną decyzję o przypisaniu studenta do tematu podejmuje promotor pracy. W momencie zaakceptowania zgłoszenia studenta przez promotora, jest on automatycznie odrzucany w pozostałych wybranych tematach.
+    </li>
+    <li>
+      Promotor ma możliwość bezpośredniego przypisania studenta do danego tematu pracy.
+    </li>
+  </ol>
+  <h4 class="section-title extra-margin">
+    <%=t :label_current_terms %>
+  </h4>
+  <p>
+    Wyciąg z Regulaminu Studiów AGH par. 24 punkt 6:<br>
+    Tematy prac dyplomowych magisterskich powinny być podjęte przez studentów nie później niż na jeden rok, a prac (projektów) inżynierskich i licencjackich na jeden semestr przed planowym terminem ukończenia studiów.
   </p>
   <p>
-    Ja to mówiąc, że tak na takie oślepienie, Że w każdej jest obora. Dozoru tego dnia powiadał. Dobrze, mój Tadeuszu bo tak mędrsi fircykom oprzeć się kiedyś demokratą. Bo nie mógł schwytać. Wojskiego zagłuszył. Wstano od Moskali, skakał kryć się jako jenerał Dąbrowski z pierwszej lękliwości.
+    <span class="text-danger">Niespełnienie tego warunku przez studenta/tkę Wydziału Górnictwa i Geoinżynierii będzie przyczyną odmowy wpisu na semestr dyplomowy lub odpowiednio na semestr poprzedzający semestr dyplomowy.</span>
   </p>
 </div>
-
-<h4 class="section-title margin-large-top">
-  <%=t :label_current_terms %>
-</h4>
 <div class="row">
   <div class="col-md-8">
     <div class="panel panel-default">
       <div class="panel-body">
-          <div class="subsection-header ">
-            <h5 class="pull-left">
-              <%=t :label_thesis_plural %>
-            </h5>
-            <%= link_to t(:label_browse), diamond.theses_path, :class => 'pull-right inline-icon inline-icon-red inline-icon-thesis-list' %>
-            <div class="clearfix"></div>
-            <hr>
+        <div class="subsection-header ">
+          <h5 class="pull-left">
+            <%=t :label_thesis_plural %>
+          </h5>
+          <%= link_to t(:label_browse), diamond.theses_path, :class => 'pull-right inline-icon inline-icon-red inline-icon-thesis-list' %>
+          <div class="clearfix"></div>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <h6 class="text-muted">
+              <%=t :label_enrollment_begin %>
+            </h6>
           </div>
-          <div class="row">
-            <div class="col-md-8">
-              <h6 class="text-muted">
-                <%=t :label_enrollment_begin %>
-              </h6>
-            </div>
-            <div class="col-md-8">
-              <h6 class="text-danger">
-                <%=l current_semester.thesis_enrollments_begin %>
-              </h6>
-            </div>
+          <div class="col-md-8">
+            <h6 class="text-danger">
+              <%=l current_semester.thesis_enrollments_begin %>
+            </h6>
           </div>
-          <div class="row">
-            <div class="col-md-8">
-              <h6 class="text-muted">
-                <%=t :label_enrollment_end %>
-              </h6>
-            </div>
-            <div class="col-md-8">
-              <h6 class="text-danger">
-                <%=l current_semester.thesis_enrollments_end %>
-              </h6>
-            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <h6 class="text-muted">
+              <%=t :label_enrollment_end %>
+            </h6>
           </div>
+          <div class="col-md-8">
+            <h6 class="text-danger">
+              <%=l current_semester.thesis_enrollments_end %>
+            </h6>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="col-md-8">
     <div class="panel panel-default">
       <div class="panel-body">
-          <div class="subsection-header ">
-            <h5 class="pull-left">
-              <%=t :label_elective_block_plural %>
-            </h5>
-            <%= link_to t(:label_browse), nil, :class => 'pull-right inline-icon inline-icon-red inline-icon-elective-blocks' %>
-            <div class="clearfix"></div>
-            <hr>
+        <div class="subsection-header ">
+          <h5 class="pull-left">
+            <%=t :label_elective_block_plural %>
+          </h5>
+          <%= link_to t(:label_browse), nil, :class => 'pull-right inline-icon inline-icon-red inline-icon-elective-blocks' %>
+          <div class="clearfix"></div>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <h6 class="text-muted">
+              <%=t :label_enrollment_begin %>
+            </h6>
           </div>
-          <div class="row">
-            <div class="col-md-8">
-              <h6 class="text-muted">
-                <%=t :label_enrollment_begin %>
-              </h6>
-            </div>
-            <div class="col-md-8">
-              <h6 class="text-danger">
-                <%=l current_semester.elective_enrollments_begin %>
-              </h6>
-            </div>
+          <div class="col-md-8">
+            <h6 class="text-danger">
+              <%=l current_semester.elective_enrollments_begin %>
+            </h6>
           </div>
-          <div class="row">
-            <div class="col-md-8">
-              <h6 class="text-muted">
-                <%=t :label_enrollment_end %>
-              </h6>
-            </div>
-            <div class="col-md-8">
-              <h6 class="text-danger">
-                <%=l current_semester.elective_enrollments_end %>
-              </h6>
-            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <h6 class="text-muted">
+              <%=t :label_enrollment_end %>
+            </h6>
           </div>
+          <div class="col-md-8">
+            <h6 class="text-danger">
+              <%=l current_semester.elective_enrollments_end %>
+            </h6>
+          </div>
+        </div>
       </div>
     </div>
   </div>

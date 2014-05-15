@@ -78,6 +78,12 @@ table {
 }
 .navbar > .container .navbar-brand { background: image-url("logo.png") left bottom no-repeat; width: 160px; position: relative; bottom: -3px; margin-bottom: 3px; }
 
+.main-page {
+  ol li {
+    font-size: 13px;
+  }
+}
+
 .main_container {
   a { text-decoration: none; color: $red; padding-bottom: 0.1em; }
   a:link { border-bottom: 1px $red dotted; }
