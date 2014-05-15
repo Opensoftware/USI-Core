@@ -39,17 +39,30 @@ class DashboardController < ApplicationController
 
   private
   def theses_filter
-    @theses = Diamond::Thesis.include_peripherals.send(params[:filter]).pick_five.let do |t|
+    thesis_ids = Diamond::Thesis.send(params[:filter]).let do |t|
       t = send("theses_for_#{current_user_permission(Diamond::Thesis)}_permission", t)
+      unless t.kind_of?(Array)
+        t = t.pick_five
+      end
+      t
     end
+    @theses = Diamond::Thesis.include_peripherals.where(id: thesis_ids)
   end
 
   def theses_for_manage_department_permission(theses_relation)
-    theses_relation.by_department(current_user.verifable.department_id)
+    if theses_relation.kind_of?(Array)
+      Diamond::Thesis.department_newest_enrollments(current_user.verifable)
+    else
+      theses_relation.by_department(current_user.verifable.department_id)
+    end
   end
 
   def theses_for_manage_own_permission(theses_relation)
-    theses_relation.by_supervisor(current_user.verifable_id)
+    if theses_relation.kind_of?(Array)
+      Diamond::Thesis.supervisor_newest_enrollments(current_user.verifable)
+    else
+      theses_relation.by_supervisor(current_user.verifable_id)
+    end
   end
 
   def theses_for_manage_permission(theses_relation)
