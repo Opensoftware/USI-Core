@@ -172,7 +172,7 @@
                     <% if can?(:manage_department, em.thesis_enrollment.thesis) || em.thesis_enrollment.accepted? %>
                       <%=  format_status(em.thesis_enrollment.current_state)  %>
                     <% else %>
-                      <%=raw t :label_thesis_accept, :days => content_tag(:span, t('misc.days', :count => 1), :class => 'text-danger')  %>
+                      <%=raw t :label_thesis_accept, :days => content_tag(:span, t('misc.days', :count => em.thesis_enrollment.days_for_acceptance), :class => 'text-danger')  %>
                     <% end %>
                   </td>
                   <td>
