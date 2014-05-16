@@ -9,9 +9,7 @@ set :format, :pretty
 set :log_level, :debug
 set :pty, true
 set :use_sudo, false
-set :deploy_to, "/home/www/rails_app/usi-demo"
 set :scm, :git
-set :rails_env, "test"
 
 #Resque
 set :workers, { :msg => 1, :mailer => 1 }
@@ -26,7 +24,6 @@ set :graphite_branch, 'master'
 # RVM
 
 set :rvm_type, :user
-set :rvm_ruby_version, '2.0.0@usi-demo'
 set :default_env, { rvm_bin_path: '~/.rvm/bin' }
 
 # Bundler
@@ -38,7 +35,7 @@ set :bundle_without, "development"
 set :bundle_binstubs, -> { shared_path.join('bin') }
 set :bundle_roles, :all
 set :keep_releases, 3
-set :linked_dirs, %w{tmp/pids}
+set :linked_dirs, %w{tmp/pids config/unicorn tmp/logs}
 set :linked_files, %w{config/database.yml config/initializers/secret_token.rb config/unicorn/test.rb config/initializers/errbit.rb config/resque.yml config/settings.yml config/initializers/mailer_setup.rb}
 
 

@@ -4,6 +4,9 @@ role :db,  %w{opensoftware.pl}
 role :resque_worker, %w{opensoftware.pl}
 role :resque_scheduler, %w{opensoftware.pl}
 
+set :deploy_to, "/home/www/rails_app/usi-demo"
+set :rvm_ruby_version, '2.0.0@usi-demo'
+set :rails_env, "test"
 
 # Extended Server Syntax
 # ======================
