@@ -4,80 +4,114 @@
   </h4>
   <hr>
 </div>
-<div class="row">
-  <div class="col-md-4">
-    <h6 class="text-muted">
-      <%=t :label_name_surname%>
-    </h6>
-  </div>
-  <div class="col-md-12">
-    <h6 class="text-list">
-      <%= @user.verifable.surname_name %>
-    </h6>
-  </div>
-</div>
-<% if @user.student? %>
+<%= f.fields_for :employee do |g| %>
   <div class="row">
     <div class="col-md-4">
       <h6 class="text-muted">
-        <%=t :label_index_number%>
+        <%=t :label_name_surname%>
       </h6>
     </div>
     <div class="col-md-12">
       <h6 class="text-list">
-        <%= @user.verifable.index_number %>
+        <%= @user.verifable.surname_name %>
       </h6>
     </div>
   </div>
-  <% @user.verifable.studies.each do |studies| %>
+  <% if @user.student? %>
     <div class="row">
       <div class="col-md-4">
         <h6 class="text-muted">
-          <%=t :label_course_singular %>
+          <%=t :label_index_number%>
         </h6>
       </div>
       <div class="col-md-12">
         <h6 class="text-list">
-          <%= studies.course.name %>
+          <%= @user.verifable.index_number %>
         </h6>
       </div>
     </div>
+    <% @user.verifable.studies.each do |studies| %>
+      <div class="row">
+        <div class="col-md-4">
+          <h6 class="text-muted">
+            <%=t :label_course_singular %>
+          </h6>
+        </div>
+        <div class="col-md-12">
+          <h6 class="text-list">
+            <%= studies.course.name %>
+          </h6>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="row">
+      <div class="col-md-4">
+        <h6 class="text-muted">
+          <%=t :label_title%>
+        </h6>
+      </div>
+      <div class="col-md-12">
+        <% if can?(:manage, User) %>
+          <%= g.select :employee_title_id, options_for_select(@employee_titles.collect{|d| [d.name, d.id] }, @user.verifable.employee_title_id), {}, :class => "form-control" %>
+        <% else %>
+          <h6 class="text-list">
+            <%= @user.verifable.employee_title.name %>
+          </h6>
+        <% end %>
+      </div>
+    </div>
+    <div class="row" style="<%= "margin-top: 15px;" if can?(:manage, Employee) %>">
+      <div class="col-md-4">
+        <h6 class="text-muted">
+          <%=t :label_academy_unit_employment%>
+        </h6>
+      </div>
+      <div class="col-md-12">
+        <h6 class="text-list">
+          <%= @user.verifable.department.try(:name) %>
+        </h6>
+      </div>
+    </div>
+    <% if can?(:manage, Employee) %>
+      <div class="row" style="<%= "margin-top: 15px;" if can?(:manage, Employee) %>">
+        <div class="col-md-4">
+          <h6 class="text-muted">
+            <%=t :label_thesis_reports_to%>
+          </h6>
+        </div>
+        <div class="col-md-12">
+          <h6 class="text-list">
+            <%= @user.verifable.academy_unit.try(:name) || "-" %>
+          </h6>
+        </div>
+      </div>
+      <div class="row" style="<%= "margin-top: 15px;" if can?(:manage, Employee) %>">
+        <div class="col-md-4">
+          <h6 class="text-muted">
+            <%=t :label_building_singular%>
+          </h6>
+        </div>
+        <div class="col-md-12">
+          <h6 class="text-list">
+            <%= @user.verifable.building.try(:name) || "-" %>
+          </h6>
+        </div>
+      </div>
+    <% end %>
   <% end %>
-<% else %>
-  <div class="row">
+
+  <div class="row" style="<%= "margin-top: 15px;" if can?(:manage, Employee) %>">
     <div class="col-md-4">
       <h6 class="text-muted">
-        <%=t :label_title%>
+        <%=t :label_permission_plural%>
       </h6>
     </div>
     <div class="col-md-12">
       <h6 class="text-list">
-        <%= @user.verifable.employee_title.name %>
+        <%= @user.role.name %>
       </h6>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-4">
-      <h6 class="text-muted">
-        <%=t :label_filter_department%>
-      </h6>
-    </div>
-    <div class="col-md-12">
-      <h6 class="text-list">
-        <%= @user.verifable.department.name %>
-      </h6>
-    </div>
-  </div>
+  <div class="extra-margin"></div>
 <% end %>
-<div class="row">
-  <div class="col-md-4">
-    <h6 class="text-muted">
-      <%=t :label_permission_plural%>
-    </h6>
-  </div>
-  <div class="col-md-12">
-    <h6 class="text-list">
-      <%= @user.role.name %>
-    </h6>
-  </div>
-</div>

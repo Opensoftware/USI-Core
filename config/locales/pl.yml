@@ -42,6 +42,7 @@ pl:
 
   label_email: E-mail
   label_password: Hasło
+  label_password_confirmation: Potwierdź hasło
   label_login_short: Zaloguj
   label_login: Zaloguj się
   label_logout: Wyloguj
@@ -266,6 +267,7 @@ pl:
   label_title: Tytuł
   label_manage: Zarządzaj
   label_personal_data: Twoje dane
+  label_personal_data_edit: Edycja danych
   label_home_page: Strona główna
   label_current_terms: Aktualne terminy
   label_browse: Przeglądaj
@@ -281,16 +283,24 @@ pl:
   label_list_move: Przejdź do listy
   label_move_back: Wróć do listy
   label_move_back_main_page: Wróć na stronę główną
+  label_move_back_employees: Wróć do indeksu pracowników
   label_deadline_plural: Terminy
   label_index_number: Numer indeksu
   label_study_degree: Poziom studiów
   label_day_plural: dni
   label_mark_as_read: Oznacz jako przeczytane
   label_academy_unit_employment: Jednostka zatrudnienia pracownika
+  label_building_singular: Budynek
+  label_faculty_singular: Wydział
+  label_surname: Nazwisko
+  label_name: Imię
+  label_update: Uaktualnij
+  label_destroy: Usuń
 
 
   label_users_plural: Użytkownicy
   label_employee_plural: Pracownicy
+  label_employee_add: Dodaj pracownika
   label_accept_selected: Akceptuj zaznaczone
   label_accept: Akceptuj
   label_accept_period: na akceptację

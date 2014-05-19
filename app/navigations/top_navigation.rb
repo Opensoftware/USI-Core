@@ -39,6 +39,14 @@ if defined?(current_user)
           when /new|edit/
             primary.item :nav, I18n.t(:label_move_back_main_page), root_path, :class => "inline-icon inline-icon-red inline-icon-left-arrow"
           end
+        elsif controller.controller_name =~ /employees/
+          case controller.action_name
+          when /index/
+            primary.item :nav, I18n.t(:label_employee_add), main_app.new_employee_path, :class => "inline-icon inline-icon-red inline-icon-plus"
+          when /show/
+            primary.item :nav, I18n.t(:label_edit), edit_employee_path(@employee), :if => lambda { @employee.present? }, :class => "inline-icon inline-icon-red inline-icon-pen"
+            primary.item :nav, I18n.t(:label_move_back_employees), employees_path, :class => "inline-icon inline-icon-red inline-icon-left-arrow"
+          end
         end
       end
     end

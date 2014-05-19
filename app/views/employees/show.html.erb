@@ -1,0 +1,97 @@
+<div class="section-header">
+  <h4>
+    <%=t :label_personal_data %>
+  </h4>
+  <hr>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_name_surname%>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= @employee.surname_name %>
+    </h6>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_title%>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= @employee.employee_title.name %>
+    </h6>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_academy_unit_employment%>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= @employee.department.try(:name) || "-" %>
+    </h6>
+  </div>
+</div>
+<div class="row" >
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_thesis_reports_to%>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= @employee.academy_unit.try(:name) || "-" %>
+    </h6>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_building_singular%>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= @employee.building.try(:name) || "-" %>
+    </h6>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_permission_plural%>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= @employee.user.role.name %>
+    </h6>
+  </div>
+</div>
+<div class="extra-margin"></div>
+
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_email %>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= @employee.user.email %>
+    </h6>
+  </div>
+</div>
+<div class="section-footer">
+  <hr>
+</div>

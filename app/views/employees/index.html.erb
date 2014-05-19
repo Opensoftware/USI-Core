@@ -1,0 +1,32 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        <%=t :label_personal_data %>
+      </th>
+      <th>
+        <%=t :label_filter_department %>
+      </th>
+      <th>
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td>
+          <%= employee.surname_name_title %>
+        </td>
+        <td>
+          <%= employee.department_id.present? ? employee.department.try(:name) : "-" %>
+        </td>
+        <td>
+          <%= link_to t(:label_edit), edit_employee_path(employee) %>
+          <span class="sep">|</span>
+          <%= link_to t(:label_destroy), employee_path(employee), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

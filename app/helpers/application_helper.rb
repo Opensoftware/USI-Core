@@ -10,6 +10,10 @@ module ApplicationHelper
           v.each do |kk,vv|
             s << render(:partial => "common/flash_#{k}_template", :locals => { :msg => vv})
           end
+        elsif v.is_a?(Array)
+          v.each do |v|
+            s << render(:partial => "common/flash_#{k}_template", :locals => { :msg => v})
+          end
         end
       end
     end

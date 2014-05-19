@@ -17,12 +17,13 @@ class Ability
       can :read, Diamond::Thesis
     elsif user.student?
       can :manage, User,
-        {:id => user.id }
+        {:id => user.id}
       can :read, Diamond::Thesis
       can :create, Diamond::ThesisEnrollment
     elsif user.supervisor?
       can :manage, User,
-        {:id => user.id }
+        {:id => user.id}
+      can :read, Employee
       can :manage_own, Diamond::Thesis,
         {:supervisor_id => user.verifable_id}
       can :manage, Diamond::ThesisEnrollment,
@@ -32,13 +33,15 @@ class Ability
       can :manage_department, Diamond::Thesis,
         {:department_id => user.verifable.department_id}
       can :manage, User,
-        {:id => user.id }
+        {:id => user.id}
+      can :read, Employee
       can :manage, Diamond::ThesisEnrollment
       can :manage, Diamond::ThesisMessage
       can :manage, DepartmentSettings,
         {:department_id => user.verifable.department_id}
     elsif user.admin?
       can :manage, User
+      can :manage, Employee
       can :manage, Diamond::Thesis
       can :manage, Diamond::ThesisEnrollment
       can :manage, Diamond::ThesisMessage

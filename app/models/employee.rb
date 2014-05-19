@@ -5,7 +5,8 @@ class Employee < ActiveRecord::Base
   belongs_to :department, :class_name => "Department",
     :foreign_key => :department_id
   belongs_to :employee_title
-  has_one :user, :as => :verifable, :dependent => :destroy,
+  belongs_to :building
+  has_one :user, :as => :verifable,
     :class_name => "User"
   accepts_nested_attributes_for :user, :allow_destroy => true
 

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @employee_titles = EmployeeTitle.all
   end
 
   def update
@@ -26,6 +27,14 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :notifications_confirmation)
+    permit_params = [:email, :notifications_confirmation].let do |p|
+      if can?(:manage, Employee)
+        p << :role_id
+        p << {:employee_attributes => [:id, :building_id, :department_id,
+            :academy_unit_id, :employee_title_id]}
+      end
+      p
+    end
+    params.require(:user).permit(permit_params)
   end
 end
