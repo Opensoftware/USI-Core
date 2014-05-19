@@ -53,10 +53,10 @@ ActiveRecord::Base.transaction do
     EmployeeTitle.create!(title)
   end
 
-  superadmin_role = Role.create!(:name => "Superadmin", :const_name => :superadmin)
+  superadmin_role = Role.create!(:name => "Superadmin", :const_name => :superadmin, :visible => false)
   superadmin_role.save!
 
-  Role.create!(:name => "Anonymouse", :const_name => :anonymous)
+  Role.create!(:name => "Anonymouse", :const_name => :anonymous, :visible => false)
   Role.create!(:name => "Student", :const_name => :student)
   Role.create!(:name => "Administrator katedralny", :const_name => :department_admin)
   Role.create!(:name => "Administrator wydziałowy", :const_name => :admin)
