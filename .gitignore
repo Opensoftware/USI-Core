@@ -8,9 +8,10 @@
 /.bundle
 
 config/database.yml
+config/resque.yml
 config/initializers/secret_token.rb
-nbproject/*
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+db/schema.rb
