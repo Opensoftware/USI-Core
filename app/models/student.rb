@@ -10,10 +10,11 @@ class Student < ActiveRecord::Base
     has_many :enrollments, :class_name => "Diamond::ThesisEnrollment", :dependent => :destroy
     has_many :theses, :class_name => "Diamond::Thesis", :dependent => :nullify, :through => :enrollments
 
-    def self.not_assigned
+    def self.not_enrolled
       Student
       .joins("LEFT JOIN #{Diamond::ThesisEnrollment.table_name} ON #{Diamond::ThesisEnrollment.table_name}.student_id = #{Student.table_name}.id ")
-      .where("NOT EXISTS(SELECT id from #{Diamond::ThesisEnrollment.table_name} WHERE #{Diamond::ThesisEnrollment.table_name}.student_id = #{Student.table_name}.id)")
+      .where("NOT EXISTS(SELECT id from #{Diamond::ThesisEnrollment.table_name}
+WHERE #{Diamond::ThesisEnrollment.table_name}.student_id = #{Student.table_name}.id AND #{Diamond::ThesisEnrollment.table_name}.state = 'accepted')")
     end
 
     def enrolled_for_thesis?(thesis)
