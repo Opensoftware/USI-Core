@@ -28,6 +28,7 @@ UsiCore::Application.routes.draw do
         post :unlock
       end
     end
-    mount Diamond::Engine, at: "/diamond"
+    mount Diamond::Engine, at: "/diamond" if defined?(Diamond)
+    mount Pyrite::Engine, at: "/pyrite" if defined?(Pyrite)
   end
 end
