@@ -1,12 +1,12 @@
 class AcademyUnit < ActiveRecord::Base
 
-    serialize :special_conditions, Hash
+  serialize :special_conditions, Hash
 
-    translates :name
+  translates :name
 
-    has_many :courses, :foreign_key => :academy_unit_id, :dependent => :destroy
+  has_many :courses, :foreign_key => :academy_unit_id, :dependent => :destroy
 
-    validates :short_name, :code, presence: true
-    validates :code, uniqueness: { scope: [:short_name, :type] }
+  validates :short_name, :code, presence: true
+  validates :code, uniqueness: { scope: [:short_name, :type] }
 
 end

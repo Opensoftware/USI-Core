@@ -7,7 +7,7 @@ class EmployeesController < ApplicationController
   def index
     respond_to do |f|
       f.html do
-        @employees = Employee.includes(:user, :employee_title, :department).all
+        @employees = Employee.includes(:user, :employee_title, :department => :translations).all
       end
       f.json do
         employees = Employee.paginate(:page => 1, :per_page => 10, :conditions => ['surname ilike ?', "%#{params[:q]}%"], :order => 'surname ASC').collect do |employee|
@@ -75,7 +75,7 @@ class EmployeesController < ApplicationController
     @departments = Department.includes(:translations).all.collect do |dep|
       ["#{dep.faculty.short_name} - #{t(:label_filter_department)} #{dep.name}", dep.id]
     end.to_a
-    @academy_units = (Faculty.where(type: "Faculty").load - [Faculty.where(:code => "G").first]).collect do |f|
+    @academy_units = Faculty.where(type: "Faculty").load.collect do |f|
       ["#{t(:label_faculty_singular)} #{f.name}", f.id]
     end.to_a
     @academy_units |= @departments

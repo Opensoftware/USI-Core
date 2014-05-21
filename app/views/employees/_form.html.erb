@@ -54,7 +54,7 @@
     </h6>
   </div>
   <div class="col-md-12">
-    <%= f.select :employee_title_id, options_for_select(@employee_titles.collect{|d| [d.name, d.id] }, @employee.employee_title_id), {}, :class => "form-control" %>
+    <%= f.select :employee_title_id, options_for_select([[t(:label_choose), '']] | @employee_titles.collect{|d| [d.name, d.id] }, @employee.employee_title_id), {}, :class => "form-control" %>
   </div>
 </div>
 <div class="row" style="<%= "margin-top: 15px;" if can?(:manage, Employee) %>">
@@ -64,7 +64,7 @@
     </h6>
   </div>
   <div class="col-md-12">
-    <%= f.select :department_id, options_for_select(@departments, @employee.department_id), {}, :class => "form-control" %>
+    <%= f.select :academy_unit_id, options_for_select([[t(:label_choose), '']] | @academy_units, @employee.academy_unit_id), {}, :class => "form-control" %>
   </div>
 </div>
 <div class="row" style="<%= "margin-top: 15px;" if can?(:manage, Employee) %>">
@@ -74,7 +74,7 @@
     </h6>
   </div>
   <div class="col-md-12">
-    <%= f.select :academy_unit_id, options_for_select(@academy_units, @employee.academy_unit_id), {}, :class => "form-control" %>
+    <%= f.select :department_id, options_for_select([[t(:label_choose), '']] | @departments, @employee.department_id), {}, :class => "form-control" %>
   </div>
 </div>
 <div class="row" style="<%= "margin-top: 15px;" if can?(:manage, Employee) %>">
