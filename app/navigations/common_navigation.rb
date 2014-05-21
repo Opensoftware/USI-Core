@@ -2,10 +2,10 @@ if defined?(current_user)
   SimpleNavigation::Configuration.run do |navigation|
     navigation.items do |primary|
       primary.dom_class = 'nav navbar-nav'
-      if can?(:manage, User)
+      if can?(:manage, Employee) || can?(:manage, Student)
         primary.item :nav, "<i class='icon icon-white icon-users'></i> #{t(:label_users_plural)}", '' do |nav|
-          nav.item :nav, t(:label_employee_plural), main_app.employees_path
-          nav.item :nav, t(:label_student_plural), ''
+          nav.item :nav, t(:label_employee_plural), main_app.employees_path, :if => lambda { can?(:manage, Employee) }
+          nav.item :nav, t(:label_student_plural), '', :if => lambda { can?(:manage, Student) }
         end
       end
       primary.item :nav, "<i class='icon icon-white icon-elective-blocks'></i> #{t(:label_elective_block_plural)}", ''
