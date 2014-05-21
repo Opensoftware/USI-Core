@@ -86,6 +86,7 @@ table {
   li.open {
     a:focus, a:hover, a:visited { background-color: $red; }
   }
+  ul li ul li.active { border: 0; }
   i { display: inline-block; margin-right: 4px; }
 }
 .navbar > .container .navbar-brand { background: image-url("logo.png") left bottom no-repeat; width: 160px; position: relative; bottom: -3px; margin-bottom: 3px; }
@@ -306,6 +307,7 @@ table {
   -moz-border-radius: 2px;
   border-radius: 2px;
   margin-bottom: 0.4em;
+  font-size: 13px;
 }
 .selectable-btn-hover {
   @extend .selectable-btn;
