@@ -22,6 +22,7 @@ gem 'resque-web', require: 'resque_web'
 gem 'resque_mailer'
 gem "capistrano-resque", github: "sshingler/capistrano-resque", require: false
 gem 'whenever', :require => false
+gem 'roo'
 
 gem 'diamond', '~> 0.0.1', :path => '../diamond'
 gem 'graphite', '~> 0.0.1', :path => '../graphite'
