@@ -16,6 +16,7 @@ class DashboardController < ApplicationController
         .paginate(:page => params[:page].to_i < 1 ? 1 : params[:page], :per_page => params[:per_page].to_i < 1 ? 10 : params[:per_page])
         @thesis_state_messages = Diamond::ThesisMessage.for_thesis_state.for_employee(current_user)
         .paginate(:page => params[:page].to_i < 1 ? 1 : params[:page], :per_page => params[:per_page].to_i < 1 ? 10 : params[:per_page])
+        @proposed_theses = Diamond::Thesis.by_annual(current_annual).by_supervisor(current_user.verifable_id).count
         @accepted_theses = Diamond::Thesis.by_annual(current_annual).by_supervisor(current_user.verifable_id).visible.count
         @not_chosen_theses = Diamond::Thesis.by_annual(current_annual).by_supervisor(current_user.verifable_id).recently_accepted.count
         @chosen_theses = Diamond::Thesis.by_annual(current_annual).by_supervisor(current_user.verifable_id).assigned.count
