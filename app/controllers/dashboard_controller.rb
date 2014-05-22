@@ -11,15 +11,14 @@ class DashboardController < ApplicationController
       elsif can?(:manage_department, Diamond::Thesis)
         @enrollment_messages = Diamond::ThesisMessage.for_enrollment.for_employee(current_user)
         .paginate(:page => params[:page].to_i < 1 ? 1 : params[:page], :per_page => params[:per_page].to_i < 1 ? 10 : params[:per_page])
-      else
+        @department_theses = Diamond::Thesis.by_annual(current_annual).by_department(current_user.verifable.department_id).count
+        load_statistics(:by_department, current_user.verifable.department_id)
+      elsif can?(:manage_own, Diamond::Thesis)
         @enrollment_messages = Diamond::ThesisMessage.for_enrollment.for_employee(current_user)
         .paginate(:page => params[:page].to_i < 1 ? 1 : params[:page], :per_page => params[:per_page].to_i < 1 ? 10 : params[:per_page])
         @thesis_state_messages = Diamond::ThesisMessage.for_thesis_state.for_employee(current_user)
         .paginate(:page => params[:page].to_i < 1 ? 1 : params[:page], :per_page => params[:per_page].to_i < 1 ? 10 : params[:per_page])
-        @proposed_theses = Diamond::Thesis.by_annual(current_annual).by_supervisor(current_user.verifable_id).count
-        @accepted_theses = Diamond::Thesis.by_annual(current_annual).by_supervisor(current_user.verifable_id).visible.count
-        @not_chosen_theses = Diamond::Thesis.by_annual(current_annual).by_supervisor(current_user.verifable_id).recently_accepted.count
-        @chosen_theses = Diamond::Thesis.by_annual(current_annual).by_supervisor(current_user.verifable_id).assigned.count
+        load_statistics(:by_supervisor, current_user.verifable_id)
       end
 
       @theses = Diamond::Thesis.include_peripherals.newest.pick_five.let do |t|
@@ -39,6 +38,13 @@ class DashboardController < ApplicationController
   end
 
   private
+  def load_statistics(method, *args)
+    @proposed_theses = Diamond::Thesis.by_annual(current_annual).send(method, args).count
+    @accepted_theses = Diamond::Thesis.by_annual(current_annual).send(method, args).visible.count
+    @not_chosen_theses = Diamond::Thesis.by_annual(current_annual).send(method, args).recently_accepted.count
+    @chosen_theses = Diamond::Thesis.by_annual(current_annual).send(method, args).assigned.count
+  end
+
   def theses_filter
     thesis_ids = Diamond::Thesis.send(params[:filter]).let do |t|
       t = send("theses_for_#{current_user_permission(Diamond::Thesis)}_permission", t)
