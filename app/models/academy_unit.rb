@@ -9,4 +9,8 @@ class AcademyUnit < ActiveRecord::Base
   validates :short_name, :code, presence: true
   validates :code, uniqueness: { scope: [:short_name, :type] }
 
+  def kind_of_faculty?
+    type == 'Faculty'
+  end
+
 end

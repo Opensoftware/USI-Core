@@ -18,7 +18,8 @@ $(document).ready(function() {
       '</div>'
       ].join('\n'),
       suggestion: Handlebars.compile([
-        '<p class="element-data">{{value}}</p>'
+        '<p class="element-data">{{value}}</p>',
+        '<p class="academy-unit">{{academy_unit}}</p>'
         ].join(''))
     }
   }).on('typeahead:selected', function(event, datum) {

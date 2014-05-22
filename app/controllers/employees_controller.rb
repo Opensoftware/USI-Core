@@ -12,9 +12,11 @@ class EmployeesController < ApplicationController
         .paginate(:page => params[:page].to_i < 1 ? 1 : params[:page], :per_page => params[:per_page].to_i < 1 ? 15 : params[:per_page])
       end
       f.json do
-        employees = Employee.paginate(:page => 1, :per_page => 10, :conditions => ['surname ilike ?', "%#{params[:q]}%"], :order => 'surname ASC').collect do |employee|
+        employees = Employee.where("department_id IS NOT NULL")
+        .paginate(:page => 1, :per_page => 10, :conditions => ['surname ilike ?', "%#{params[:q]}%"], :order => 'surname ASC').collect do |employee|
           {
             value: "#{employee.surname} #{employee.name}",
+            academy_unit: "#{t(employee.academy_unit.kind_of_faculty? ? :label_faculty_singular : :label_department_singular)} #{employee.academy_unit.try(:name)}",
             id: employee.id
           }
         end
