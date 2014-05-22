@@ -1,5 +1,7 @@
 class DepartmentSettingsController < ApplicationController
 
+  authorize_resource :class => "DepartmentSettings"
+
   def edit
     @department_settings = DepartmentSettings.find(params[:id])
 

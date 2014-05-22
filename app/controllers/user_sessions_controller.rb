@@ -1,5 +1,7 @@
 class UserSessionsController < ApplicationController
 
+  skip_authorization_check :only => [:new, :create, :destroy]
+
   def new
     if current_user
       redirect_to root_url
