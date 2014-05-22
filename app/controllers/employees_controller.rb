@@ -7,7 +7,9 @@ class EmployeesController < ApplicationController
   def index
     respond_to do |f|
       f.html do
-        @employees = Employee.includes(:user, :employee_title, :department => :translations).all
+        @employees = Employee.includes(:user, :employee_title, :department => :translations)
+        .order("surname ASC")
+        .paginate(:page => params[:page].to_i < 1 ? 1 : params[:page], :per_page => params[:per_page].to_i < 1 ? 15 : params[:per_page])
       end
       f.json do
         employees = Employee.paginate(:page => 1, :per_page => 10, :conditions => ['surname ilike ?', "%#{params[:q]}%"], :order => 'surname ASC').collect do |employee|

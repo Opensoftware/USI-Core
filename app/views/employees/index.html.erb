@@ -1,8 +1,14 @@
+<% content_for :content_footnote do %>
+  <div class="paginator">
+    <%= will_paginate @employees, :renderer => BootstrapPagination::Rails %>
+  </div>
+  <div class="clearfix"></div>
+<% end %>
 <table class="table">
   <thead>
     <tr>
       <th>
-        <%=t :label_personal_data %>
+        <%=t :label_personal_data_employee %>
       </th>
       <th>
         <%=t :label_filter_department %>

@@ -268,6 +268,7 @@ pl:
   label_manage: Zarządzaj
   label_personal_data: Twoje dane
   label_personal_data_edit: Edycja danych
+  label_personal_data_employee: Dane pracownika
   label_home_page: Strona główna
   label_current_terms: Aktualne terminy
   label_browse: Przeglądaj
