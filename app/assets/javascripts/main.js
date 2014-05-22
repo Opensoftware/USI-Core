@@ -6,7 +6,7 @@ $(document).ready(function() {
 
   $(".has-tooltip").tooltip({
     delay: {
-      show: 700,
+      show: 300,
       hide: 100
     }
   });
