@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :scope => [:verifable_type]
   validates_presence_of :role_id
   belongs_to :role
-  belongs_to :verifable, :polymorphic => true, :dependent => :destroy
+  belongs_to :verifable, :polymorphic => true
   belongs_to :employee, :foreign_key => :verifable_id, :class_name => "Employee"
   belongs_to :student, :foreign_key => :verifable_id, :class_name => "Student"
   belongs_to :language, :class_name => "Language"
