@@ -8,6 +8,10 @@ ActiveRecord::Base.transaction do
 
   faculty = Faculty.new(short_name: 'GiG', code: 'G', name: 'Górnictwa i Geoinżynierii', overriding_id: base_unit.id, annual_id: annual.id)
   faculty.save!
+  branch_office = BranchOffice.new(short_name: 'ZODJ', code: 'GJ', name: 'Jaworzno', overriding_id: faculty.id)
+  branch_office.save!
+  branch_office = BranchOffice.new(short_name: 'ZODJZ', code: 'GZ', name: 'Jastrzębie Zdrój', overriding_id: faculty.id)
+  branch_office.save!
   faculty1 = Faculty.new(short_name: 'NiG', code: 'W', name: 'Nafty i Gazu', overriding_id: base_unit.id, annual_id: annual.id)
   faculty1.save!
 
