@@ -6,6 +6,10 @@ class Student < ActiveRecord::Base
   has_many :studies, :class_name => "Studies", :through => :student_studies
   has_many :courses, :through => :studies
 
+  def ==(other)
+    index_number == other.index_number
+  end
+
   if defined?(Diamond)
     has_many :enrollments, :class_name => "Diamond::ThesisEnrollment", :dependent => :destroy
     has_many :theses, :class_name => "Diamond::Thesis", :dependent => :nullify, :through => :enrollments

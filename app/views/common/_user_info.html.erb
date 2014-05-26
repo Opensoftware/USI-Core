@@ -75,7 +75,7 @@
         </div>
       <% end %>
     <% else %>
-      <% current_user.verifable.student_studies.each do |ss| %>
+      <% current_user.verifable.student_studies.each_with_index do |ss, idx| %>
         <div class="row">
           <div class="col-md-6">
             <h6 class="text-muted">
@@ -124,6 +124,9 @@
             </h6>
           </div>
         </div>
+        <% if (idx+1) != current_user.verifable.student_studies.length %>
+          <hr>
+        <% end %>
       <% end %>
     <% end %>
     <div class="row">
