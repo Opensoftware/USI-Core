@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
 
+  authorize_resource
 
   def index
 

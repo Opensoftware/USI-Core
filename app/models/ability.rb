@@ -24,6 +24,7 @@ class Ability
       can :manage, User,
         {:id => user.id}
       can :read, Employee
+      can :read, Student
       can :manage_own, Diamond::Thesis,
         {:supervisor_id => user.verifable_id}
       can :manage, Diamond::ThesisEnrollment,
@@ -39,9 +40,11 @@ class Ability
       can :manage, Diamond::ThesisMessage
       can :manage, DepartmentSettings,
         {:department_id => user.verifable.department_id}
+      can :read, Student
     elsif user.admin?
       can :manage, User
       can :manage, Employee
+      can :manage, Student
       can :manage, Diamond::Thesis
       can :manage, Diamond::ThesisEnrollment
       can :manage, Diamond::ThesisMessage
