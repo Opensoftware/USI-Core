@@ -9,5 +9,8 @@ class Annual < ActiveRecord::Base
     name
   end
 
+  def self.newest
+    order("id DESC").first
+  end
 
 end
