@@ -4,7 +4,7 @@ UsiCore::Application.routes.draw do
     root 'base#index'
 
     resources :dashboard, :only => :index
-
+    resources :password_resets, :only => [:new, :create, :edit, :update]
     resources :employees
     resources :students
     resources :dashboard, :only => :index

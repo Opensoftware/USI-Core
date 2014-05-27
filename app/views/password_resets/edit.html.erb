@@ -1,0 +1,22 @@
+<% content_for :additional_javascripts do %>
+  <%= javascript_include_tag "password_reset_form" %>
+<% end %>
+
+<div>
+  <%= form_for @user, :url => password_reset_path, :method => :put, :html => { :role => "form", :class => "password-reset-form" } do |f| %>
+    <div class="core-widgets-container">
+      <div class="widget-group-row">
+        <div class="form-group">
+          <%= f.label :password, t(:label_new_password), :class => "control-label" %>
+          <%= f.password_field :password, :class => "form-control", :required => true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, t(:label_new_password_confirmation), :class => "control-label" %>
+          <%= f.password_field :password_confirmation, :class => "form-control", :required => true %>
+        </div>
+      </div>
+    </div>
+    <div class="cleaner"></div>
+    <%= submit_tag t(:label_continue), :class => "btn btn-danger" %>
+  <% end %>
+</div>

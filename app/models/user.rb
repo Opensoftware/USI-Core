@@ -23,6 +23,11 @@ class User < ActiveRecord::Base
 
   cattr_accessor :current
 
+  def deliver_password_reset_instructions!
+    reset_perishable_token!
+    UserMailer.deliver_password_reset_instructions(self.id).deliver
+  end
+
   def blocked?
     self.status == STATUS_BLOCKED
   end
