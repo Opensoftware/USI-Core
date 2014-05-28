@@ -18,6 +18,14 @@ $(document).ready(function() {
 
 });
 
+$.clear_query_params = function(href) {
+  if(href.indexOf('?') == -1) {
+    return href;
+  } else {
+    return href.substring(0, href.indexOf('?'));
+  }
+}
+
 $.i18n.load(eval(current_language+"_translations"));
 
 $.validator.setDefaults({
