@@ -1,0 +1,34 @@
+<div class="section-header">
+  <h4>
+    <%=t :label_personal_data %>
+  </h4>
+  <hr>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_name_surname%>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= @student.surname_name %>
+    </h6>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_email %>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= @student.user.email %>
+    </h6>
+  </div>
+</div>
+<div class="section-footer">
+  <hr>
+</div>

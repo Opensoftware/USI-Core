@@ -5,7 +5,7 @@ if defined?(current_user)
       if can?(:manage, Employee) || can?(:manage, Student)
         primary.item :nav, "<i class='icon icon-white icon-users'></i> #{t(:label_users_plural)}", '' do |nav|
           nav.item :nav, t(:label_employee_plural), main_app.employees_path, :if => lambda { can?(:manage, Employee) }
-          nav.item :nav, t(:label_student_plural), '', :if => lambda { can?(:manage, Student) }
+          nav.item :nav, t(:label_student_plural), main_app.students_path, :if => lambda { can?(:manage, Student) }
         end
       end
       primary.item :nav, "<i class='icon icon-white icon-elective-blocks'></i> #{t(:label_elective_block_plural)}", ''

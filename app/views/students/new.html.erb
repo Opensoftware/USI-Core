@@ -1,0 +1,47 @@
+<% content_for :additional_javascript_libraries do %>
+  <%= javascript_include_tag "student" %>
+<% end %>
+<% content_for :content_heading do %>
+  <div class="row">
+    <div class="col-md-9">
+      <h4>
+        <%=t can?(:manage, Student) ? :label_personal_data_student : :label_personal_data %>
+      </h4>
+    </div>
+    <div class="col-md-7">
+      <div class="pull-right">
+        <%= button_to t(:label_save), (students_path(@student)), :form => {:class => "form-inline" }, :class => "btn btn-danger submit-form" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% content_for :content_footnote do %>
+  <div class="pull-right">
+    <%= button_to t(:label_save), (students_path(@student)), :form => {:class => "form-inline" }, :class => "btn btn-danger submit-form" %>
+  </div>
+  <div class="clearfix"></div>
+<% end %>
+<%= form_for @student, role: 'form', html: {:class => "student-form"} do |f| %>
+  <%= f.fields_for :user do |g| %>
+    <%= g.hidden_field :role_id, :value => @student_role.id %>
+    <%= render :partial => "form", :locals => {f: f, g: g} %>
+    <div class="section-footer">
+      <hr>
+    </div>
+    <div class="section-header">
+      <h4>
+        <%=t :label_contact_data %>
+      </h4>
+      <hr>
+    </div>
+    <div class="form-group extra-margin">
+      <%= g.label :email, t(:label_email_yours) %>
+      <%= g.text_field :email, :class => "form-control", :placeholder => t(:label_email_yours), :required => true  %>
+    </div>
+    <div class="form-group extra-margin">
+      <%= g.check_box :notifications_confirmation %>
+      <%= g.label :notifications_confirmation, t(:notice_email_notifications) %>
+    </div>
+    <div class="clearfix"></div>
+  <% end %>
+<% end %>

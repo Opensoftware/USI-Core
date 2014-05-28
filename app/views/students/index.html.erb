@@ -1,0 +1,44 @@
+<% content_for :content_footnote do %>
+  <div class="paginator">
+    <%= will_paginate @students, :renderer => BootstrapPagination::Rails %>
+  </div>
+  <div class="clearfix"></div>
+<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        <%=t :label_personal_data_student %>
+      </th>
+      <th>
+        <%=t :label_index_number %>
+      </th>
+      <th>
+        <%=t :label_course_singular %>
+      </th>
+      <th>
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td>
+          <%= student.surname_name %>
+        </td>
+        <td>
+          <%= student.index_number %>
+        </td>
+        <td>
+          <%= student.student_studies.collect {|ss| "#{ss.studies.course.name} (#{ss.studies.study_type.name.downcase} #{ss.studies.study_degree.name.camelize(:lower)})" }.join(", ") %>
+        </td>
+        <td>
+          <%= link_to t(:label_edit), edit_student_path(student) %>
+          <span class="sep">|</span>
+          <%= link_to t(:label_destroy), student_path(student), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

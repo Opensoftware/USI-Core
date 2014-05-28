@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_name%>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= f.text_field :name, :class => "form-control", :required => true %>
+    </h6>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_surname%>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= f.text_field :surname, :class => "form-control", :required => true %>
+    </h6>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_password%>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= g.password_field :password, :class => "form-control" %>
+    </h6>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_password_confirmation%>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= g.password_field :password_confirmation, :class => "form-control" %>
+    </h6>
+  </div>
+</div>
+<div class="extra-margin"></div>

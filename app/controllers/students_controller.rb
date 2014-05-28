@@ -1,10 +1,17 @@
 class StudentsController < ApplicationController
 
-  authorize_resource
+  load_and_authorize_resource
+
+  before_filter :preload, only: [:new, :edit]
 
   def index
 
     respond_to do |f|
+      f.html do
+        @students = Student.includes(:user, :student_studies => :studies)
+        .order("surname ASC")
+        .paginate(:page => params[:page].to_i < 1 ? 1 : params[:page], :per_page => params[:per_page].to_i < 1 ? 15 : params[:per_page])
+      end
       f.json do
         students = Student.not_enrolled.paginate(:page => 1, :per_page => 10, :conditions => ['surname ilike ?', "%#{params[:q]}%"], :order => 'surname ASC').collect do |student|
           {
@@ -17,5 +24,53 @@ class StudentsController < ApplicationController
         render :json => students.to_json
       end
     end
+  end
+
+  def new
+    @student.build_user
+  end
+
+  def create
+    if @student.save
+      @student.user.silent_activate!
+      redirect_to student_path(@student)
+    else
+      preload
+      flash.now[:error] = @student.errors.full_messages
+      render action: :new
+    end
+  end
+
+  def edit
+
+  end
+
+  def update
+    if @student.update(student_params)
+      redirect_to student_path(@student)
+    else
+      render 'edit'
+    end
+  end
+
+  def show
+  end
+
+  def destroy
+    if @student.user.destroy && @student.destroy
+      redirect_to students_path
+    end
+  end
+
+  private
+  def student_params
+    permit_params = [:name, :surname,
+      :user_attributes => [:id, :email, :notifications_confirmation,
+        :role_id, :password, :password_confirmation]]
+    params.require(:student).permit(permit_params)
+  end
+
+  def preload
+    @student_role = Role.where(const_name: :student).first
   end
 end
