@@ -36,7 +36,7 @@ set :bundle_binstubs, -> { shared_path.join('bin') }
 set :bundle_roles, :all
 set :keep_releases, 3
 set :linked_dirs, %w{tmp/pids config/unicorn tmp/logs}
-set :linked_files, %w{config/database.yml config/initializers/secret_token.rb config/unicorn/test.rb config/initializers/errbit.rb config/resque.yml config/settings.yml config/initializers/mailer_setup.rb}
+set :linked_files, %w{config/database.yml config/initializers/secret_token.rb config/unicorn/test.rb config/initializers/errbit.rb config/resque.yml config/settings.yml config/initializers/mailer_setup.rb Gemfile}
 
 
 
