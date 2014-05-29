@@ -23,6 +23,9 @@ gem 'resque_mailer'
 gem "capistrano-resque", github: "sshingler/capistrano-resque", require: false
 gem 'whenever', :require => false
 gem 'roo'
+gem 'prawn'
+gem 'axlsx'
+gem 'rubyzip',  "~> 0.9.9"
 
 # Uncomment engines which you want to enable
 #gem 'diamond', '~> 0.0.1', :path => '../diamond'
