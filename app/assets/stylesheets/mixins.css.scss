@@ -1,0 +1,33 @@
+//= depend_on_asset "icons/icons_sprite_white.png"
+//= depend_on_asset "icons/icons_sprite_navy.png"
+//= depend_on_asset "icons/icons_sprite_red.png"
+
+@mixin icon { width: 14px; height: 14px; }
+@mixin inline-icon { @include icon; display: inline-block; content: ' '; margin: 0 5px 0 0; position: relative; left: 0; top: 3px; }
+
+@mixin icon-white { background: image-url("icons/icons_sprite_white.png") no-repeat; }
+@mixin icon-navy { background: image-url("icons/icons_sprite_navy.png") no-repeat; }
+@mixin icon-red { background: image-url("icons/icons_sprite_red.png") no-repeat; }
+
+@mixin icon-blocks { background-position: -3px -4px;  }
+@mixin icon-list { background-position: -23px -4px;  }
+@mixin icon-manage { background-position: -43px -4px;  }
+@mixin icon-user { background-position: -63px -4px;  }
+@mixin icon-left-arrow { background-position: -3px -24px;  }
+@mixin icon-callendar { background-position: -23px -24px;  }
+@mixin icon-plus { background-position: -43px -24px;  }
+@mixin icon-accept { background-position: -63px -24px;  }
+@mixin icon-right-arrow { background-position: -3px -43px;  }
+@mixin icon-checkbox-accept { background-position: -23px -43px;  }
+@mixin icon-pen { background-position: -43px -43px;  }
+@mixin icon-delete { background-position: -63px -43px;  }
+@mixin icon-search { background-position: -3px -63px; }
+@mixin icon-export { background-position: -23px -63px;  }
+@mixin icon-stats { background-position: -43px -63px; }
+@mixin icon-type { background-position: -63px -63px; }
+@mixin icon-monitor { background-position: -3px -83px; }
+@mixin icon-help { background-position: -23px -83px;}
+@mixin icon-envelop { background-position: -43px -83px; }
+@mixin icon-home { background-position: -63px -83px; }
+@mixin icon-print { background-position: -3px -103px; }
+@mixin icon-users { background-position: -23px -103px;  } /* TODO only white */

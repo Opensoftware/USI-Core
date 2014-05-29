@@ -20,6 +20,7 @@
 //= depend_on_asset "ClearSans-Regular-webfont.ttf"
 //= depend_on_asset "ClearSans-Regular-webfont.svg"
 
+@import "mixins.css.scss";
 @import "variables.css.scss";
 @import "custom_functions.css.scss";
 
@@ -407,7 +408,7 @@ h4.section-title { border-bottom: 1px solid $grey3; padding-bottom: .4em; margin
 .icon-export, .inline-icon-export:before { background-position: -23px -63px;  }
 .icon-pen, .inline-icon-pen:before { background-position: -43px -43px;  }
 .icon-delete { background-position: -63px -43px;  }
-.icon-users { background-position: -63px -63px;  }
+.icon-users { @include icon-users; }
 .icon-email {
   width: 15px;
   height: 10px;
