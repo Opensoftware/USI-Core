@@ -3,6 +3,7 @@ UsiCore::Application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
+  config.cache_store = :dalli_store, '127.0.0.1', { :expires_in => 30.days, :compress => true }
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both thread web servers
