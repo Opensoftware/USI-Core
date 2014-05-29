@@ -99,6 +99,10 @@ class ApplicationController < ActionController::Base
     @form_wrapper_mode = true
   end
 
+  def exportable_format?
+    request.format.pdf? || request.format.xlsx?
+  end
+
   private
   def exception_handler(exception)
     case exception.class.to_s
