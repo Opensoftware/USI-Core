@@ -26,6 +26,7 @@ gem 'roo'
 gem 'prawn'
 gem 'axlsx'
 gem 'rubyzip',  "~> 0.9.9"
+gem 'dalli'
 
 # Uncomment engines which you want to enable
 #gem 'diamond', '~> 0.0.1', :path => '../diamond'
