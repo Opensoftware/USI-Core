@@ -1,5 +1,7 @@
 class EnrollmentSemestersController < ApplicationController
 
+  load_and_authorize_resource
+
   def edit
     @semester = EnrollmentSemester.find(params[:id])
   end
