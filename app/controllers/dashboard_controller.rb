@@ -41,6 +41,7 @@ class DashboardController < ApplicationController
   def load_statistics(method, *args)
     @proposed_theses = Diamond::Thesis.by_annual(current_annual).send(method, args).count
     @accepted_theses = Diamond::Thesis.by_annual(current_annual).send(method, args).visible.count
+    @unaccepted_theses = Diamond::Thesis.by_annual(current_annual).send(method, args).unaccepted.count
     @not_chosen_theses = Diamond::Thesis.by_annual(current_annual).send(method, args).recently_accepted.count
     @chosen_theses = Diamond::Thesis.by_annual(current_annual).send(method, args).assigned.count
   end

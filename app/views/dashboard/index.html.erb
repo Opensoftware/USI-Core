@@ -121,6 +121,20 @@
             </h6>
           </div>
         </div>
+        <% if @unaccepted_theses %>
+          <div class="row">
+            <div class="col-md-8">
+              <h6 class="text-muted">
+                <%=t :label_filter_unaccepted%>
+              </h6>
+            </div>
+            <div class="col-md-8">
+              <h6>
+                <%=t 'misc.thesis_not_accepted', :count => @unaccepted_theses %>
+              </h6>
+            </div>
+          </div>
+        <% end %>
         <div class="row">
           <div class="col-md-8">
             <h6 class="text-muted">
