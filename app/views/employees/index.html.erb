@@ -14,6 +14,9 @@
         <%=t :label_filter_department %>
       </th>
       <th>
+        <%=t :label_permissions %>
+      </th>
+      <th>
 
       </th>
     </tr>
@@ -26,6 +29,9 @@
         </td>
         <td>
           <%= employee.department_id.present? ? employee.department.try(:name) : "-" %>
+        </td>
+        <td>
+          <%= employee.user.role.name %>
         </td>
         <td>
           <%= link_to t(:label_edit), edit_employee_path(employee) %>

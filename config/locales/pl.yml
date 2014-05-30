@@ -303,6 +303,7 @@ pl:
   label_destroy: Usuń
   label_here: tutaj
   label_continue: Kontynuuj
+  label_permissions: Uprawnienia
 
 
   label_users_plural: Użytkownicy
