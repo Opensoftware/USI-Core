@@ -28,6 +28,7 @@ class StudentsController < ApplicationController
 
   def new
     @student.build_user
+    @student.student_studies.build
   end
 
   def create
@@ -64,13 +65,19 @@ class StudentsController < ApplicationController
 
   private
   def student_params
-    permit_params = [:name, :surname,
+    permit_params = [:name, :surname, :index_number,
       :user_attributes => [:id, :email, :notifications_confirmation,
-        :role_id, :password, :password_confirmation]]
+        :role_id, :password, :password_confirmation],
+      :student_studies_attributes => [:id, :student_id, :semester_number,
+        :studies_id]
+    ]
     params.require(:student).permit(permit_params)
   end
 
   def preload
+    @studies = Studies.for_annual(current_annual).includes(course: :translations,
+      study_type: :translations, study_degree: :translations)
+    .load.sort {|s1, s2| s1.course.name <=> s2.course.name}
     @student_role = Role.where(const_name: :student).first
   end
 end
