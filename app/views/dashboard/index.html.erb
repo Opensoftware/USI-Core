@@ -27,7 +27,7 @@
           </div>
           <div class="col-md-8">
             <h6>
-              <%=l current_semester.thesis_enrollments_begin %>
+              <%= current_semester.thesis_enrollments_begin.present? ? l( current_semester.thesis_enrollments_begin) : "-" %>
             </h6>
           </div>
         </div>
@@ -39,7 +39,7 @@
           </div>
           <div class="col-md-8">
             <h6>
-              <%=l current_semester.thesis_enrollments_end %>
+              <%= current_semester.thesis_enrollments_end.present? ? l( current_semester.thesis_enrollments_end) : "-" %>
             </h6>
           </div>
         </div>
@@ -57,7 +57,7 @@
           </div>
           <div class="col-md-8">
             <h6>
-              <%=l current_semester.elective_enrollments_begin %>
+              <%= current_semester.elective_enrollments_begin.present? ? l( current_semester.elective_enrollments_begin) : "-" %>
             </h6>
           </div>
         </div>
@@ -69,7 +69,7 @@
           </div>
           <div class="col-md-8">
             <h6>
-              <%=l current_semester.elective_enrollments_end %>
+              <%= current_semester.elective_enrollments_end.present? ? l( current_semester.elective_enrollments_end) : "-" %>
             </h6>
           </div>
         </div>
