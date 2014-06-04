@@ -75,6 +75,13 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def fragment_cache_key_for(elements)
+    fragment_cache_key([current_annual.name, params[:controller], params[:action],
+        I18n.locale, (current_user.present? ? current_user.id : false),
+        request.format, elements].flatten)
+  end
+
   def set_locale_from_params
     if params[:locale]
       if I18n.available_locales.include?(params[:locale].to_sym)
