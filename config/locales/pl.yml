@@ -305,7 +305,8 @@ pl:
   label_continue: Kontynuuj
   label_permissions: Uprawnienia
 
-
+  label_report_singular: Raport
+  label_report_plural: Raporty
   label_users_plural: Użytkownicy
   label_employee_plural: Pracownicy
   label_employee_add: Dodaj pracownika

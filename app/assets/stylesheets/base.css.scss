@@ -126,7 +126,7 @@ table {
     font-family: 'clear_sansbold';
   }
 }
-.top-menu, .section-header, .subsection-header {
+.top-menu, .section-header, .subsection-header, .subsection-content {
   a:link, a:hover, a:visited { text-decoration: none; border: none; color: $dark_blue; }
   a:hover { color: $dark_blue2 }
 }
@@ -398,7 +398,7 @@ h4.section-title { border-bottom: 1px solid $grey3; padding-bottom: .4em; margin
 .icon-elective-blocks, .inline-icon-elective-blocks:before { background-position: -3px -4px;  }
 .icon-thesis-list, .inline-icon-thesis-list:before { background-position: -23px -4px;  }
 .icon-manage, .inline-icon-manage:before { background-position: -43px -4px;  }
-.icon-user { background-position: -63px -4px;  }
+.icon-user, .inline-icon-user:before { background-position: -63px -4px;  }
 .icon-left-arrow, .inline-icon-left-arrow:before { background-position: -3px -24px;  }
 .icon-callendar { background-position: -23px -24px;  }
 .icon-plus, .inline-icon-plus:before { background-position: -43px -24px;  }
@@ -406,9 +406,10 @@ h4.section-title { border-bottom: 1px solid $grey3; padding-bottom: .4em; margin
 .icon-right-arrow { background-position: -3px -43px;  }
 .icon-checkbox-accept { background-position: -23px -43px;  }
 .icon-export, .inline-icon-export:before { background-position: -23px -63px;  }
+.icon-statistics, .inline-icon-statistics:before { background-position: -43px -63px;  }
 .icon-pen, .inline-icon-pen:before { background-position: -43px -43px;  }
 .icon-delete { background-position: -63px -43px;  }
-.icon-users { @include icon-users; }
+.icon-users, .inline-icon-users:before { @include icon-users; }
 .icon-email {
   width: 15px;
   height: 10px;
