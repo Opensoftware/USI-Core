@@ -30,6 +30,7 @@ class Ability
       can :manage, Diamond::ThesisEnrollment,
         {:thesis => {:supervisor_id => user.verifable_id}}
       can :manage, Diamond::ThesisMessage
+      can :read, :theses_reports
     elsif user.department_admin?
       can :manage_department, Diamond::Thesis,
         {:department_id => user.verifable.department_id}
@@ -41,6 +42,7 @@ class Ability
       can :manage, DepartmentSettings,
         {:department_id => user.verifable.department_id}
       can :read, Student
+      can :manage, :theses_reports
     elsif user.admin?
       can :manage, User
       can :manage, Employee
@@ -49,6 +51,7 @@ class Ability
       can :manage, Diamond::ThesisEnrollment
       can :manage, Diamond::ThesisMessage
       can :manage, EnrollmentSemester
+      can :manage, :theses_reports
     elsif user.superadmin?
       can :manage, :all
     end
