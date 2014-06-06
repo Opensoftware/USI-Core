@@ -13,7 +13,7 @@ class StudentsController < ApplicationController
         .paginate(:page => params[:page].to_i < 1 ? 1 : params[:page], :per_page => params[:per_page].to_i < 1 ? 15 : params[:per_page])
       end
       f.json do
-        students = Student.not_enrolled.paginate(:page => 1, :per_page => 10, :conditions => ['surname ilike ?', "%#{params[:q]}%"], :order => 'surname ASC').collect do |student|
+        students = Student.not_enrolled.search_by_full_name(params[:q]).paginate(:page => 1, :per_page => 10, :order => 'surname ASC').collect do |student|
           {
             value: "#{student.surname} #{student.name}",
             index_number: student.index_number,

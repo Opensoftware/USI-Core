@@ -1,5 +1,11 @@
 class Student < ActiveRecord::Base
 
+  include PgSearch
+  pg_search_scope :search_by_full_name, :against => [:surname, :name],
+    :using => {
+    :tsearch => {:prefix => true}
+  }
+
   has_one :user, :as => :verifable, :dependent => :destroy, :class_name => "User"
   accepts_nested_attributes_for :user, :allow_destroy => true
   has_many :student_studies, :class_name => "StudentStudies", :dependent => :destroy
