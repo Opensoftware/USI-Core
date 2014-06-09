@@ -28,6 +28,7 @@ UsiCore::Application.routes.draw do
         post :unlock
       end
     end
+    mount Graphite::Engine, at: "/graphite" if defined?(Graphite)
     mount Diamond::Engine, at: "/diamond" if defined?(Diamond)
     mount Pyrite::Engine, at: "/pyrite" if defined?(Pyrite)
   end
