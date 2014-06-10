@@ -122,7 +122,7 @@ class ApplicationController < ActionController::Base
           else
             session[:requested_url] = request.fullpath
             flash[:error] = I18n.t(:error_login_first)
-            redirect_to new_user_session_path
+            redirect_to main_app.new_user_session_path
           end
         end
         f.json do
