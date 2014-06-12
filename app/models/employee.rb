@@ -42,7 +42,7 @@ class Employee < ActiveRecord::Base
 
     def deny_remaining_theses!
       theses.by_annual(Settings.pick_newest.annual).not_assigned.each do |thesis|
-        thesis.reject! if thesis.can_reject?
+        thesis.deny! if thesis.can_deny?
         thesis.enrollments.each do |enrollment|
           enrollment.reject! if enrollment.can_reject?
         end
