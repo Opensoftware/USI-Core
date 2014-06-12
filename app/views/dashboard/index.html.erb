@@ -165,58 +165,60 @@
       </div>
     </div>
   <% end %>
-  <div class="section">
-    <div class="section-header">
-      <h4>
-        <%=t :label_report_plural %>
-      </h4>
-      <hr>
-    </div>
-    <div class="subsection">
-      <div class="subsection-header extra-margin">
-        <h5><%=t :label_thesis_plural_official%></h5>
+  <% if can?(:read, :theses_reports) %>
+    <div class="section">
+      <div class="section-header">
+        <h4>
+          <%=t :label_report_plural %>
+        </h4>
         <hr>
       </div>
-      <div class="subsection-content">
-        <% if can?(:manage, :theses_reports) %>
+      <div class="subsection">
+        <div class="subsection-header extra-margin">
+          <h5><%=t :label_thesis_plural_official%></h5>
+          <hr>
+        </div>
+        <div class="subsection-content">
+          <% if can?(:manage, :theses_reports) %>
+            <div class="row">
+              <div class="col-md-16">
+                <p>
+                  <%= link_to t(:label_report_export_unassigned_students), diamond.unassigned_students_reports_theses_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-user' %>
+                </p>
+              </div>
+            </div>
+          <% end %>
           <div class="row">
             <div class="col-md-16">
               <p>
-                <%= link_to t(:label_report_export_unassigned_students), diamond.unassigned_students_reports_theses_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-user' %>
+                <% if can?(:manage, Diamond::Thesis) %>
+                  <%= link_to t(:label_report_export_supervisors_theses_of_faculty), diamond.supervisors_theses_of_faculty_reports_theses_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-statistics' %>
+                <% elsif can?(:manage_department, Diamond::Thesis) %>
+                  <%= link_to t(:label_report_export_supervisors_theses_of_department), diamond.supervisors_theses_of_department_reports_theses_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-statistics' %>
+                <% end %>
               </p>
             </div>
           </div>
-        <% end %>
-        <div class="row">
-          <div class="col-md-16">
-            <p>
-              <% if can?(:manage, Diamond::Thesis) %>
-                <%= link_to t(:label_report_export_supervisors_theses_of_faculty), diamond.supervisors_theses_of_faculty_reports_theses_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-statistics' %>
-              <% elsif can?(:manage_department, Diamond::Thesis) %>
-                <%= link_to t(:label_report_export_supervisors_theses_of_department), diamond.supervisors_theses_of_department_reports_theses_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-statistics' %>
-              <% end %>
-            </p>
+          <div class="row">
+            <div class="col-md-16">
+              <p>
+                <% if can?(:manage, Diamond::Thesis) %>
+                  <%= link_to t(:label_report_export_faculty_theses), diamond.faculty_theses_reports_theses_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-export' %>
+                <% elsif can?(:manage_department, Diamond::Thesis) %>
+                  <%= link_to t(:label_report_export_department_theses), diamond.department_theses_reports_theses_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-export' %>
+                <% elsif can?(:manage_own, Diamond::Thesis) %>
+                  <%= link_to t(:label_report_export_theses_mine), diamond.supervisor_theses_reports_theses_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-export' %>
+                <% end %>
+              </p>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-16">
-            <p>
-              <% if can?(:manage, Diamond::Thesis) %>
-                <%= link_to t(:label_report_export_faculty_theses), diamond.faculty_theses_reports_theses_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-export' %>
-              <% elsif can?(:manage_department, Diamond::Thesis) %>
-                <%= link_to t(:label_report_export_department_theses), diamond.department_theses_reports_theses_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-export' %>
-              <% elsif can?(:manage_own, Diamond::Thesis) %>
-                <%= link_to t(:label_report_export_theses_mine), diamond.supervisor_theses_reports_theses_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-export' %>
-              <% end %>
-            </p>
-          </div>
+        <div class="section-footer">
+          <hr>
         </div>
-      </div>
-      <div class="section-footer">
-        <hr>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
 <% if current_user.employee? %>
