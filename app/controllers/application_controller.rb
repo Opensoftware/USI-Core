@@ -118,7 +118,7 @@ class ApplicationController < ActionController::Base
         f.html do
           if current_user
             flash[:error] = I18n.t(:error_resource_forbidden)
-            redirect_to root_path
+            redirect_to main_app.root_path
           else
             session[:requested_url] = request.fullpath
             flash[:error] = I18n.t(:error_login_first)
