@@ -22,10 +22,19 @@ class Student < ActiveRecord::Base
     has_many :theses, :class_name => "Diamond::Thesis", :dependent => :nullify, :through => :enrollments
 
     def self.not_enrolled
-      Student
+      student_ids = Student.select("DISTINCT #{Student.table_name}.id")
       .joins("LEFT JOIN #{Diamond::ThesisEnrollment.table_name} ON #{Diamond::ThesisEnrollment.table_name}.student_id = #{Student.table_name}.id ")
       .where("NOT EXISTS(SELECT id from #{Diamond::ThesisEnrollment.table_name}
 WHERE #{Diamond::ThesisEnrollment.table_name}.student_id = #{Student.table_name}.id AND #{Diamond::ThesisEnrollment.table_name}.state = 'accepted')")
+      student_ids |= Student
+      .select("DISTINCT #{Student.table_name}.id")
+      .joins("LEFT JOIN #{Diamond::ThesisEnrollment.table_name} ON #{Diamond::ThesisEnrollment.table_name}.student_id = #{Student.table_name}.id")
+      .joins("LEFT JOIN #{StudentStudies.table_name} ON #{StudentStudies.table_name}.student_id = #{Student.table_name}.id")
+      .where("(#{Diamond::ThesisEnrollment.table_name}.student_id = #{Student.table_name}.id AND #{Diamond::ThesisEnrollment.table_name}.state = 'accepted')
+OR #{Diamond::ThesisEnrollment.table_name}.id IS NULL")
+      .group("#{Student.table_name}.id")
+      .having("count(DISTINCT #{Diamond::ThesisEnrollment.table_name}.id) < count(DISTINCT #{StudentStudies.table_name}.id)")
+      Student.where(id: student_ids)
     end
 
     def enrolled_for_thesis?(thesis)
@@ -33,7 +42,7 @@ WHERE #{Diamond::ThesisEnrollment.table_name}.student_id = #{Student.table_name}
     end
 
     def enrolled?
-      enrollments.accepted.any?
+      enrollments.accepted.count == student_studies.count
     end
 
     def has_enrollment?(enrollment)
