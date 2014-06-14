@@ -25,6 +25,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def activate
+    @user = User.find(params[:id])
+    @user.unlock!
+    flash[:notice] = t(:notice_user_account_unlocked)
+    redirect_to send("#{@user.verifable.class.name.downcase.pluralize}_path")
+  end
+
+  def deactivate
+    @user = User.find(params[:id])
+    @user.deactivate!
+    flash[:notice] = t(:notice_user_account_dectivated)
+    redirect_to send("#{@user.verifable.class.name.downcase.pluralize}_path")
+  end
+
   private
   def user_params
     permit_params = [:email, :notifications_confirmation].let do |p|

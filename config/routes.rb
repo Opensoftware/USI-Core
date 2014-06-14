@@ -24,8 +24,8 @@ UsiCore::Application.routes.draw do
     resources :users do
       member do
         post :accept
-        post :block
-        post :unlock
+        post :activate
+        post :deactivate
       end
     end
     mount Graphite::Engine, at: "/graphite" if defined?(Graphite)

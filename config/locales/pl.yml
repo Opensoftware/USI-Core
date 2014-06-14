@@ -184,6 +184,7 @@ pl:
   label_expand: Rozwiń
   label_collapse: Zwiń
   label_min_ECTS: min. ECTS
+  label_ECTS_amount: Ile ECTS
   label_not_available_short: nd.
   label_all: Wszystkie
   label_all_singular: Wszystko
@@ -304,6 +305,9 @@ pl:
   label_here: tutaj
   label_continue: Kontynuuj
   label_permissions: Uprawnienia
+  label_block: Zablokuj
+  label_unblock: Odblokuj
+
 
   label_report_singular: Raport
   label_report_plural: Raporty

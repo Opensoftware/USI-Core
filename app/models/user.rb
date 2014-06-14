@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def blocked?
-    self.status == STATUS_BLOCKED
+    self.status == STATUS_BLOCKED || failed_logins_exceeded?
   end
 
   def active?
@@ -43,6 +43,21 @@ class User < ActiveRecord::Base
   def silent_activate!
     self.status = STATUS_ACTIVE
     self.save!
+  end
+
+  def failed_logins_exceeded?
+    self.failed_login_count.to_i >= 5
+  end
+
+  def deactivate!
+    self.status = STATUS_BLOCKED
+    self.save
+  end
+
+  def unlock!
+    self.failed_login_count = 0
+    self.status = STATUS_ACTIVE
+    self.save
   end
 
   %w{employee student}.each do |mod|
