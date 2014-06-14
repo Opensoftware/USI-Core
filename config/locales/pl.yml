@@ -314,7 +314,8 @@ pl:
   label_users_plural: Użytkownicy
   label_employee_plural: Pracownicy
   label_employee_add: Dodaj pracownika
-  label_student_add: Dodaj studenta
+  label_employee_search: Szukaj pracownika
+  label_employee_not_found: Nie znaleziono pracownika dla podanych kryteriów
   label_accept_selected: Akceptuj zaznaczone
   label_accept: Akceptuj
   label_accept_period: na akceptację
@@ -326,6 +327,7 @@ pl:
   label_dashboard_short: Panel
   label_student_singular: Student
   label_student_plural: Studenci
+  label_student_add: Dodaj studenta
   label_student_personal_data: Dane osobowe studenta
   label_student_provide_surname: Wpisz nazwisko studenta
   label_student_amount: Liczba studentów

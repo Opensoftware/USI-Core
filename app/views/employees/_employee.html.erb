@@ -1,0 +1,22 @@
+<tr>
+  <td>
+    <%= employee.surname_name_title %>
+  </td>
+  <td>
+    <%= employee.department_id.present? ? employee.department.try(:name) : "-" %>
+  </td>
+  <td>
+    <%= employee.user.role.name %>
+  </td>
+  <td>
+    <%= link_to t(:label_edit), edit_employee_path(employee) %>
+    <span class="sep">|</span>
+    <% if employee.user.blocked? %>
+      <%= link_to t(:label_unblock), activate_user_path(employee.user), :class => "button-icon-tab", :method => :post  %>
+    <% elsif employee.user.active? %>
+      <%= link_to t(:label_block), deactivate_user_path(employee.user), :class => "button-icon-tab", :method => :post  %>
+    <% end %>
+    <span class="sep">|</span>
+    <%= link_to t(:label_destroy), employee_path(employee), method: :delete %>
+  </td>
+</tr>

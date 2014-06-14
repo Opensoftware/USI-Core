@@ -1,10 +1,17 @@
+<% content_for :breadcrumbs_box_extra_content do %>
+  <div style="margin-right: 20px;">
+    <%= form_tag employees_path, :method => :get, :class => "form", :role => "form", remote: true do %>
+      <%= text_field_tag :search_by, params[:search_by], :class => "form-control", :placeholder => t(:label_employee_search) %>
+    <% end %>
+  </div>
+<% end %>
 <% content_for :content_footnote do %>
   <div class="paginator">
     <%= will_paginate @employees, :renderer => BootstrapPagination::Rails %>
   </div>
   <div class="clearfix"></div>
 <% end %>
-<table class="table">
+<table class="table employees">
   <thead>
     <tr>
       <th>
@@ -22,29 +29,6 @@
     </tr>
   </thead>
   <tbody>
-    <% @employees.each do |employee| %>
-      <tr>
-        <td>
-          <%= employee.surname_name_title %>
-        </td>
-        <td>
-          <%= employee.department_id.present? ? employee.department.try(:name) : "-" %>
-        </td>
-        <td>
-          <%= employee.user.role.name %>
-        </td>
-        <td>
-          <%= link_to t(:label_edit), edit_employee_path(employee) %>
-          <span class="sep">|</span>
-          <% if employee.user.blocked? %>
-            <%= link_to t(:label_unblock), activate_user_path(employee.user), :class => "button-icon-tab", :method => :post  %>
-          <% elsif employee.user.active? %>
-            <%= link_to t(:label_block), deactivate_user_path(employee.user), :class => "button-icon-tab", :method => :post  %>
-          <% end %>
-          <span class="sep">|</span>
-          <%= link_to t(:label_destroy), employee_path(employee), method: :delete %>
-        </td>
-      </tr>
-    <% end %>
+    <%= render :partial => "employee", :collection => @employees %>
   </tbody>
 </table>
