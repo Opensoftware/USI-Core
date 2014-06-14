@@ -40,11 +40,11 @@
           <%= render_flash_messages %>
         </div>
         <div class="row">
-          <div class="col-md-<%=content_for?(:breadcrumbs_box_extra_content) ? 12 : 16%>">
+          <div class="col-md-<%=content_for?(:breadcrumbs_box_extra_content) ? 10 : 16%>">
             <%= render_navigation(:renderer => :breadcrumbs, :context => :base, :join_with => content_tag(:span, "&middot;".html_safe, :class => "sep"), :static_leaf => true) %>
           </div>
           <% if content_for?(:breadcrumbs_box_extra_content) %>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <%= yield(:breadcrumbs_box_extra_content) %>
             </div>
           <% end %>
