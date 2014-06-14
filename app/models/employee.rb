@@ -1,5 +1,11 @@
 class Employee < ActiveRecord::Base
 
+  include PgSearch
+  pg_search_scope :search_by_full_name, :against => [:surname, :name],
+    :using => {
+    :tsearch => {:prefix => true}
+  }
+
   belongs_to :academy_unit, :class_name => "AcademyUnit",
     :foreign_key => :academy_unit_id
   belongs_to :department, :class_name => "Department",
@@ -12,6 +18,14 @@ class Employee < ActiveRecord::Base
 
   def <=>(other)
     surname <=> other.surname
+  end
+
+  def self.search(query)
+    if query.present?
+      search_by_full_name(query)
+    else
+      self
+    end
   end
 
   def full_name
