@@ -1,10 +1,17 @@
+<% content_for :breadcrumbs_box_extra_content do %>
+  <div style="margin-right: 20px;">
+    <%= form_tag students_path, :method => :get, :class => "form", :role => "form", remote: true do %>
+      <%= text_field_tag :search_by, params[:search_by], :class => "form-control", :placeholder => t(:label_student_search) %>
+    <% end %>
+  </div>
+<% end %>
 <% content_for :content_footnote do %>
   <div class="paginator">
     <%= will_paginate @students, :renderer => BootstrapPagination::Rails %>
   </div>
   <div class="clearfix"></div>
 <% end %>
-<table class="table">
+<table class="table students">
   <thead>
     <tr>
       <th>
@@ -22,29 +29,6 @@
     </tr>
   </thead>
   <tbody>
-    <% @students.each do |student| %>
-      <tr>
-        <td>
-          <%= student.surname_name %>
-        </td>
-        <td>
-          <%= student.index_number %>
-        </td>
-        <td>
-          <%= student.student_studies.collect {|ss| "#{ss.studies.course.name} (#{ss.studies.study_type.name.downcase} #{ss.studies.study_degree.name.camelize(:lower)})" }.join(", ") %>
-        </td>
-        <td>
-          <%= link_to t(:label_edit), edit_student_path(student) %>
-          <span class="sep">|</span>
-          <% if student.user.blocked? %>
-            <%= link_to t(:label_unblock), activate_user_path(student.user), :class => "button-icon-tab", :method => :post  %>
-          <% elsif student.user.active? %>
-            <%= link_to t(:label_block), deactivate_user_path(student.user), :class => "button-icon-tab", :method => :post  %>
-          <% end %>
-          <span class="sep">|</span>
-          <%= link_to t(:label_destroy), student_path(student), method: :delete %>
-        </td>
-      </tr>
-    <% end %>
+    <%= render :partial => "student", :collection => @students %>
   </tbody>
 </table>

@@ -8,9 +8,18 @@ class StudentsController < ApplicationController
 
     respond_to do |f|
       f.html do
-        @students = Student.includes(:user, :student_studies => :studies)
+        @students = Student
+        .include_courses
+        .includes(:user => [:role => :translations])
         .order("surname ASC")
         .paginate(:page => params[:page].to_i < 1 ? 1 : params[:page], :per_page => params[:per_page].to_i < 1 ? 15 : params[:per_page])
+      end
+      f.js do
+        @students = Student.search(params[:search_by])
+        .include_courses
+        .includes(:user => [:role => :translations])
+        .paginate(:page => 1, :per_page => 10, :order => 'surname ASC')
+        render layout: false
       end
       f.json do
         students = Student.not_enrolled.search_by_full_name(params[:q]).paginate(:page => 1, :per_page => 10, :order => 'surname ASC').collect do |student|

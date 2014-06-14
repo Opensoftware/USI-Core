@@ -1,0 +1,22 @@
+<tr>
+  <td>
+    <%= student.surname_name %>
+  </td>
+  <td>
+    <%= student.index_number %>
+  </td>
+  <td>
+    <%= student.student_studies.collect {|ss| "#{ss.studies.course.name} (#{ss.studies.study_type.name.downcase} #{ss.studies.study_degree.name.camelize(:lower)})" }.join(", ") %>
+  </td>
+  <td>
+    <%= link_to t(:label_edit), edit_student_path(student) %>
+    <span class="sep">|</span>
+    <% if student.user.blocked? %>
+      <%= link_to t(:label_unblock), activate_user_path(student.user), :class => "button-icon-tab", :method => :post  %>
+    <% elsif student.user.active? %>
+      <%= link_to t(:label_block), deactivate_user_path(student.user), :class => "button-icon-tab", :method => :post  %>
+    <% end %>
+    <span class="sep">|</span>
+    <%= link_to t(:label_destroy), student_path(student), method: :delete %>
+  </td>
+</tr>

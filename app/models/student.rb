@@ -17,6 +17,19 @@ class Student < ActiveRecord::Base
     index_number == other.index_number
   end
 
+  def self.include_courses
+    includes(:student_studies => [:studies => [:course => :translations,
+          :study_type => :translations, :study_degree => :translations]])
+  end
+  
+  def self.search(query)
+    if query.present?
+      search_by_full_name(query)
+    else
+      self
+    end
+  end
+
   if defined?(Diamond)
     has_many :enrollments, :class_name => "Diamond::ThesisEnrollment", :dependent => :destroy
     has_many :theses, :class_name => "Diamond::Thesis", :dependent => :nullify, :through => :enrollments

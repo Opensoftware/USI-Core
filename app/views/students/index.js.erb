@@ -1,0 +1,6 @@
+<% if @students.present? %>
+  $("table.students tbody").html('<%=raw escape_javascript(render :partial => "student", :collection => @students) %>');
+<% else %>
+  $("table.students tbody").html('<%=raw content_tag(:tr, content_tag(:td, t(:label_student_not_found), :colspan => 4, :style => "text-align: center;")) %>');
+<% end %>
+$("div.paginator").html('<%=raw will_paginate(@students, :renderer => BootstrapPagination::Rails) %>');
