@@ -212,6 +212,17 @@
               </p>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-16">
+              <p>
+                <% if can?(:manage, Diamond::Thesis) %>
+                  <%= link_to t(:label_report_export_faculty_theses_stats), diamond.faculty_theses_stats_reports_theses_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-statistics' %>
+                <% elsif can?(:manage_department, Diamond::Thesis) %>
+                  <%= link_to t(:label_report_export_department_theses_stats), diamond.department_theses_stats_reports_theses_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-statistics' %>
+                <% end %>
+              </p>
+            </div>
+          </div>
         </div>
         <div class="section-footer">
           <hr>
