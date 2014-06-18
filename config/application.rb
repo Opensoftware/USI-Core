@@ -21,6 +21,7 @@ module UsiCore
 dashboard.js pl_translations.js employee.js supervisor_autocomplete.js list_history.js en_translations.js
   core.engine.js diamond/show_thesis.js diamond/theses_list.js diamond/thesis.js diamond/thesis_menu.js)
     config.paths['db/migrate'] << '../diamond/db/migrate/' if defined?(Diamond)
+    config.paths['db/migrate'] << '../graphite/db/migrate/' if defined?(Graphite)
     config.paths['db/migrate'] << '../pyrite/db/migrate/' if defined?(Pyrite)
 
   end
