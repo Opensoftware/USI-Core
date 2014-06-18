@@ -8,7 +8,9 @@ if defined?(current_user)
           nav.item :nav, t(:label_student_plural), main_app.students_path, :if => lambda { can?(:manage, Student) }
         end
       end
-      primary.item :nav, "<i class='icon icon-white icon-elective-blocks'></i> #{t(:label_elective_block_plural)}", ''
+      if current_user
+        primary.item :nav, "<i class='icon icon-white icon-elective-blocks'></i> #{t(:label_elective_block_plural)}", graphite.elective_blocks_path
+      end
       primary.item :nav, "<i class='icon icon-white icon-thesis-list'></i> #{t(:label_thesis_plural_official)}", diamond.theses_path
       if current_user
         primary.item :user_account, "<i class='icon icon-white icon-user'></i> #{current_user.verifable.surname_name}", main_app.user_path(current_user) do |primary|

@@ -7,14 +7,26 @@ if defined?(current_user)
         when /index/ then
           primary.item :nav, t(:label_list_export), diamond.theses_path, :class => "inline-icon inline-icon-red inline-icon-export" do |navigation|
             navigation.dom_class = 'context-nav'
-            navigation.item :nav, I18n.t(:label_list_export_pdf), diamond.theses_path(:format => :pdf), link: {class: "link-export"}
-            navigation.item :nav, I18n.t(:label_list_export_xls), diamond.theses_path(:format => :xlsx), link: {class: "link-export"}
+            navigation.item :nav, I18n.t(:label_list_export_pdf), diamond.theses_path(:format => :pdf), link: {:class => "link-export"}
+            navigation.item :nav, I18n.t(:label_list_export_xls), diamond.theses_path(:format => :xlsx), link: {:class => "link-export"}
           end
           primary.item :nav, I18n.t(:label_thesis_new_plural), diamond.new_thesis_path, if: lambda { can?(:create, Diamond::Thesis) }, :class => "inline-icon inline-icon-red inline-icon-plus"
           when /new|edit/ then
             primary.item :nav, I18n.t(:label_move_back), diamond.theses_path, :class => "inline-icon inline-icon-red inline-icon-left-arrow"
           when /show/ then
             primary.item :nav, I18n.t(:label_move_back), diamond.theses_path, :class => "inline-icon inline-icon-red inline-icon-left-arrow"
+          end
+        elsif controller.controller_name =~ /elective_blocks/
+          case controller.action_name
+          when /index/
+            primary.item :nav, t(:label_list_export), diamond.theses_path, :class => "inline-icon inline-icon-red inline-icon-export" do |navigation|
+              navigation.dom_class = 'context-nav'
+              navigation.item :nav, I18n.t(:label_list_export_pdf), diamond.theses_path(:format => :pdf), link: {:class => "link-export"}
+              navigation.item :nav, I18n.t(:label_list_export_xls), diamond.theses_path(:format => :xlsx), link: {:class => "link-export"}
+            end
+            primary.item :nav, I18n.t(:label_thesis_new_plural), graphite.new_elective_block_path, :if => lambda { can?(:create, Graphite::ElectiveBlock) }, :class => "inline-icon inline-icon-red inline-icon-plus"
+          when /new|edit/ then
+            primary.item :nav, I18n.t(:label_move_back), graphite.elective_blocks_path, :class => "inline-icon inline-icon-red inline-icon-left-arrow"
           end
         elsif controller.controller_name =~ /dashboard/
           case controller.action_name
