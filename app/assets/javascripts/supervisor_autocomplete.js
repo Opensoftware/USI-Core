@@ -1,4 +1,4 @@
-$(document).ready(function() {
+var supervisor_autocomplete = function() {
   var supervisor_provider = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -27,5 +27,8 @@ $(document).ready(function() {
   });
   $('.typeahead.input-sm').siblings('input.tt-hint').addClass('hint-small');
   $('.typeahead.input-lg').siblings('input.tt-hint').addClass('hint-large');
+};
 
+$(document).ready(function() {
+  supervisor_autocomplete();
 });
