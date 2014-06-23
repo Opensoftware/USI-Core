@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
     authorize! :read, User
 
     if current_user.student?
-      @enrollments = current_user.student.enrollments.includes(:thesis)
+      @enrollments = current_user.student.thesis_enrollments.includes(:thesis)
     elsif current_user.employee?
 
       if can?(:manage, Diamond::Thesis)
