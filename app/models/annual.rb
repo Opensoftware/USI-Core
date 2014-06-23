@@ -4,6 +4,8 @@ class Annual < ActiveRecord::Base
 
   has_many :academy_units
   has_many :enrollment_semesters, :dependent => :destroy
+  has_many :annual_semesters, dependent: :destroy
+  has_many :semesters, through: :annual_semesters
 
   def to_s
     name

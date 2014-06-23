@@ -1,4 +1,4 @@
-class EnrollmentSemester < ActiveRecord::Base
+class AnnualSemester < ActiveRecord::Base
 
   belongs_to :annual
   belongs_to :semester

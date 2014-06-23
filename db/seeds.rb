@@ -7,14 +7,20 @@ ActiveRecord::Base.transaction do
 
   annual = Annual.new(name: "2014-2015")
   annual.save!
+  
+  fall = Semester.create!(name_pl: "Zimowy", name_en: "Fall", const_name: "fall")
+  Semester.create!(name_pl: "Letni", name_en: "Spring", const_name: "spring")
+
   semester = EnrollmentSemester.new(annual_id: annual.id,
     thesis_enrollments_begin: DateTime.new(2014,5,1),
     thesis_enrollments_end: DateTime.new(2014,5,30),
     elective_enrollments_begin: DateTime.new(2014,6,15),
-    elective_enrollments_end: DateTime.new(2014,6,21))
+    elective_enrollments_end: DateTime.new(2014,6,21), semester_id: fall.id)
   semester.save!
   settings = Settings.new(current_annual_id: annual.id, current_semester_id: semester.id)
   settings.save!
+
+
 
   StudyDegree.create!(:name_pl => "Studia I stopnia", :code => "1", :name_en => "First-cycle studies", short_name_pl: 'I', short_name_en: 'First-cycle')
   StudyDegree.create!(:name_pl => "Studia II stopnia", :code => "2", :name_en => "Second-cycle studies", short_name_pl: 'II', short_name_en: 'Second-cycle')
