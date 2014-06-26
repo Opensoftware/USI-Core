@@ -21,7 +21,7 @@ class Student < ActiveRecord::Base
     includes(:student_studies => [:studies => [:course => :translations,
           :study_type => :translations, :study_degree => :translations]])
   end
-  
+
   def self.search(query)
     if query.present?
       search_by_full_name(query)
@@ -31,8 +31,8 @@ class Student < ActiveRecord::Base
   end
 
   if defined?(Diamond)
-    has_many :enrollments, :class_name => "Diamond::ThesisEnrollment", :dependent => :destroy
-    has_many :theses, :class_name => "Diamond::Thesis", :dependent => :nullify, :through => :enrollments
+    has_many :thesis_enrollments, :class_name => "Diamond::ThesisEnrollment", :dependent => :destroy
+    has_many :theses, :class_name => "Diamond::Thesis", :dependent => :nullify, :through => :thesis_enrollments
 
     def self.not_enrolled
       student_ids = Student.select("DISTINCT #{Student.table_name}.id")
@@ -55,13 +55,33 @@ OR #{Diamond::ThesisEnrollment.table_name}.id IS NULL")
     end
 
     def enrolled?
-      enrollments.accepted.count == student_studies.count
+      thesis_enrollments.accepted.count == student_studies.count
     end
 
-    def has_enrollment?(enrollment)
-      enrollments.include?(enrollment)
+    def has_thesis_enrollment?(enrollment)
+      thesis_enrollments.include?(enrollment)
     end
   end
+
+  if defined?(Graphite)
+    has_many :elective_enrollments, :class_name => "Graphite::ElectiveBlock::Enrollment",
+      dependent: :destroy
+
+    def elective_modules
+      Graphite::ElectiveBlock.joins(:studies, :modules)
+      .select("DISTINCT #{Graphite::ElectiveBlock.table_name}.*")
+      .where("#{Studies.table_name}.id" => student_studies.pluck(:studies_id))
+    end
+
+    def has_pending_enrollments_for_module?(mod)
+      elective_enrollments
+      .select("1 AS ONE")
+      .where("#{Graphite::ElectiveBlock::Enrollment.table_name}.elective_block_id" => mod)
+      .pending
+      .present?
+    end
+  end
+
 
 
   def surname_name
