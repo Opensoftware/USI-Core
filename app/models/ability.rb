@@ -20,6 +20,8 @@ class Ability
         {:id => user.id}
       can :read, Diamond::Thesis
       can :create, Diamond::ThesisEnrollment
+      can [:read, :update], Graphite::ElectiveBlock
+      can :read, Graphite::ElectiveBlock::ElectiveModule
     elsif user.supervisor?
       can :manage, User,
         {:id => user.id}
@@ -52,6 +54,8 @@ class Ability
       can :manage, Diamond::ThesisMessage
       can :manage, EnrollmentSemester
       can :manage, :theses_reports
+      can :manage, Graphite::ElectiveBlock
+      can :manage, Graphite::ElectiveBlock::ElectiveModule
     elsif user.superadmin?
       can :manage, :all
     end
