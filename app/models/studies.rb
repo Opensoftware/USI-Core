@@ -15,4 +15,12 @@ class Studies < ActiveRecord::Base
 
   scope :for_annual, ->(annual) { where(annual_id: annual) }
 
+  def self.include_peripherals
+    includes(:course => :translations, :study_degree => :translations,
+      :study_type => :translations)
+  end
+
+  def <=>(other)
+    course.name <=> other.course.name
+  end
 end
