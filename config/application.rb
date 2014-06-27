@@ -23,6 +23,8 @@ dashboard.js pl_translations.js employee.js supervisor_autocomplete.js list_hist
     config.paths['db/migrate'] << '../diamond/db/migrate/' if defined?(Diamond)
     config.paths['db/migrate'] << '../graphite/db/migrate/' if defined?(Graphite)
     config.paths['db/migrate'] << '../pyrite/db/migrate/' if defined?(Pyrite)
+    config.preload_frameworks = true
+    config.allow_concurrency = true
 
   end
 end
