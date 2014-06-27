@@ -73,6 +73,13 @@ OR #{Diamond::ThesisEnrollment.table_name}.id IS NULL")
       .where("#{Studies.table_name}.id" => student_studies.pluck(:studies_id))
     end
 
+    def any_pending_module_enrollments?
+      elective_enrollments
+      .select("1 AS ONE")
+      .pending
+      .present?
+    end
+
     def has_pending_enrollments_for_module?(mod)
       elective_enrollments
       .select("1 AS ONE")
