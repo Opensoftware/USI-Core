@@ -115,7 +115,7 @@ $.widget( "core.form_confirmable_action", $.core.confirmable_action, {
           var form = that.element.closest("form");
           var req = that.element.bindReq({
             context: context,
-            serialized_data: [form.serialize(), $("form.theses-form, form.filter-form").serialize()].join("&"),
+            serialized_data: [form.serialize(), $("form.elements-form, form.filter-form").serialize()].join("&"),
             url: function() {
               return form.attr("action");
             },
@@ -130,7 +130,7 @@ $.widget( "core.form_confirmable_action", $.core.confirmable_action, {
                   $.each(response.objects, function(key, value) {
                     _that.options.success_action.call(that, this, key, value);
                   });
-                  $("button.button-checkbox", "div.theses-list").trigger("checkbox-uncheck");
+                  $("button.button-checkbox", "div.elements-list").trigger("checkbox-uncheck");
                 }
               }
             }
