@@ -9,7 +9,8 @@ if defined?(current_user)
         end
       end
       if current_user
-        primary.item :nav, "<i class='icon icon-white icon-elective-blocks'></i> #{t(:label_elective_block_plural)}", graphite.elective_blocks_path
+        primary.item :nav, "<i class='icon icon-white icon-elective-blocks'></i> #{t(:label_elective_block_plural)}", graphite.elective_blocks_path,
+          :if => lambda { can?(:manage, Graphite::ElectiveBlock) }
       end
       primary.item :nav, "<i class='icon icon-white icon-thesis-list'></i> #{t(:label_thesis_plural_official)}", diamond.theses_path
       if current_user
