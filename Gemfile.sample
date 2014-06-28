@@ -15,7 +15,6 @@ gem 'bcrypt'
 gem 'scrypt'
 gem 'workflow'
 gem 'will_paginate-bootstrap'
-gem 'unicorn'
 gem 'airbrake'
 gem "resque"
 gem 'resque-web', require: 'resque_web'

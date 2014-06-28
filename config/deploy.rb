@@ -15,6 +15,10 @@ set :scm, :git
 set :workers, { :msg => 1, :mailer => 1 }
 set :resque_environment_task, true
 
+#Puma
+set :puma_init_active_record, true
+
+
 # Until we will release engines public we have to point to them here
 set :diamond_url, 'ssh://gerrit.opensoftware.pl/usi/diamond'
 set :diamond_branch, 'master'
@@ -30,13 +34,13 @@ set :default_env, { rvm_bin_path: '~/.rvm/bin' }
 
 set :bundle_gemfile, -> { release_path.join('Gemfile') }
 set :bundle_dir, -> { shared_path.join('bundle') }
-set :bundle_flags, '--deployment'
+set :bundle_flags, ''
 set :bundle_without, "development"
 set :bundle_binstubs, -> { shared_path.join('bin') }
 set :bundle_roles, :all
 set :keep_releases, 3
-set :linked_dirs, %w{tmp/pids config/unicorn tmp/logs}
-set :linked_files, %w{config/database.yml config/initializers/secret_token.rb config/unicorn/test.rb config/initializers/errbit.rb config/resque.yml config/settings.yml config/initializers/mailer_setup.rb Gemfile}
+set :linked_dirs, %w{tmp/pids tmp/logs}
+set :linked_files, %w{config/database.yml config/initializers/secret_token.rb config/initializers/errbit.rb config/resque.yml config/settings.yml config/initializers/mailer_setup.rb Gemfile}
 
 
 
@@ -65,7 +69,7 @@ namespace :deploy do
 
   desc 'Restart application'
   task :restart do
-    invoke 'unicorn:restart'
+    invoke 'puma:restart'
   end
 
   after :publishing, :restart
