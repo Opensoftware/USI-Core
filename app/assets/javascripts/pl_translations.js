@@ -10,5 +10,7 @@ var pl_translations = {
   "button_no": "Nie",
   "button_yes": "Tak",
   "notice_students_not_found": "W bazie danych nie ma takiego studenta lub został już przypisany do tematu pracy",
-  "notice_supervisor_not_found": "Wygląda na to, że w bazie danych nie ma takiego promotora"
+  "notice_supervisor_not_found": "Wygląda na to, że w bazie danych nie ma takiego promotora",
+  "confirmation_elective_block_delete": "Czy na pewno chcesz usunąć ten moduł obieralny?",
+  "confirmation_elective_blocks_delete": "Czy na pewno chcesz usunąć wybrane moduły obieralne?"
 }
