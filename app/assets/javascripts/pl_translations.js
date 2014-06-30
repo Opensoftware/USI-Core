@@ -13,5 +13,6 @@ var pl_translations = {
   "notice_supervisor_not_found": "Wygląda na to, że w bazie danych nie ma takiego promotora",
   "confirmation_elective_block_delete": "Czy na pewno chcesz usunąć ten moduł obieralny?",
   "confirmation_elective_blocks_delete": "Czy na pewno chcesz usunąć wybrane moduły obieralne?",
-  "validator_match_subject_amount": "Wybierz dokładnie {0} przedmioty"
+  "validator_match_subject_amount": "Wybierz dokładnie {0} przedmioty",
+  "confirmation_action_delete_element": "Czy na pewno chcesz usunąć ten wpis?"
 }
