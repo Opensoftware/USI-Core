@@ -11,6 +11,7 @@ module DashboardHelper
   if defined?(Graphite)
     require 'graphite/enrollment/status_info'
     include Graphite::Enrollment::StatusInfo
+    include Graphite::ElectiveBlocksCommonHelper
   end
 
   CONTEXT_FILTERS = [:newest, :recently_accepted, :recently_updated, :recently_created, :unaccepted, :newest_enrollments].freeze
