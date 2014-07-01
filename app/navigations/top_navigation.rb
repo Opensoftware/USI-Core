@@ -26,7 +26,7 @@ if defined?(current_user)
             end
             primary.item :nav, I18n.t(:label_elective_block_add), graphite.new_elective_block_path, :if => lambda { can?(:create, Graphite::ElectiveBlock) }, :class => "inline-icon inline-icon-red inline-icon-plus"
           when /show/ then
-            primary.item :nav, I18n.t(:label_move_back), graphite.elective_blocks_path, :class => "inline-icon inline-icon-red inline-icon-left-arrow"
+            primary.item :nav, I18n.t(:label_move_back), current_user.student? ? main_app.dashboard_index_path : graphite.elective_blocks_path, :class => "inline-icon inline-icon-red inline-icon-left-arrow"
           when /new|edit/ then
             primary.item :nav, I18n.t(:label_move_back), graphite.elective_blocks_path, :class => "inline-icon inline-icon-red inline-icon-left-arrow"
           end
