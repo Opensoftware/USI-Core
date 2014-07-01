@@ -87,6 +87,14 @@ OR #{Diamond::ThesisEnrollment.table_name}.id IS NULL")
       .pending
       .present?
     end
+
+    def has_queued_enrollments_for_module?(mod)
+      elective_enrollments
+      .select("1 AS ONE")
+      .where("#{Graphite::ElectiveBlock::Enrollment.table_name}.elective_block_id" => mod)
+      .queued
+      .present?
+    end
   end
 
 
