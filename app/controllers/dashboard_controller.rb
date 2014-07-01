@@ -7,7 +7,9 @@ class DashboardController < ApplicationController
       @enrollments = current_user.student.thesis_enrollments.includes(:thesis)
       @elective_modules = current_user.verifable.elective_modules
       .for_semester(current_user.student.student_studies.collect{ |ss| ss.semester_number+1})
-      .include_peripherals.load
+      .include_peripherals
+      .includes(:elective_blocks => [:translations, :modules => [:translations]])
+      .load
       @elective_module_enrollments = Graphite::ElectiveBlock::Enrollment
       .for_student(current_user.student)
       .for_elective_block(@elective_modules.collect(&:id))
