@@ -58,12 +58,7 @@ a {
 table {
   font-size: 13px;
 }
-.table > thead > tr > th, .table > thead > tr > td,
-.table > tbody > tr > th, .table > tbody > tr > td,
-.table > tfoot > tr > th, .table > tfoot > tr > td {
-  border-bottom: 1px solid #DDD;
-  border-top: none;
-}
+
 
 .alert {
   -webkit-border-radius: 4px;

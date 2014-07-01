@@ -1,0 +1,6 @@
+.table-list {
+  @extend .table;
+  tr.fat-row  {
+    td { line-height: 30px; }
+  }
+}
