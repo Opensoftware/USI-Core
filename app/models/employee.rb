@@ -41,6 +41,8 @@ class Employee < ActiveRecord::Base
   end
 
   if defined?(Diamond)
+    after_save :touch_enrollments
+
     has_many :theses, :class_name => "Diamond::Thesis", :dependent => :nullify, :foreign_key => :supervisor_id
     has_many :thesis_enrollments, :through => :theses, :source => :enrollments
 
@@ -61,6 +63,10 @@ class Employee < ActiveRecord::Base
           enrollment.reject! if enrollment.can_reject?
         end
       end
+    end
+
+    def touch_enrollments
+      thesis_enrollments.update_all(updated_at: Time.now)
     end
   end
 

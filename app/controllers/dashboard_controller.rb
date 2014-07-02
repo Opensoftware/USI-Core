@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
     authorize! :read, User
 
     if current_user.student?
-      @enrollments = current_user.student.thesis_enrollments.includes(:thesis)
+      @enrollments = promise { current_user.student.thesis_enrollments.includes(:thesis) }
       @elective_modules = Graphite::ElectiveBlock
       .select("DISTINCT #{Graphite::ElectiveBlock.table_name}.*")
       .for_semester(current_user.student.student_studies.collect{ |ss| ss.semester_number+1})

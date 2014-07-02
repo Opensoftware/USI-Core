@@ -8,7 +8,9 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale_from_params
   around_filter :with_current_user
 
-  helper_method :current_user, :current_semester, :current_language, :current_annual, :current_year, :with_format, :current_user_permission, :department_settings
+  helper_method :current_user, :current_semester, :current_language, :current_annual,
+    :current_year, :with_format, :current_user_permission, :department_settings,
+    :fragment_cache_key_for
 
 
   unless Rails.env.development?

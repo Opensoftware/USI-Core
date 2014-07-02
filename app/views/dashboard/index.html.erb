@@ -5,7 +5,9 @@
   <% end %>
 <% end %>
 <% content_for :right_column do %>
-  <%= render :partial => "common/user_info" %>
+  <% cache fragment_cache_key_for(current_user.verifable) do %>
+    <%= render :partial => "common/user_info" %>
+  <% end %>
 
   <% if can?(:manage, EnrollmentSemester) %>
     <div class="section">
@@ -414,16 +416,18 @@
     <hr>
   </div>
 
-  <% if @enrollments.present? %>
-    <table class="table">
-      <tbody>
-        <%= render :partial => "enrollment_record", :collection => @enrollments %>
-      </tbody>
-    </table>
-  <% else %>
-    <p class="text-center">
-      <%=t :label_thesis_enroll_first %>
-    </p>
+  <% cache fragment_cache_key_for(@enrollments) do %>
+    <% if @enrollments.present? %>
+      <table class="table">
+        <tbody>
+          <%= render :partial => "enrollment_record", :collection => @enrollments %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="text-center">
+        <%=t :label_thesis_enroll_first %>
+      </p>
+    <% end %>
   <% end %>
 <% else %>
   <div class="section-header">
