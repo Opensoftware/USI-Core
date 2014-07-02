@@ -28,6 +28,7 @@ gem 'rubyzip',  "~> 0.9.9"
 gem 'dalli'
 gem 'pg_search'
 gem 'puma'
+gem 'promise'
 
 # Uncomment engines which you want to enable
 #gem 'diamond', '~> 0.0.1', :path => '../diamond'
