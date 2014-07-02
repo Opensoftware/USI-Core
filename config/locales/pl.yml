@@ -330,6 +330,10 @@ pl:
   label_student_singular: Student
   label_student_plural: Studenci
   label_student_add: Dodaj studenta
+  label_student_ects_amount: Liczba punktów ECTS
+  label_student_ects_amount_semesters: Liczba punktów ECTS z semestrów
+  label_student_avg_grade: Średnia ze studiów
+  label_student_avg_grade_semesters: Średnia ze studiów z semestrów
   label_student_search: Szukaj studenta
   label_student_personal_data: Dane osobowe studenta
   label_student_provide_surname: Wpisz nazwisko studenta

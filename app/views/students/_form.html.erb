@@ -34,6 +34,30 @@
     </h6>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_student_ects_amount%>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= f.text_field :ects_amount, :class => "form-control", :required => true %>
+    </h6>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_student_avg_grade %>
+    </h6>
+  </div>
+  <div class="col-md-12">
+    <h6 class="text-list">
+      <%= f.text_field :avg_grade, :class => "form-control", :required => true, :number => true %>
+    </h6>
+  </div>
+</div>
 <%= f.fields_for :student_studies do |ss| %>
   <div class="row">
     <div class="col-md-4">

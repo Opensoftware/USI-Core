@@ -74,7 +74,7 @@ class StudentsController < ApplicationController
 
   private
   def student_params
-    permit_params = [:name, :surname, :index_number,
+    permit_params = [:name, :surname, :index_number, :avg_grade, :ects_amount,
       :user_attributes => [:id, :email, :notifications_confirmation,
         :role_id, :password, :password_confirmation],
       :student_studies_attributes => [:id, :student_id, :semester_number,
