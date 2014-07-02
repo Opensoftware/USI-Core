@@ -5,10 +5,12 @@ class DashboardController < ApplicationController
 
     if current_user.student?
       @enrollments = current_user.student.thesis_enrollments.includes(:thesis)
-      @elective_modules = current_user.verifable.elective_modules
+      @elective_modules = Graphite::ElectiveBlock
+      .select("DISTINCT #{Graphite::ElectiveBlock.table_name}.*")
       .for_semester(current_user.student.student_studies.collect{ |ss| ss.semester_number+1})
+      .for_student(current_user.student)
       .include_peripherals
-      .includes(:elective_blocks => [:translations, :modules => [:translations]])
+      .includes(:enrollments, :elective_blocks => [:translations, :modules => [:translations]])
       .load
       @elective_module_enrollments = Graphite::ElectiveBlock::Enrollment
       .for_student(current_user.student)
