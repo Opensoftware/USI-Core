@@ -8,7 +8,7 @@ if defined?(current_user)
           primary.item :nav, t(:label_list_export), diamond.theses_path, :class => "inline-icon inline-icon-red inline-icon-export" do |navigation|
             navigation.dom_class = 'context-nav'
             navigation.item :nav, I18n.t(:label_list_export_pdf), diamond.theses_path(:format => :pdf), link: {:class => "link-export"}
-            navigation.item :nav, I18n.t(:label_list_export_xls), diamond.theses_path(:format => :xlsx), link: {:class => "link-export"}
+            navigation.item :nav, I18n.t(:label_list_export_xls), diamond.theses_path(:format => :xlsx), :if => lambda { current_user.present? && current_user.employee? }, link: {:class => "link-export"}
           end
           primary.item :nav, I18n.t(:label_thesis_new_plural), diamond.new_thesis_path, if: lambda { can?(:create, Diamond::Thesis) }, :class => "inline-icon inline-icon-red inline-icon-plus"
           when /new|edit/ then
