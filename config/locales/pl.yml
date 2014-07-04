@@ -366,19 +366,7 @@ pl:
   error_login_first: Aby uzyskać dostęp do wybranego zasobu systemu, musisz się najpierw zalogować.
   error_resource_forbidden: Nie masz uprawnień do wybranego zasobu. Jeżeli jednak uważasz, że to błąd, to skontaktuj się z administratorem systemu.
 
-  mail_subject_new_enrollment: Nowe przypisanie do tematu
-  mail_subject_enrollment_rejected: Temat odrzucony przez promotora
-  mail_subject_enrollment_rejected_timeout: Temat automatycznie odrzucony z powodu braku akceptacji przez promotora
-  mail_subject_enrollment_accepted: Temat zaakceptowany do realizacji
-  mail_subject_thesis_accepted: Zaakceptowana praca dyplomowa
-  mail_subject_thesis_rejected: Odrzucona praca dyplomowa
   mail_subject_password_reset_instructions: Instrukcje do zmiany hasła
-  mail_body_new_enrollment: "Student %{student} zapisał(a) się na temat pracy dyplomowej %{thesis_title}. Masz 5 dni na akceptację tego zgłoszenia, a jeżeli tego nie zrobisz, to zostanie ono automatycznie odrzucone. "
-  mail_body_enrollment_rejected: Promotor %{supervisor} odrzucił Twoją prośbę o przypisanie do tematu %{thesis_title}.
-  mail_body_enrollment_rejected_timeout: System automatycznie odrzucił Twoją prośbę o przypisanie do tematu %{thesis_title}, ponieważ od czasu zgłoszenia minęło %{enrollment_days_limit}, a promotor %{supervisor} nie podjął żadnej czynności.
-  mail_body_enrollment_accepted: Promotor %{supervisor} zaakceptował Twoją prośbę o przypisanie do tematu pracy dyplomowej %{thesis_title}.
-  mail_body_thesis_accepted: "Zgłoszona przez Ciebie praca dyplomowa %{thesis_title} została zaakceptowana przez %{admin}."
-  mail_body_thesis_rejected: "Zgłoszona przez Ciebie praca dyplomowa %{thesis_title} została odrzucona przez %{admin}."
   mail_body_auto_msg: Wiadomość wygenerowana automatycznie z systemu SZS AGH. Nie odpowiadaj na nią.
   mail_body_change_password_context_help: Jeżeli mimo kliknięcia w powyższy link nic się nie dzieje lub wyświetlany jest komunikat o braku domyślnej przeglądarki, wtedy skopiuj go klikając na nim prawym przyciskiem myszy, następnie wybierz "Kopiuj adres linku" i wklej go do swojej przeglądarki internetowej.
   mail_body_change_password_req: "W systemie zarejestrowano żądanie zmiany hasła dla konta z adresem email: %{email}. Jeżeli nie zgłaszałeś(aś) takiej prośby, to zignoruj tą wiadomość, a jeśli tak, to kliknij w poniższy odnośnik"
