@@ -1,5 +1,7 @@
 class Settings < ActiveRecord::Base
 
+  translates :welcome_text
+
   belongs_to :annual, :foreign_key => :current_annual_id
   belongs_to :enrollment_semester, :foreign_key => :current_semester_id
 

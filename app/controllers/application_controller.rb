@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :current_semester, :current_language, :current_annual,
     :current_year, :with_format, :current_user_permission, :department_settings,
-    :fragment_cache_key_for
+    :fragment_cache_key_for, :settings
 
 
   unless Rails.env.development?

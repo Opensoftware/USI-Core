@@ -67,4 +67,21 @@ module ApplicationHelper
     end
   end
 
+  def form_for_welcome_page
+    if current_user
+      form_for settings do |f|
+        content_tag(:div, :class => 'main-page') do
+          f.text_field :welcome_text
+          content_tag(:div, :class => 'row') do
+            f.submit :ble
+          end
+        end
+      end
+    else
+      content_tag(:div, :class => 'main-page') do
+        raw settings.welcome_text
+      end
+    end
+  end
+
 end

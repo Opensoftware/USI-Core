@@ -49,6 +49,7 @@ class Ability
       can :manage, User
       can :manage, Employee
       can :manage, Student
+      can :manage, Settings
       can :manage, Diamond::Thesis
       can :manage, Diamond::ThesisEnrollment
       can :manage, Diamond::ThesisMessage

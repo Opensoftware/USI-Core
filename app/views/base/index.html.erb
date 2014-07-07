@@ -1,3 +1,16 @@
+<% if can?(:manage, Settings) %>
+  <% content_for :additional_javascripts do %>
+    <%= javascript_include_tag 'bootstrap-wysihtml5/bootstrap3-wysihtml5.js' %>
+    <%= javascript_include_tag 'bootstrap-wysihtml5/locales/pl-PL.js' %>
+    <%= stylesheet_link_tag 'bootstrap3-wysihtml5.css' %>
+    <script type="text/javascript">
+      $("textarea").wysihtml5({
+        stylesheets: ['<%=asset_path "application.css"%>', '<%=asset_path "base.css"%>'],
+        useLineBreaks: false
+      });
+    </script>
+  <% end %>
+<% end %>
 <% content_for :right_column do %>
   <% unless current_user %>
     <div class="section-header">
@@ -17,52 +30,20 @@
   <% end %>
 <% end %>
 
-<h4 class="section-title">
-  System Zapisów Studentów Wydziału Górnictwa i Geoinżynierii AGH
-</h4>
-
 <div class="main-page">
-  <p>
-    System umożliwia realizację zapisów na tematy prac dyplomowych dla studentów Wydziału Górnictwa i Geoinżynierii oraz wybór przedmiotów/modułów obieralnych.
-  </p>
-
-  <p>
-    Wybór tematów prac dyplomowych - informacje ogólne:
-  </p>
-  <ol>
-    <li>
-      Logowanie do systemu odbywa się poprzez podanie adresu e-mail (zdeklarowanego w systemie XP) oraz hasła (PESEL). W przypadku zmiany adresu e-mail prosimy o kontakt z właściwym Dziekanatem.
-    </li>
-    <li>
-      Tematy prac dyplomowych powinny zostać podane do 30 maja 2014 roku.
-    </li>
-  </ol>
-
-  <p>Zasady zapisów:</p>
-  <ol>
-    <li>
-      Po opublikowaniu tematów prac studenci mają możliwość konsultacji z promotorami w celu uszczegółowienia tematów. Zmiany należy zgłosić do osoby odpowiedzialnej w Katedrze.
-    </li>
-    <li>
-      Student po zalogowaniu ma możliwość zapisu (<u>w podanym poniżej terminie</u>) na kilka tematów prac.
-    </li>
-    <li>
-      Ostateczną decyzję o przypisaniu studenta do tematu podejmuje promotor pracy. W momencie zaakceptowania zgłoszenia studenta przez promotora, jest on automatycznie odrzucany w pozostałych wybranych tematach.
-    </li>
-    <li>
-      Po zakończeniu zapisów, osobom, które nie wybrały tematów lub nie zostały zaakceptowane przez promotorów, tematy zostaną przydzielone przez Z-cę Kierownika Katedry ds. Kształcenia.
-    </li>
-  </ol>
-  <h4 class="section-title extra-margin">
-    <%=t :label_current_terms %>
-  </h4>
-  <p>
-    Wyciąg z Regulaminu Studiów AGH par. 24 punkt 6:<br>
-    Tematy prac dyplomowych magisterskich powinny być podjęte przez studentów nie później niż na jeden rok, a prac (projektów) inżynierskich i licencjackich na jeden semestr przed planowym terminem ukończenia studiów.
-  </p>
-  <p>
-    <span class="text-danger">Niespełnienie tego warunku przez studenta/tkę Wydziału Górnictwa i Geoinżynierii będzie przyczyną odmowy wpisu na semestr dyplomowy lub odpowiednio na semestr poprzedzający semestr dyplomowy.</span>
-  </p>
+  <% if can?(:manage, Settings)  %>
+    <%= form_for settings do |f| %>
+      <div class="form-group">
+        <%= f.text_area :welcome_text, :style => "width: 100%;" %>
+      </div>
+      <div class="pull-right extra-margin">
+        <%= f.submit t(:label_save), {:class => "btn btn-danger"} %>
+      </div>
+      <div class="clearfix"></div>
+    <% end %>
+  <% else %>
+    <%=raw settings.welcome_text  %>
+  <% end %>
 </div>
 <div class="row">
   <div class="col-md-8">
