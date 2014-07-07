@@ -13,6 +13,8 @@ class Student < ActiveRecord::Base
   has_many :studies, :class_name => "Studies", :through => :student_studies
   has_many :courses, :through => :studies
 
+  validates :index_number, uniqueness: true
+
   def ==(other)
     index_number == other.index_number
   end
