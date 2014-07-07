@@ -19,7 +19,9 @@ module UsiCore
     config.assets.paths << Rails.root.join("vendor", "assets", "bootstrap")
     config.assets.precompile += %w(enrollment_semester.js filter_form.js main.js student_autocomplete.js
 dashboard.js pl_translations.js employee.js supervisor_autocomplete.js list_history.js en_translations.js
-  core.engine.js diamond/show_thesis.js diamond/theses_list.js diamond/thesis.js diamond/thesis_menu.js)
+  core.engine.js diamond/show_thesis.js diamond/theses_list.js diamond/thesis.js diamond/thesis_menu.js
+bootstrap-wysihtml5/bootstrap3-wysihtml5.js bootstrap-wysihtml5/locales/pl-PL.js
+bootstrap3-wysihtml5.css)
     config.paths['db/migrate'] << '../diamond/db/migrate/' if defined?(Diamond)
     config.paths['db/migrate'] << '../graphite/db/migrate/' if defined?(Graphite)
     config.paths['db/migrate'] << '../pyrite/db/migrate/' if defined?(Pyrite)
