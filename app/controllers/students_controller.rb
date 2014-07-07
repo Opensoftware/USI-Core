@@ -52,7 +52,7 @@ class StudentsController < ApplicationController
   end
 
   def edit
-
+    @student.student_studies.build if @student.student_studies.blank?
   end
 
   def update
@@ -86,7 +86,9 @@ class StudentsController < ApplicationController
   def preload
     @studies = Studies.for_annual(current_annual).includes(course: :translations,
       study_type: :translations, study_degree: :translations)
-    .load.sort {|s1, s2| s1.course.name <=> s2.course.name}
+    .load.sort {|s1, s2| [s1.course.name, s1.study_type.code, s1.study_degree.code,
+        s1.specialization.try(:name).to_s] <=>
+        [s2.course.name, s2.study_type.code, s2.study_degree.code, s2.specialization.try(:name).to_s]}
     @student_role = Role.where(const_name: :student).first
   end
 end

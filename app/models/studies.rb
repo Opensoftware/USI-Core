@@ -5,7 +5,7 @@ class Studies < ActiveRecord::Base
   belongs_to :study_degree
   belongs_to :study_type
   belongs_to :branch_office
-  belongs_to :specialty
+  belongs_to :specialization, foreign_key: "specialty_id"
   has_many :student_studies, :class_name => "StudentStudies", :dependent => :destroy
   has_many :students, :through => :student_studies
 
