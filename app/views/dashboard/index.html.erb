@@ -406,7 +406,7 @@
   <div class="section-footer extra-margin">
     <hr>
   </div>
-<% elsif current_user.student? %>
+<% elsif current_user.student? && current_user.student.is_authorized_for_thesis_enrollments? %>
   <div class="section-header">
     <h4 class="pull-left">
       <%=t :label_thesis_chosen_yours %>
@@ -429,28 +429,6 @@
       </p>
     <% end %>
   <% end %>
-<% else %>
-  <div class="section-header">
-    <h4>
-      <%=t :label_thesis_yours %>
-    </h4>
-    <hr>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading"> <%= t("panel.header.theses") %> </div>
-    <div class="panel-body">
-      <p><%= link_to t("diamond.link.new_thesis"), diamond.new_thesis_path %></p>
-      <%= t("panel.body.theses") %>
-    </div>
-  </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading"> <%= t("panel.header.elective_subject") %> </div>
-    <div class="panel-body">
-      <%= t("panel.body.elective_subject") %>
-    </div>
-  </div>
-
 <% end %>
 <% if current_user.student? %>
   <div class="student-elective-enrollments" data-pipe="<%=graphite.event_pipe_elective_blocks_path%>">

@@ -23,4 +23,11 @@ class Studies < ActiveRecord::Base
   def <=>(other)
     course.name <=> other.course.name
   end
+
+  %w(first second).each do |prefix|
+    define_method "#{prefix}_degree?" do
+      study_degree.send("#{prefix}_degree?")
+    end
+  end
+
 end

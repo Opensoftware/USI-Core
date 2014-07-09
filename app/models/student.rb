@@ -52,6 +52,13 @@ OR #{Diamond::ThesisEnrollment.table_name}.id IS NULL")
       Student.where(id: student_ids)
     end
 
+    def is_authorized_for_thesis_enrollments?
+      student_studies.any? do |student_studies|
+        (student_studies.studies.second_degree? && student_studies.semester_number >= 1) ||
+          (student_studies.studies.first_degree? && student_studies.semester_number >= 6)
+      end
+    end
+
     def enrolled_for_thesis?(thesis)
       thesis.enrollments.any? {|enrollment| enrollment.student_id == id }
     end
