@@ -5,13 +5,14 @@ class DashboardController < ApplicationController
 
     if current_user.student?
       @enrollments = promise { current_user.student.thesis_enrollments.includes(:thesis) }
-      @elective_modules = Graphite::ElectiveBlock
+      elective_module_ids = Graphite::ElectiveBlock
       .select("DISTINCT #{Graphite::ElectiveBlock.table_name}.*")
-      .for_semester(current_user.student.student_studies.collect{ |ss| ss.semester_number+1})
+      .for_student_semester(current_user.student.student_studies.collect{ |ss| ss.semester_number+1})
       .for_student(current_user.student)
+      .pluck("#{Graphite::ElectiveBlock.table_name}.id")
+      @elective_modules = Graphite::ElectiveBlock.where(id: elective_module_ids)
       .include_peripherals
       .includes(:enrollments, :elective_blocks => [:translations, :modules => [:translations]])
-      .load
       @elective_module_enrollments = Graphite::ElectiveBlock::Enrollment
       .for_student(current_user.student)
       .for_elective_block(@elective_modules.collect(&:id))
