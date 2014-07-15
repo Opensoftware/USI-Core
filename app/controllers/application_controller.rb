@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 
   check_authorization
   protect_from_forgery with: :exception
+  include UsiLogger
 
   layout "base"
   before_filter :set_locale_from_params
@@ -133,6 +134,7 @@ class ApplicationController < ActionController::Base
         end
       end
     else
+      usi_logger exception, params
     end
   end
 
