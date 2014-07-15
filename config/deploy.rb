@@ -18,7 +18,6 @@ set :resque_environment_task, true
 #Puma
 set :puma_init_active_record, true
 
-
 # Until we will release engines public we have to point to them here
 set :diamond_url, 'ssh://gerrit.opensoftware.pl/usi/diamond'
 set :diamond_branch, 'master'
@@ -69,6 +68,7 @@ namespace :deploy do
 
   desc 'Restart application'
   task :restart do
+    invoke 'puma:config'
     invoke 'puma:restart'
   end
 
