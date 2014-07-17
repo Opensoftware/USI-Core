@@ -16,6 +16,7 @@ class DashboardController < ApplicationController
       @elective_module_enrollments = Graphite::ElectiveBlock::Enrollment
       .for_student(current_user.student)
       .for_elective_block(@elective_modules.collect(&:id))
+      .not_versioned
     elsif current_user.employee?
 
       if can?(:manage, Diamond::Thesis)
