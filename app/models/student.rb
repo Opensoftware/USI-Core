@@ -76,6 +76,14 @@ OR #{Diamond::ThesisEnrollment.table_name}.id IS NULL")
     has_many :elective_enrollments, :class_name => "Graphite::ElectiveBlock::Enrollment",
       dependent: :destroy
 
+    scope :elective_blocks, ->(blocks) do
+      joins(:elective_enrollments)
+      .where("#{Graphite::ElectiveBlock::Enrollment.table_name}.block_id" => blocks)
+    end
+    scope :queued_blocks, -> do
+      where("#{Graphite::ElectiveBlock::Enrollment.table_name}.state" => 'queued')
+    end
+
     def elective_modules
       Graphite::ElectiveBlock.joins(:studies, :modules)
       .select("DISTINCT #{Graphite::ElectiveBlock.table_name}.*")
