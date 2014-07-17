@@ -53,7 +53,10 @@ a {
   i {
     vertical-align: middle;
   }
-
+}
+a.disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 table {
   font-size: 13px;
@@ -93,7 +96,7 @@ table {
   h4 {
     border-bottom: 1px solid #ADADAD;
     padding-bottom: .4em;
-    margin-bottom: 1.5em; }
+  margin-bottom: 1.5em; }
 }
 
 .main_container {
