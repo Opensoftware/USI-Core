@@ -21,7 +21,8 @@ module UsiCore
 dashboard.js pl_translations.js employee.js supervisor_autocomplete.js list_history.js en_translations.js
   core.engine.js diamond/show_thesis.js diamond/theses_list.js diamond/thesis.js diamond/thesis_menu.js
 bootstrap-wysihtml5/bootstrap3-wysihtml5.js bootstrap-wysihtml5/locales/pl-PL.js
-bootstrap3-wysihtml5.css base.css student.js password_reset_form.js)
+bootstrap3-wysihtml5.css base.css student.js password_reset_form.js
+graphite/elective_block_list.js graphite/pipe.js)
     config.paths['db/migrate'] << '../diamond/db/migrate/' if defined?(Diamond)
     config.paths['db/migrate'] << '../graphite/db/migrate/' if defined?(Graphite)
     config.paths['db/migrate'] << '../pyrite/db/migrate/' if defined?(Pyrite)
