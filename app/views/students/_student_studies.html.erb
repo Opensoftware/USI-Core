@@ -1,0 +1,24 @@
+<div class="row student-studies">
+  <div class="col-md-4">
+    <h6 class="text-muted">
+      <%=t :label_studies%>
+    </h6>
+  </div>
+  <div class="col-md-6">
+    <h6 class="text-list">
+      <%= b.select :studies_id, options_for_select([['--', '']] + @studies.collect {|s| [["#{s.course.name} - #{s.study_type.name.downcase} #{s.study_degree.name.camelize(:lower)}", *("(#{s.specialization.name})" if s.specialty_id.present?)].join(" "), s.id] }, b.object.studies_id), {:include_blank => false }, :class => "form-control" %>
+    </h6>
+  </div>
+  <div class="col-md-4">
+    <h6 class="text-list">
+      <%= b.select :semester_number, options_for_select((1..9).collect {|i| ["#{t(:label_semester)} #{i}", i] }, b.object.semester_number ), {}, :class => "form-control", :required => true %>
+      <%= b.hidden_field :student_id, :value => @student.id %>
+    </h6>
+  </div>
+  <div class="col-md-2">
+    <h5 class="text-list pull-right">
+      <%= remove_child_button b, :label => "-", :class => "btn btn-primary button-remove-studies inline-form-button hidden" %>
+      <%= add_child_button "student_studies", :label => "+", :class => "btn btn-primary button-add-studies inline-form-button" %>
+    </h5>
+  </div>
+</div>

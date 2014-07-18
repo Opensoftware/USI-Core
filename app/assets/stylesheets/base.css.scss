@@ -316,6 +316,12 @@ table {
   background-color: $red;
   border-bottom-color: $red2;
 }
+.inline-form-button {
+  height: 35px;
+  width: 40px;
+  padding: 8px 0;
+}
+
 .text-list { color: $grey4; }
 .extra-margin { margin: 2em 0; }
 .no-margin { margin: 0; }

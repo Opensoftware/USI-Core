@@ -74,18 +74,21 @@ class StudentsController < ApplicationController
 
   private
   def student_params
-    permit_params = [:name, :surname, :index_number, :avg_grade, :ects_amount,
-      :user_attributes => [:id, :email, :notifications_confirmation,
-        :role_id, :password, :password_confirmation],
+    permit_params = [:name, :surname, :index_number, :passed_ects, :average_grade,
       :student_studies_attributes => [:id, :student_id, :semester_number,
-        :studies_id]
+        :studies_id, :_destroy],
+      :user_attributes => [:id, :email, :notifications_confirmation,
+        :role_id, :password, :password_confirmation]
     ]
+    params[:student][:student_studies_attributes].delete_if do |k,v|
+      k == 'new_student_studies'
+    end
     params.require(:student).permit(permit_params)
   end
 
   def preload
     @studies = Studies.for_annual(current_annual).includes(course: :translations,
-      study_type: :translations, study_degree: :translations)
+      study_type: :translations, study_degree: :translations, specialization: :translations)
     .load.sort {|s1, s2| [s1.course.name, s1.study_type.code, s1.study_degree.code,
         s1.specialization.try(:name).to_s] <=>
         [s2.course.name, s2.study_type.code, s2.study_degree.code, s2.specialization.try(:name).to_s]}

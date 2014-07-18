@@ -272,3 +272,27 @@ $.widget( "core.per_page_paginator", $.core.loader, {
   }
 
 });
+
+$.add_template = function(el, selector, klazz) {
+  var association = el.attr('data-association');
+  var template = $('#' + association + '_fields_template').html();
+  var regexp = new RegExp('new_' + association, 'g');
+  var new_id = new Date().getTime();
+  var appender = el.closest(selector);
+  appender.after(template.replace(regexp, new_id));
+  var button = appender.find("button."+klazz);
+  button.removeClass("hidden").show();
+  button.siblings().filter(":button:first").hide();
+  appender.next().show("fast");
+  return false;
+};
+
+$.hide_template = function(el, selector, callback) {
+  el.prev('input[type=hidden]').val("1");
+  var context = el.closest(selector);
+  context.hide("fast", function() {
+    if($.isFunction(callback))
+      callback.call(this, context);
+  });
+  return false;
+};

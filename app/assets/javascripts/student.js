@@ -15,4 +15,16 @@ $(document).ready(function() {
     return false;
   });
 
+  $("div.content")
+  .on("click", "button.button-add-studies", function() {
+    $.add_template($(this), "div.student-studies", "button-remove-studies");
+  })
+  .on("click", "button.button-remove-studies", function() {
+    $.hide_template($(this), "div.student-studies");
+  });
+
+  $("div.content div.student-studies:visible button.button-add-studies").not(":last").hide();
+  $("div.content div.student-studies:visible button.button-remove-studies").not(":last").removeClass("hidden").show();
+
+
 });

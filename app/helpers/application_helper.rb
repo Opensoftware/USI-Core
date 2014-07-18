@@ -1,5 +1,30 @@
 module ApplicationHelper
 
+  def new_child_fields_template(form_builder, association, options = {})
+    options[:object] ||= form_builder.object.class.reflect_on_association(association).klass.new
+    options[:partial] ||= association.to_s.singularize
+    options[:form_builder_local] ||= :b
+    options[:options_for_partial] ||= {}
+    options[:association_template_id] ||= "#{association}_fields_template"
+
+    content_tag(:div, :id => options[:association_template_id], :style => "display: none") do
+      form_builder.fields_for(association, options[:object], :child_index => "new_#{association}") do |f|
+        render(:partial => options[:partial], :locals => { options[:form_builder_local] => f, :hidden => true }.merge!(options[:options_for_partial]))
+      end
+    end
+  end
+
+  def add_child_button(association, html_options)
+    html_options["data-association"] = association
+    html_options[:type] = :button
+    content_tag(:button, html_options[:label], html_options)
+  end
+
+  def remove_child_button(form, html_options = {})
+    html_options[:type] = :button
+    form.hidden_field(:_destroy) + content_tag(:button, html_options[:label], html_options)
+  end
+
   def render_flash_messages
     s = ''
     flash.each do |k,v|
