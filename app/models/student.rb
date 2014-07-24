@@ -95,6 +95,7 @@ OR #{Diamond::ThesisEnrollment.table_name}.id IS NULL")
       elective_enrollments
       .select("1 AS ONE")
       .pending
+      .not_versioned
       .present?
     end
 
@@ -103,6 +104,7 @@ OR #{Diamond::ThesisEnrollment.table_name}.id IS NULL")
       .select("1 AS ONE")
       .where("#{Graphite::ElectiveBlock::Enrollment.table_name}.elective_block_id" => mod)
       .pending
+      .not_versioned
       .present?
     end
 
@@ -111,6 +113,7 @@ OR #{Diamond::ThesisEnrollment.table_name}.id IS NULL")
       .select("1 AS ONE")
       .where("#{Graphite::ElectiveBlock::Enrollment.table_name}.elective_block_id" => mod)
       .queued
+      .not_versioned
       .present?
     end
   end
