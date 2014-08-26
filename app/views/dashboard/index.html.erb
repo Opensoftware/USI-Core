@@ -82,6 +82,27 @@
           <hr>
         </div>
       </div>
+      <div class="subsection">
+        <div class="subsection-header">
+          <h5><%=t :label_annual_current%></h5>
+          <hr>
+        </div>
+        <div class="row">
+          <div class="col-md-8">
+            <h6 class="text-muted">
+              <%=t :label_annual %>
+            </h6>
+          </div>
+          <div class="col-md-8">
+            <h6>
+              <%= current_annual.present? ? current_annual.name : "-" %>
+            </h6>
+          </div>
+        </div>
+        <div class="section-header">
+          <hr>
+        </div>
+      </div>
     </div>
   <% end %>
 

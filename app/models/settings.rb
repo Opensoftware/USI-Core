@@ -4,6 +4,7 @@ class Settings < ActiveRecord::Base
 
   belongs_to :annual, :foreign_key => :current_annual_id
   belongs_to :enrollment_semester, :foreign_key => :current_semester_id
+  accepts_nested_attributes_for :enrollment_semester
 
   scope :pick_newest, -> { order("id DESC").first }
 

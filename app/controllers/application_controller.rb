@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :current_semester, :current_language, :current_annual,
     :current_year, :with_format, :current_user_permission, :department_settings,
-    :fragment_cache_key_for, :settings
+    :fragment_cache_key_for, :settings, :current_settings
 
 
   unless Rails.env.development?
@@ -61,6 +61,10 @@ class ApplicationController < ActionController::Base
   def current_semester
     return @current_semester if defined?(@current_semester)
     @current_semester = settings.enrollment_semester
+  end
+
+  def current_settings
+    settings
   end
 
   def settings

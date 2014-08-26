@@ -10,18 +10,18 @@
     </div>
     <div class="col-md-7">
       <div class="pull-right">
-        <%= button_to t(:label_save), (enrollment_semester_path(@semester)), :form => {:class => "form-inline" }, :class => "btn btn-danger submit-form" %>
+        <%= button_to t(:label_save), (setting_path(current_settings)), :form => {:class => "form-inline" }, :class => "btn btn-danger submit-form" %>
       </div>
     </div>
   </div>
 <% end %>
 <% content_for :content_footnote do %>
   <div class="pull-right">
-    <%= button_to t(:label_save), (enrollment_semester_path(@semester)), :form => {:class => "form-inline" }, :class => "btn btn-danger submit-form" %>
+    <%= button_to t(:label_save), (setting_path(current_settings)), :form => {:class => "form-inline" }, :class => "btn btn-danger submit-form" %>
   </div>
   <div class="clearfix"></div>
 <% end %>
-<%= form_for current_settings, url: enrollment_semester_path(current_settings.enrollment_semester), method: :patch do |f| %>
+<%= form_for current_settings do |f| %>
   <%= f.fields_for :enrollment_semester, current_settings.enrollment_semester do |g| %>
     <div class="section">
       <div class="subsection-header ">
@@ -31,13 +31,13 @@
         <div class="col-md-8">
           <%= g.label :thesis_enrollments_begin, t(:label_enrollment_begin) %>
           <div class="input-append date form_datetime">
-            <%= g.text_field :thesis_enrollments_begin, :value => l(@semester.thesis_enrollments_begin), :class => "form-control datetime"  %>
+            <%= g.text_field :thesis_enrollments_begin, :value => l(g.object.thesis_enrollments_begin), :class => "form-control datetime"  %>
             <span class="add-on"><i class="icon-th"></i></span>
           </div>
         </div>
         <div class="col-md-8">
           <%= g.label :thesis_enrollments_end, t(:label_enrollment_end) %>
-          <%= g.text_field :thesis_enrollments_end, :value => l(@semester.thesis_enrollments_end), :class => "form-control datetime"  %>
+          <%= g.text_field :thesis_enrollments_end, :value => l(g.object.thesis_enrollments_end), :class => "form-control datetime"  %>
         </div>
       </div>
       <div class="clearfix"></div>
@@ -49,11 +49,11 @@
       <div class="form-group">
         <div class="col-md-8">
           <%= g.label :elective_enrollments_begin, t(:label_enrollment_begin) %>
-          <%= g.text_field :elective_enrollments_begin, :value => l(@semester.elective_enrollments_begin), :class => "form-control datetime"  %>
+          <%= g.text_field :elective_enrollments_begin, :value => l(g.object.elective_enrollments_begin), :class => "form-control datetime"  %>
         </div>
         <div class="col-md-8">
           <%= g.label :elective_enrollments_end, t(:label_enrollment_end) %>
-          <%= g.text_field :elective_enrollments_end, :value => l(@semester.elective_enrollments_end), :class => "form-control datetime"  %>
+          <%= g.text_field :elective_enrollments_end, :value => l(g.object.elective_enrollments_end), :class => "form-control datetime"  %>
         </div>
       </div>
       <div class="clearfix"></div>
@@ -65,7 +65,7 @@
     </div>
     <div class="form-group">
       <div class="col-md-8">
-        <%= f.label :current_annual_id, t(:label_enrollment_begin) %>
+        <%= f.label :current_annual_id, t(:label_annual) %>
         <%= f.select :current_annual_id, options_for_select(@annuals.collect {|a| [a.name, a.id]}, current_annual.id), {}, :class => "form-control"  %>
       </div>
     </div>

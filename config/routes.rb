@@ -3,7 +3,7 @@ UsiCore::Application.routes.draw do
   scope "/(:locale)", :locale => /pl|en/ do
     root 'base#index'
 
-    resources :settings, :only => :update
+    resources :settings, :only => [:edit, :update]
     resources :password_resets, :only => [:new, :create, :edit, :update]
     resources :employees
     resources :students

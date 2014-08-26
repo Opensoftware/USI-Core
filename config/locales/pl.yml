@@ -102,6 +102,7 @@ pl:
   label_studies: Studia
   label_studies_degree_code: "%{degree} stopnia"
   label_annual: Rocznik
+  label_annual_current: Aktualny rocznik akademicki
   label_annual_start: Pierwszy rok akademicki Twoich studiów
   label_course_of_study_short: Tok studiów
   label_course_of_study_truncated: Tok studiów
