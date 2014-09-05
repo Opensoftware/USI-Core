@@ -8,6 +8,7 @@ class Studies < ActiveRecord::Base
   belongs_to :specialization, foreign_key: "specialty_id"
   has_many :student_studies, :class_name => "StudentStudies", :dependent => :destroy
   has_many :students, :through => :student_studies
+  has_many :elective_block_studies, class_name: "Graphite::ElectiveBlockStudies"
 
   validates :course_id, uniqueness: { scope: [:study_type_id, :study_degree_id,
       :specialty_id, :branch_office_id, :annual_id] }

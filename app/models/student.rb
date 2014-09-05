@@ -2,7 +2,7 @@ class Student < ActiveRecord::Base
 
   include PgSearch
   pg_search_scope :search_by_full_name, :against => [:surname, :name],
-    :using => {
+  :using => {
     :tsearch => {:prefix => true}
   }
 
@@ -21,8 +21,9 @@ class Student < ActiveRecord::Base
   end
 
   def self.include_courses
-    includes(:student_studies => [:studies => [:course => :translations,
-          :study_type => :translations, :study_degree => :translations]])
+    includes(:student_studies => [:studies => [
+                                    :course => :translations,
+    :study_type => :translations, :study_degree => :translations]])
   end
 
   def self.search(query)
@@ -76,13 +77,35 @@ OR #{Diamond::ThesisEnrollment.table_name}.id IS NULL")
   if defined?(Graphite)
     has_many :elective_enrollments, :class_name => "Graphite::ElectiveBlock::Enrollment",
       dependent: :destroy
+    has_many :elective_block_studies, class_name: "Graphite::ElectiveBlockStudies"
+    has_many :accepted_elective_enrollments,
+      -> { where("#{Graphite::ElectiveBlock::Enrollment.table_name}.state" => 'accepted') },
+      :class_name => "Graphite::ElectiveBlock::Enrollment",
+      dependent: :destroy
 
     scope :elective_blocks, ->(blocks) do
       joins(:elective_enrollments)
       .where("#{Graphite::ElectiveBlock::Enrollment.table_name}.block_id" => blocks)
     end
+
     scope :queued_blocks, -> do
       where("#{Graphite::ElectiveBlock::Enrollment.table_name}.state" => 'queued')
+    end
+
+    scope :enrolled_to_elective_blocks, -> do
+      select("DISTINCT #{Student.table_name}.*")
+      .joins(:elective_enrollments)
+      .where("#{Graphite::ElectiveBlock::Enrollment.table_name}.state" => 'accepted')
+    end
+
+    scope :not_enrolled_to_elective_blocks, -> do
+      select("DISTINCT #{Student.table_name}.id")
+      .joins(:studies => [:elective_block_studies => [:elective_block => :modules]])
+      .joins("LEFT JOIN #{Graphite::ElectiveBlock::Enrollment.table_name} ON
+        #{Graphite::ElectiveBlock::Enrollment.table_name}.student_id = #{Student.table_name}.id")
+      .where("#{Graphite::ElectiveBlock::Enrollment.table_name}.id IS NULL")
+      .group("#{Student.table_name}.id, #{StudentStudies.table_name}.semester_number")
+      .having("MIN(#{Graphite::ElectiveBlock::ElectiveModule.table_name}.semester_number) = #{StudentStudies.table_name}.semester_number + 1")
     end
 
     def elective_modules
@@ -116,6 +139,21 @@ OR #{Diamond::ThesisEnrollment.table_name}.id IS NULL")
       .not_versioned
       .present?
     end
+
+    def self.students_with_enrollments
+      # Enrolled students
+      student_ids = Student.enrolled_to_elective_blocks.pluck(:id)
+      # Not enrolled students
+      student_ids |= Student.not_enrolled_to_elective_blocks.pluck("#{Student.table_name}.id")
+
+      Student
+      .select("DISTINCT #{Student.table_name}.*")
+      .joins("LEFT JOIN #{Graphite::ElectiveBlock::Enrollment.table_name} ON #{Graphite::ElectiveBlock::Enrollment.table_name}.student_id = #{Student.table_name}.id")
+      .where("#{Graphite::ElectiveBlock::Enrollment.table_name}.id IS NULL OR
+        #{Graphite::ElectiveBlock::Enrollment.table_name}.state = 'accepted'")
+      .where("#{Student.table_name}.id" => student_ids)
+    end
+
   end
 
 

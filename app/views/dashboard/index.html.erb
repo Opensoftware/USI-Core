@@ -250,8 +250,24 @@
             </div>
           </div>
         </div>
-        <div class="section-footer">
-          <hr>
+      </div>
+      <% if can?(:manage, Graphite::ElectiveBlock) %>
+        <div class="subsection">
+          <div class="subsection-header extra-margin">
+            <h5><%=t :label_elective_block_plural%></h5>
+            <hr>
+          </div>
+          <div class="subsection-content">
+            <p>
+              <%= link_to t(:label_elective_block_export_student_list), graphite.student_list_reports_elective_blocks_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-export' %>
+            </p>
+            <p>
+              <%= link_to t(:label_elective_block_export_all_student_list), graphite.all_student_list_reports_elective_blocks_path(:format => :xlsx), :class => 'inline-icon inline-icon-red inline-icon-export' %>
+            </p>
+          </div>
+          <div class="section-footer">
+            <hr>
+          </div>
         </div>
       </div>
     </div>
@@ -461,4 +477,4 @@
     </div>
     <%= render :partial => "graphite/dashboard/elective_block", :collection => @elective_modules %>
   </div>
-<% end %>
+<% end %> 
