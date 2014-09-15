@@ -310,6 +310,7 @@ pl:
   label_permissions: Uprawnienia
   label_block: Zablokuj
   label_unblock: Odblokuj
+  label_average_grade: Średnia ocen
 
 
   label_report_singular: Raport
