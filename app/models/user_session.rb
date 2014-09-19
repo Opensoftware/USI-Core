@@ -1,6 +1,7 @@
 class UserSession < Authlogic::Session::Base
 
-  consecutive_failed_logins_limit 5
+  consecutive_failed_logins_limit 6
+  failed_login_ban_for 3.hours
   # TODO think about removing timeout or make it optional with possibility to
   # set value, with hight default value smth like 40 minutes.
   self.logout_on_timeout = true unless Rails.env.development?
