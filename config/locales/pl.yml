@@ -311,6 +311,7 @@ pl:
   label_block: Zablokuj
   label_unblock: Odblokuj
   label_average_grade: Średnia ocen
+  label_specialty_singular: Specjalność
 
 
   label_report_singular: Raport
