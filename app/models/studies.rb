@@ -28,6 +28,11 @@ class Studies < ActiveRecord::Base
     course.name <=> other.course.name
   end
 
+  def full_name
+    [course.name, *("(#{specialization.name})" if specialty_id.present?),
+     " - #{study_type.name.downcase} #{study_degree.name.camelize(:lower)}"].join(" ")
+  end
+
   %w(first second).each do |prefix|
     define_method "#{prefix}_degree?" do
       study_degree.send("#{prefix}_degree?")
