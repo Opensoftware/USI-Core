@@ -21,15 +21,17 @@ gem 'resque-web', require: 'resque_web'
 gem 'resque_mailer'
 gem "capistrano-resque", github: "sshingler/capistrano-resque", require: false
 gem 'whenever', :require => false
-gem 'roo'
 gem 'prawn'
 gem 'prawn-table', '~> 0.2.1'
 gem 'axlsx'
-gem 'rubyzip',  "~> 0.9.9"
+gem 'zip-zip'
 gem 'dalli'
 gem 'pg_search'
 gem 'puma'
 gem 'promise'
+gem "interactor"
+gem "spreadsheet"
+gem "creek"
 
 # Uncomment engines which you want to enable
 #gem 'diamond', '~> 0.0.1', :path => '../diamond'
@@ -55,4 +57,5 @@ group :development do
   gem "thin"
   gem "byebug"
   gem 'sprockets_better_errors'
+  gem 'resque-backtrace', require: false
 end
