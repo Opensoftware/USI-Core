@@ -14,7 +14,7 @@ class Studies < ActiveRecord::Base
 
   validates :course_id, uniqueness: { scope: [:study_type_id, :study_degree_id,
                                               :specialty_id, :branch_office_id, :annual_id] }
-  validates :course_id, :study_type_id, :study_degree_id, :annual_id, presence: true
+  validates :course_id, :study_type_id, :study_degree_id, presence: true
 
   scope :for_annual, ->(annual) { joins(:annual_studies)
                                   .where(annual_studies: {annual_id: annual}) }

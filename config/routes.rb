@@ -6,7 +6,12 @@ UsiCore::Application.routes.draw do
     resources :settings, :only => [:edit, :update]
     resources :password_resets, :only => [:new, :create, :edit, :update]
     resources :employees
-    resources :students
+    resources :students do
+      collection do
+        get :upgrade
+        post :upload
+      end
+    end
     resources :dashboard, :only => :index
     resources :enrollment_semesters, :only => [:edit, :update]
     resources :department_settings, :only => [:edit, :update]

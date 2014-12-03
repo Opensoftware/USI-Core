@@ -71,7 +71,7 @@ if defined?(current_user)
           when /show/
             primary.item :nav, I18n.t(:label_edit), edit_student_path(@student), :if => lambda { @student.present? }, :class => "inline-icon inline-icon-red inline-icon-pen"
             primary.item :nav, I18n.t(:label_move_back_students), students_path, :class => "inline-icon inline-icon-red inline-icon-left-arrow"
-          when /edit/
+          when /edit|upgrade/
             primary.item :nav, I18n.t(:label_move_back_students), students_path, :class => "inline-icon inline-icon-red inline-icon-left-arrow"
           end
         end

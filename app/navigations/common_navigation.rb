@@ -16,7 +16,9 @@ if defined?(current_user)
       if current_user
         primary.item :user_account, "<i class='icon icon-white icon-user'></i> #{current_user.verifable.surname_name}", main_app.user_path(current_user) do |primary|
           primary.item :nav, t(:label_account_settings), main_app.edit_user_path(current_user)
+          primary.item :nav, t(:label_student_list_upload), main_app.upgrade_students_path, :if => lambda { can?(:manage, Student) }
           primary.item :nav, t(:label_deadline_plural), main_app.edit_setting_path(current_settings), :if => lambda { can?(:manage, current_semester) }
+
           if department_settings
             primary.item :nav, t(:label_thesis_plural_count), main_app.edit_department_setting_path(department_settings), :if => lambda { can?(:manage, DepartmentSettings) }
           end

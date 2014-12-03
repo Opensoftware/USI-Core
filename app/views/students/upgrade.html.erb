@@ -1,0 +1,12 @@
+<div class="alert alert-warning" role="alert">
+  <strong><%=t :label_caution%>!</strong><br>
+  <%=raw t :notice_student_list_upgrade_info%>
+</div>
+<%= form_tag( {action: :upload}, multipart: true, role: "form") do %>
+  <div class="form-group extra-margin">
+    <%= file_field_tag :student_list, accept: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' %>
+  </div>
+  <div class="form-group extra-margin">
+    <%= submit_tag t(:label_update), :class => "btn btn-primary" %>
+  </div>
+<% end %>

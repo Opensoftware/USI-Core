@@ -340,6 +340,7 @@ pl:
   label_student_singular: Student
   label_student_plural: Studenci
   label_student_add: Dodaj studenta
+  label_student_list_upload: Uaktualnij listy studentów
   label_student_ects_amount: Liczba punktów ECTS
   label_student_ects_amount_semesters: Liczba punktów ECTS z semestrów
   label_student_avg_grade: Średnia ze studiów
@@ -372,18 +373,34 @@ pl:
   notice_user_account_unlocked: Konto użytkownika zostało odblokowane
   notice_account_not_exists: W systemie nie istnieje konto z podanym adresem email.
   notice_email_notifications: Chcę otrzymywać e-mailowe powiadomienia z systemu SZS AGH informujące o zmianach statusu
+  notice_student_list_upgrade_pending: Nowa lista studentów została wysłana na serwer, lecz jej przetwarzanie chwilę zajmie. Gdy się zakończy, otrzymasz powiadomienie na swoją skrzynkę e-mail.
+  notice_student_list_upgrade_info: |
+    Plik wejściowy musi być formatu .XLS lub .XLSX i zawierać co najmniej dziesięć kolumn. W kolejności od pierwszej kolumny są to: nazwisko, imię, adres e-mail, numer PESEL, numer albumu, kierunek studiów (np. Górnictwo i Geologia - bez nazw ośrodków zamiejscowych), specjalność, poziom studiów (np. I stopnia), typ studiów (np. stacjonarne), semestr.<br>
+    Przykład danych wejściowych (rozdzielonych przecinkiem): Kowalski, Jan, kowalski.jan@agh.edu.pl, 90121203456, 123456, Budownictwo, , I stopnia, stacjonarne, 6.<br>
+    Kolumna dotycząca numeru PESEL nie musi być uzupełniona, jeżeli lista studentów dotyczy tylko studentów, których nigdy wcześniej nie było w systemie. W innym wypadku student nie zaloguje się do systemu, ponieważ jego hasło (nr PESEL) nie jest znane.<br>
+    Jeżeli arkusz zawiera więcej niż dziesięć kolumn, dwie kolejne traktowane są jako średnia ze studiów oraz liczba punktów ECTS (w tej kolejności). Kolejne kolumny nie są brane pod uwagę.<br>
+    Arkusz czytany jest od drugiego wiersza, wiersz pierwszy traktowany jest jako nagłówek.
 
   error_login_first: Aby uzyskać dostęp do wybranego zasobu systemu, musisz się najpierw zalogować.
   error_resource_forbidden: Nie masz uprawnień do wybranego zasobu. Jeżeli jednak uważasz, że to błąd, to skontaktuj się z administratorem systemu.
 
   mail_subject_password_reset_instructions: Instrukcje do zmiany hasła
+  mail_subject_students_list_upgrade_failed: Aktualizacja listy studentów zakończona błędem
+  mail_subject_students_list_upgrade_succeseed: Aktualizacja listy studentów zakończona sukcesem
   mail_body_auto_msg: Wiadomość wygenerowana automatycznie z systemu SZS AGH. Nie odpowiadaj na nią.
   mail_body_change_password_context_help: Jeżeli mimo kliknięcia w powyższy link nic się nie dzieje lub wyświetlany jest komunikat o braku domyślnej przeglądarki, wtedy skopiuj go klikając na nim prawym przyciskiem myszy, następnie wybierz "Kopiuj adres linku" i wklej go do swojej przeglądarki internetowej.
   mail_body_change_password_req: "W systemie zarejestrowano żądanie zmiany hasła dla konta z adresem email: %{email}. Jeżeli nie zgłaszałeś(aś) takiej prośby, to zignoruj tą wiadomość, a jeśli tak, to kliknij w poniższy odnośnik"
+  mail_body_students_list_upgrade_failed: "Aktualizacja listy studentów zakończyła się niepowodzeniem z powodu błędu: %{failure_message}"
+  mail_body_students_list_upgrade_succeseed: "Aktualizacja listy studentów zakończyła się sukcesem."
 
   error:
     browser_compatibility_header: Korzystasz z przeglądarki, która nie jest zalecana do przeglądania tej strony, dlatego prezentowane treści mogą nie wyświetlać się poprawnie.
     browser_compatibility_content: Zalecamy korzystanie z przeglądarek Mozilla Firefox (wersja min. 3.5), Opera (wersja min. 11) lub Google Chrome.
+    xls_file_type_incorrect: "Wybrany plik nie jest właściwym plikiem arkusza kalkulacyjnego (xls, xlsx)"
+    xls_file_too_few_columns: Plik zawiera za mało danych. Upewnij się, że co najmniej dziesięć pierwszych kolumn jest uzupełnionych.
+    xls_file_invalid_row: "Wiersz %{row_number} (%{row_data}) jest niepoprawny"
+    cannot_upgrade_student: wystąpił problem z dodaniem/aktualizacją danych studenta %{student}
+    students_upgrade_studies_params_invalid: "wystąpił problem z dodaniem/aktualizacją danych studenta %{student}, wartość: '%{value}' jest niepoprawna"
 
     submiting_again: Oh snap! Change a few things up and try submitting again.
 

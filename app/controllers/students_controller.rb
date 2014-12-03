@@ -35,6 +35,23 @@ class StudentsController < ApplicationController
     end
   end
 
+  def upgrade
+  end
+
+  def upload
+    result = Student::UploadStudentList
+    .call(:student_list => params[:student_list], :current_user => current_user)
+
+    if result.success?
+      redirect_to students_path,
+        flash: {notice: t(result.message)}
+    else
+      flash.now[:error] = t result.message,
+        row_number: result.row_number, row_data: result.row_data
+      render :upgrade
+    end
+  end
+
   def new
     @student.build_user
     @student.student_studies.build
