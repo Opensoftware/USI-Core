@@ -6,6 +6,7 @@ class Annual < ActiveRecord::Base
   has_many :enrollment_semesters, :dependent => :destroy
   has_many :annual_semesters, dependent: :destroy
   has_many :semesters, through: :annual_semesters
+  has_many :theses, class_name: "Diamond::Thesis"
 
   def to_s
     name
