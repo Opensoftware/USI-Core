@@ -323,7 +323,10 @@ table {
 }
 
 .text-list { color: $grey4; }
-.extra-margin { margin: 2em 0; }
+.extra-margin {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
 .no-margin { margin: 0; }
 .margin-large-top { margin-top: $margin-large-size; }
 

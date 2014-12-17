@@ -19,12 +19,18 @@ pl:
         email: "e-mail"
         password: "hasło"
         password_confirmation: "powtórz hasło"
+      student:
+        index_number: Numer indeksu
     errors:
       models:
         user_session:
           attributes:
             password:
               blank: "nie może być puste"
+        student:
+          attributes:
+            index_number:
+              taken: "%{value} został już przydzielony innemu studentowi."
       template:
         header:
           one: "Wystąpił błąd "
@@ -294,7 +300,6 @@ pl:
   label_move_back_employees: Wróć do listy pracowników
   label_move_back_students: Wróć do listy studentów
   label_deadline_plural: Terminy
-  label_index_number: Numer indeksu
   label_study_degree: Poziom studiów
   label_day_plural: dni
   label_mark_as_read: Oznacz jako przeczytane
@@ -313,7 +318,8 @@ pl:
   label_average_grade: Średnia ocen
   label_specialty_singular: Specjalność
 
-
+  label_index_number: Numer indeksu
+  label_index_number_short: Nr indeksu
   label_report_singular: Raport
   label_report_plural: Raporty
   label_users_plural: Użytkownicy
@@ -327,6 +333,7 @@ pl:
   label_year_of_study: Rok studiów
   label_year_of_study_short: Rok %{year}
   label_course_singular: Kierunek
+  label_course_index_number: "Numer indeksu &ndash; Kierunek"
   label_account_my: Moje konto
   label_account_settings: Ustawienia konta
   label_dashboard_short: Panel

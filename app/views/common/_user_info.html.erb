@@ -84,7 +84,7 @@
           </div>
           <div class="col-md-10">
             <h6>
-              <%= [ss.studies.course.name, *("(#{ss.studies.branch_office.name})" if ss.studies.branch_office_id.present?)].join(" ") %>
+              <%=raw [ss.studies.course.name, *("(#{ss.studies.branch_office.name})" if ss.studies.branch_office_id.present?)].join(" ") %>
             </h6>
           </div>
         </div>

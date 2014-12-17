@@ -10,11 +10,14 @@ class Student < ActiveRecord::Base
   accepts_nested_attributes_for :user, :allow_destroy => true
   has_many :student_studies, :class_name => "StudentStudies", :dependent => :destroy
   accepts_nested_attributes_for :student_studies, :allow_destroy => true,
-    :reject_if => lambda { |student_studies| student_studies[:studies_id].blank? }
+  :reject_if => lambda { |student_studies|
+    student_studies[:studies_id].blank?
+  }
   has_many :studies, :class_name => "Studies", :through => :student_studies
   has_many :courses, :through => :studies
 
   validates :index_number, uniqueness: true
+  validates :index_number, presence: true
 
   def ==(other)
     index_number == other.index_number

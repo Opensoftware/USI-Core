@@ -5,57 +5,27 @@
     </h6>
   </div>
   <div class="col-md-12">
-    <h6 class="text-list">
-      <%= f.text_field :name, :class => "form-control", :required => true %>
-    </h6>
+    <%= f.text_field :name, :class => "form-control", :required => true %>
   </div>
 </div>
-<div class="row">
+<div class="row extra-margin">
   <div class="col-md-4">
     <h6 class="text-muted">
       <%=t :label_surname%>
     </h6>
   </div>
   <div class="col-md-12">
-    <h6 class="text-list">
-      <%= f.text_field :surname, :class => "form-control", :required => true %>
-    </h6>
+    <%= f.text_field :surname, :class => "form-control", :required => true %>
   </div>
 </div>
-<div class="row">
+<div class="row extra-margin">
   <div class="col-md-4">
     <h6 class="text-muted">
-      <%=t :label_index_number%>
+      <%=t :label_index_number %>
     </h6>
   </div>
   <div class="col-md-12">
-    <h6 class="text-list">
-      <%= f.text_field :index_number, :class => "form-control", :required => true %>
-    </h6>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-4">
-    <h6 class="text-muted">
-      <%=t :label_student_ects_amount%>
-    </h6>
-  </div>
-  <div class="col-md-12">
-    <h6 class="text-list">
-      <%= f.text_field :passed_ects, :class => "form-control", :required => true %>
-    </h6>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-4">
-    <h6 class="text-muted">
-      <%=t :label_student_avg_grade %>
-    </h6>
-  </div>
-  <div class="col-md-12">
-    <h6 class="text-list">
-      <%= f.text_field :average_grade, :class => "form-control", :required => true, :number => true %>
-    </h6>
+    <%= f.text_field :index_number, :class => "form-control", :required => true, :placeholder => t(:label_index_number_short) %>
   </div>
 </div>
 <% @student.student_studies.each_with_index do |ss, idx|  %>
@@ -64,28 +34,24 @@
   <% end %>
 <% end %>
 <%= new_child_fields_template(f, :student_studies, :options_for_partial => { :idx => 0}, :partial => "student_studies") %>
-<div class="row">
+<div class="row extra-margin">
   <div class="col-md-4">
     <h6 class="text-muted">
       <%=t :label_password%>
     </h6>
   </div>
   <div class="col-md-12">
-    <h6 class="text-list">
-      <%= g.password_field :password, :class => "form-control" %>
-    </h6>
+    <%= g.password_field :password, :class => "form-control" %>
   </div>
 </div>
-<div class="row">
+<div class="row extra-margin">
   <div class="col-md-4">
     <h6 class="text-muted">
       <%=t :label_password_confirmation%>
     </h6>
   </div>
   <div class="col-md-12">
-    <h6 class="text-list">
-      <%= g.password_field :password_confirmation, :class => "form-control" %>
-    </h6>
+    <%= g.password_field :password_confirmation, :class => "form-control" %>
   </div>
 </div>
 <div class="extra-margin"></div>
