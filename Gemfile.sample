@@ -23,6 +23,7 @@ gem "capistrano-resque", github: "sshingler/capistrano-resque", require: false
 gem 'whenever', :require => false
 gem 'roo'
 gem 'prawn'
+gem 'prawn-table', '~> 0.2.1'
 gem 'axlsx'
 gem 'rubyzip',  "~> 0.9.9"
 gem 'dalli'
@@ -46,7 +47,7 @@ group :development do
   gem 'interactive_editor'
   gem "better_errors"
   gem "binding_of_caller"
-  gem "capistrano", github: 'capistrano/capistrano', branch: 'master'
+  gem 'capistrano', '~> 3.2.0'
   gem 'capistrano-rvm', github: 'capistrano/rvm'
   gem 'capistrano-bundler', github: 'capistrano/bundler'
   gem 'capistrano-rails', '~> 1.1.0'
