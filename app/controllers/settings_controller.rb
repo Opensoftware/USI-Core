@@ -8,7 +8,12 @@ class SettingsController < ApplicationController
 
   def update
     setting = Settings.find(params[:id])
-    if setting.update(settings_params)
+    result = Settings::UpdateSettingsBatch
+    .call(settings_params: settings_params,
+          setting: setting,
+          current_annual: current_annual)
+
+    if result.success?
       redirect_to root_url
     end
   end
