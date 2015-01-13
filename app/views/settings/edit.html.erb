@@ -1,5 +1,5 @@
 <% content_for :additional_javascript_libraries do %>
-  <%= javascript_include_tag "enrollment_semester" %>
+  <%= javascript_include_tag "edit_settings" %>
 <% end %>
 <% content_for :content_heading do %>
   <div class="row">
@@ -41,10 +41,15 @@
         </div>
       </div>
       <div class="clearfix"></div>
+      <div class="form-group extra-margin">
+        <div class="col-md-8 col-md-offset-8">
+          <%= button_tag t(:label_thesis_collection_revert_to_open), {:"data-url" => diamond.collection_revert_to_open_theses_path, :class => "btn btn-danger revert-to-open"}.merge(Diamond::Thesis.denied.any? ? {} : {:disabled => :disabled})  %>
+        </div>
+      </div>
     </div>
     <div class="section">
       <div class="subsection-header ">
-        <h4><%=t :label_thesis_plural %></h4>
+        <h4><%=t :label_elective_block_plural %></h4>
       </div>
       <div class="form-group">
         <div class="col-md-8">

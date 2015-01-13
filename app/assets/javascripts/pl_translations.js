@@ -7,6 +7,7 @@ var pl_translations = {
   "confirmation_theses_delete": "Czy na pewno chcesz usunąć wybrane tematy prac dyplomowych?",
   "confirmation_theses_deny": "Czy na pewno chcesz odrzucić wybrane tematy prac dyplomowych?",
   "confirmation_theses_accept": "Czy na pewno chcesz zaakceptować wybrane tematy prac dyplomowych?",
+  "confirmation_theses_revert_to_open": "Czy na pewno chcesz cofnąć wszystkie wyłączone z obiegu tematy prac dyplomowych z powrotem do puli wyboru dla studentów i usunąć wszystkie przypisania?",
   "button_no": "Nie",
   "button_yes": "Tak",
   "notice_students_not_found": "W bazie danych nie ma takiego studenta lub został już przypisany do tematu pracy",
