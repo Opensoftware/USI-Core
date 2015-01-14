@@ -52,12 +52,12 @@ class Employee < ActiveRecord::Base
       Employee.having_theses.where("#{self.class.table_name}.id" => self.id).any?
     end
 
-    def thesis_limit_not_exceeded?
-      theses.assigned.count < department.department_settings.pick_newest.max_theses_count
+    def thesis_limit_not_exceeded?(annual)
+      theses.assigned.by_annual(annual).count < department.settings_for_annual(annual).max_theses_count
     end
 
-    def deny_remaining_theses!
-      theses.by_annual(Settings.pick_newest.annual).not_assigned.each do |thesis|
+    def deny_remaining_theses!(annual)
+      theses.by_annual(annual).not_assigned.each do |thesis|
         thesis.deny! if thesis.can_deny?
         thesis.enrollments.each do |enrollment|
           enrollment.reject! if enrollment.can_reject?

@@ -5,6 +5,9 @@ class Department < AcademyUnit
 
   after_create :create_department_settings
 
+  def settings_for_annual(annual)
+    department_settings.find_by(annual_id: annual)
+  end
 
   private
   def create_department_settings
