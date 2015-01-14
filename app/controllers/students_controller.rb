@@ -22,7 +22,10 @@ class StudentsController < ApplicationController
         render layout: false
       end
       f.json do
-        students = Student.not_enrolled.search_by_full_name(params[:q]).paginate(:page => 1, :per_page => 10, :order => 'surname ASC').collect do |student|
+        students = Student.search_by_full_name(params[:q])
+        .paginate(:page => 1, :per_page => 10, :order => 'surname ASC')
+        .includes(:studies => [:course => :translations, :study_degree => :translations])
+        .collect do |student|
           {
             value: "#{student.surname} #{student.name}",
             index_number: student.index_number,
