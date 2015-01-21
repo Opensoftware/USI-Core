@@ -69,7 +69,7 @@ OR #{Diamond::ThesisEnrollment.table_name}.id IS NULL")
     end
 
     def enrolled?
-      thesis_enrollments.accepted.count == student_studies.count
+      thesis_enrollments.accepted.count >= student_studies.count
     end
 
     def has_thesis_enrollment?(enrollment)
