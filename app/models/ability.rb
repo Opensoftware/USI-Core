@@ -55,6 +55,7 @@ class Ability
       can :manage, Diamond::ThesisMessage
       can :manage, EnrollmentSemester
       can :manage, :theses_reports
+      can :manage, :elective_blocks_reports
       can :manage, Graphite::ElectiveBlock
       can :manage, Graphite::ElectiveBlock::ElectiveModule
     elsif user.superadmin?
