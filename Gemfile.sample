@@ -33,6 +33,10 @@ gem "interactor"
 gem "spreadsheet"
 gem "creek"
 
+group :production do
+    gem 'rack-ssl-enforcer', :git => "https://github.com/tobmatth/rack-ssl-enforcer.git"
+end
+
 # Uncomment engines which you want to enable
 #gem 'diamond', '~> 0.0.1', :path => '../diamond'
 #gem 'graphite', '~> 0.0.1', :path => '../graphite'
