@@ -1,0 +1,83 @@
+<div class="section">
+  <div class="section-header">
+    <h4>
+      <%=t :label_statistics %>
+    </h4>
+    <hr>
+  </div>
+  <div class="subsection">
+    <div class="subsection-header ">
+      <% if can?(:manage_own, Diamond::Thesis) %>
+        <h5><%=t :label_thesis_plural%></h5>
+      <% elsif can?(:manage_department, Diamond::Thesis) %>
+        <h5><%=t :label_thesis_plural_department%></h5>
+      <% end %>
+      <hr>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <h6 class="text-muted">
+          <%=t :label_thesis_proposed_count%>
+        </h6>
+      </div>
+      <div class="col-md-8">
+        <h6>
+          <%=t 'misc.thesis_proposed', :count => @dashboard_presenter.proposed_theses %>
+        </h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <h6 class="text-muted">
+          <%=t :label_status_accepted%>
+        </h6>
+      </div>
+      <div class="col-md-8">
+        <h6>
+          <%=t 'misc.thesis_accepted', :count => @dashboard_presenter.accepted_theses %>
+        </h6>
+      </div>
+    </div>
+    <% if @dashboard_presenter.unaccepted_theses %>
+      <div class="row">
+        <div class="col-md-8">
+          <h6 class="text-muted">
+            <%=t :label_filter_unaccepted%>
+          </h6>
+        </div>
+        <div class="col-md-8">
+          <h6>
+            <%=t 'misc.thesis_not_accepted', :count => @dashboard_presenter.unaccepted_theses %>
+          </h6>
+        </div>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-md-8">
+        <h6 class="text-muted">
+          <%=t :label_thesis_enrolled_count%>
+        </h6>
+      </div>
+      <div class="col-md-8">
+        <h6>
+          <%=t 'misc.thesis_chosen', :count => @dashboard_presenter.chosen_theses %>
+        </h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <h6 class="text-muted">
+          <%=t :label_thesis_not_enrolled_count %>
+        </h6>
+      </div>
+      <div class="col-md-8">
+        <h6>
+          <%=t 'misc.thesis_not_chosen', :count => @dashboard_presenter.not_chosen_theses %>
+        </h6>
+      </div>
+    </div>
+  </div>
+  <div class="section-footer">
+    <hr>
+  </div>
+</div>

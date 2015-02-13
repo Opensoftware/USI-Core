@@ -1,0 +1,102 @@
+<div class="section-header">
+  <h4>
+    <%=t :label_message_plural %>
+  </h4>
+  <hr>
+</div>
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#enrollments" data-toggle="tab"><%= "#{t :label_enrollment_plural} (#{@dashboard_presenter.enrollment_messages.count})" %></a></li>
+  <% if @dashboard_presenter.thesis_state_messages.present? %>
+    <li><a href="#states" data-toggle="tab"><%= "#{t :label_thesis_plural_short} (#{@dashboard_presenter.thesis_state_messages.count})" %></a></li>
+  <% end %>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="enrollments">
+    <table class="table">
+      <tbody>
+        <% if @dashboard_presenter.enrollment_messages.present? %>
+          <% @dashboard_presenter.enrollment_messages.each do |em| %>
+            <tr id="msg-<%=em.id%>" style="<%="opacity: 0.5" if em.visited? %>">
+              <td>
+                <%= em.thesis_enrollment.thesis.supervisor.surname_name %>
+              </td>
+              <td>
+                <%= link_to truncate(em.thesis_enrollment.thesis.title, :omission => '...', :separator => ' ', :length => 47), diamond.thesis_path(em.thesis_enrollment.thesis_id) %>
+              </td>
+              <td>
+                <% if can?(:manage_department, em.thesis_enrollment.thesis) || em.thesis_enrollment.accepted? %>
+                  <%=  format_status(em.thesis_enrollment.current_state)  %>
+                <% else %>
+                  <%=raw t :label_thesis_accept, :days => content_tag(:span, t('misc.days', :count => em.thesis_enrollment.days_for_acceptance), :class => 'text-danger')  %>
+                <% end %>
+              </td>
+              <td>
+                <%=l em.thesis_enrollment.created_at, :format => :short %>
+              </td>
+              <td>
+                <div class="text-right" style="width: 100px;">
+                  <% if em.visited? %>
+                    <i class="icon-email"></i>
+                  <% else %>
+                    <%= button_to '', diamond.thesis_message_path(em), :method => :patch, :class => 'icon icon-email mark-as-read has-tooltip', 'data-toggle'=>"tooltip", 'data-placement'=>"top", :title => t(:label_mark_as_read) %>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td class="text-center">
+              <%=t :label_enrollment_empty %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% if @dashboard_presenter.thesis_state_messages.present? %>
+    <div class="tab-pane" id="states">
+      <table class="table">
+        <tbody>
+          <% if @dashboard_presenter.thesis_state_messages.present? %>
+            <% @dashboard_presenter.thesis_state_messages.each do |ts| %>
+              <tr id="msg-<%=ts.id%>" style="<%="opacity: 0.5" if ts.visited? %>">
+                <td>
+                  <%= ts.thesis_state_audit.creator.surname_name %>
+                </td>
+                <td>
+                  <%= link_to truncate(ts.thesis_state_audit.thesis.title, :omission => '...', :separator => ' ', :length => 40), diamond.thesis_path(ts.thesis_state_audit.thesis_id) %>
+                </td>
+                <td>
+                  <%=t "label_status_#{ts.thesis_state_audit.state}" %>
+                </td>
+                <td>
+                  <%=l ts.thesis_state_audit.created_at, :format => :short %>
+                </td>
+                <td>
+                  <div class="text-right" style="width: 100px;">
+                    <% if ts.visited? %>
+                      <i class="icon-email"></i>
+                    <% else %>
+                      <%= button_to '', diamond.thesis_message_path(ts), :method => :patch, :class => 'icon icon-email mark-as-read has-tooltip', 'data-toggle'=>"tooltip", 'data-placement'=>"top", :title => t(:label_mark_as_read) %>
+                    <% end %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>
+<div class="section-footer extra-margin">
+  <hr>
+</div>

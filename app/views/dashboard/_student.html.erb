@@ -1,0 +1,41 @@
+<% content_for :additional_javascripts do %>
+
+  <% if current_user.student.any_pending_module_enrollments? %>
+    <%= javascript_include_tag 'graphite/pipe' %>
+  <% end %>
+<% end %>
+
+<% if current_user.student.is_authorized_for_thesis_enrollments? %>
+  <div class="section-header">
+    <h4 class="pull-left">
+      <%=t :label_thesis_chosen_yours %>
+    </h4>
+    <%= link_to t(:label_thesis_list_move), diamond.theses_path, :class => 'pull-right inline-icon inline-icon-red inline-icon-thesis-list' %>
+    <div class="clearfix"></div>
+    <hr>
+  </div>
+
+  <% cache fragment_cache_key_for(@dashboard_presenter.enrollments) do %>
+    <% if @dashboard_presenter.enrollments.present? %>
+      <table class="table">
+        <tbody>
+          <%= render :partial => "enrollment_record", :collection => @dashboard_presenter.enrollments %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="text-center">
+        <%=t :label_thesis_enroll_first %>
+      </p>
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="student-elective-enrollments" data-pipe="<%=graphite.event_pipe_elective_blocks_path%>">
+  <div class="section-header">
+    <h4 style="margin-top: 40px;">
+      <%= t("label_elective_block_chosen_yours") %>
+    </h4>
+    <hr>
+  </div>
+  <%= render :partial => "graphite/dashboard/elective_block", :collection => @dashboard_presenter.elective_modules %>
+</div>

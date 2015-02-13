@@ -1,0 +1,64 @@
+<div class="section-header">
+    <h4 style="margin-top: 40px;">
+      <%=t :label_thesis_plural_short %>
+    </h4>
+    <hr>
+  </div>
+<div class="section-menu">
+    <h4 class="pull-left">
+      <span><%=t :label_display%></span>
+      <div class="dropdown">
+        <%= link_to t("label_filter_#{Dashboard::EmployeePresenter::CONTEXT_FILTERS.first}").downcase, '', 'data-toggle' => 'dropdown', :class => 'context-filter-dropdown context-filter-theses' %>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <% Dashboard::EmployeePresenter::CONTEXT_FILTERS.each do |filter| %>
+            <li>
+              <%= form_tag dashboard_index_path do  %>
+                <%= hidden_field_tag :context, 'theses' %>
+                <%= hidden_field_tag :filter, filter %>
+                <%= link_to t("label_filter_#{filter}"), '', :class => 'context-filter' %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </h4>
+    <div class="pull-right ">
+      <%= button_to diamond.theses_path, :method => :get,  :class => 'inline-btn accept-selected', :type => :button do %>
+        <% if cannot?(:manage, Thesis) %>
+          <%= hidden_field_tag :supervisor_id, current_user.verifable_id %>
+        <% end %>
+        <%= content_tag :i, nil, :class => 'icon icon-red icon-thesis-list' %>
+        <%=t :label_list_move%>
+      <% end %>
+    </div>
+  </div>
+<div class="clearfix"></div>
+<div class="elements-list theses-list">
+  <table class="table">
+    <tbody>
+      <% if @dashboard_presenter.theses.present? %>
+        <%= render :partial => "diamond/common/thesis_record", :collection => @dashboard_presenter.theses %>
+      <% else %>
+        <tr>
+          <td>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="section-menu">
+  <div class="pull-right ">
+    <%= button_to diamond.theses_path, :method => :get,  :class => 'inline-btn accept-selected', :type => :button do %>
+      <% if cannot?(:manage, Diamond::Thesis) %>
+        <%= hidden_field_tag :supervisor_id, current_user.verifable_id %>
+      <% end %>
+      <%= content_tag :i, nil, :class => 'icon icon-red icon-thesis-list' %>
+      <%=t :label_list_move%>
+    <% end %>
+  </div>
+</div>
+<div class="clearfix"></div>
+<div class="section-footer extra-margin">
+  <hr>
+</div>
