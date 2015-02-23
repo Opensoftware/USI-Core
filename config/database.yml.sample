@@ -1,0 +1,12 @@
+development: &default
+  template: template0
+  adapter: postgresql
+  encoding: UTF8
+  database: dev_db
+  pool: 100
+  username: rails
+  password: password
+
+production:
+  <<: *default
+  database: prod_db
