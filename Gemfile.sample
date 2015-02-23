@@ -23,7 +23,7 @@ gem "capistrano-resque", github: "sshingler/capistrano-resque", require: false
 gem 'whenever', :require => false
 gem 'prawn'
 gem 'prawn-table', '~> 0.2.1'
-gem 'axlsx'
+gem 'axlsx', '~> 2.0.1'
 gem 'zip-zip'
 gem 'dalli'
 gem 'pg_search'
@@ -45,7 +45,7 @@ end
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', :platforms => :ruby
 gem "sass-rails", ">= 4.0.3"
-gem "bootstrap-sass", '~> 3.1.1'
+gem "bootstrap-sass", '~> 3.2.0'
 
 group :development do
   gem 'hirb'
@@ -57,7 +57,7 @@ group :development do
   gem 'capistrano-rvm', github: 'capistrano/rvm'
   gem 'capistrano-bundler', github: 'capistrano/bundler'
   gem 'capistrano-rails', '~> 1.1.0'
-  gem 'capistrano3-unicorn'
+  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
   gem "thin"
   gem "byebug"
   gem 'sprockets_better_errors'
