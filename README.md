@@ -4,6 +4,7 @@ Uczelniane Systemy Informatyczne &ndash; podstawa dla kolejnych modułów (kompo
 
 1. [Diament][3] &ndash; moduł wspomagający proces zapisów na prace dyplomowe. 
 2. [Grafit][4] &ndash; moduł wspomagający proces zapisów na przedmioty obieralne. 
+3. [Pyrite][5] &ndash; moduł wspomagający zarządzanie planami zajęć.
 
 
 
@@ -29,7 +30,7 @@ Login: `babel@at.edu `
 
 Hasło do wszystkich kont: `123qweasdzxc`.
 
-Znaczenie poszczególnych uprawnień zależy od dodanych rozszerzeń ([Diament][3] i/lub [Grafit][4]). Ich szerszy opis jest dostępny na stronie danego rozszerzenia.
+Znaczenie poszczególnych uprawnień zależy od dodanych rozszerzeń ([Diament][3] i/lub [Grafit][4]). Ich szerszy opis jest dostępny na stronie danego komponentu.
 
 # Wymagania:
 
@@ -67,3 +68,4 @@ biuro@opensoftware.pl
 [2]: http://usi-demo.opensoftware.pl/
 [3]: https://github.com/Opensoftware/USI-Diamond
 [4]: https://github.com/Opensoftware/USI-Graphite
+[5]: https://github.com/Opensoftware/Pyrite
